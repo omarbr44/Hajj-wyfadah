@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[20%] bg-white h-full pt-8 flex flex-col items-center gap-10 shadow-xl relative z-10">
+    <div class="w-[20%] bg-white pt-8 flex flex-col items-center gap-10 shadow-xl relative z-10">
         <img src="../assets/img/logo.png" class="" alt="logo">
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">لوحة المعلومات</RouterLink>
         <RouterLink to="" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">

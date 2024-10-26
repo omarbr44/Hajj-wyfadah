@@ -32,9 +32,14 @@
                      </button>
                 </div>
                 <p class="text-sm text-right mt-4   ">هل نسيت كلمة المرور ؟ <RouterLink to="/passwordresubmit-email" class="text-site-blue font-normal cursor-pointer">إعادة تعيين كلمة المرور</RouterLink ></p>
-                <button @click="nextStep" class="w-full mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold">
+<!--                 <button @click="nextStep" class="w-full mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold">
                     <span>تسجيل الدخول</span>
-                </button>     
+                </button> -->
+                <div class="w-full flex">
+                    <RouterLink to="/companyinfo" class="w-[80%] my-4 mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold flex items-center justify-center">
+                  تسجيل الدخول
+                </RouterLink > 
+                </div>
                 <p class="text-red-500 text-center mt-3">تبقت محاولة واحدة لك لإدخال كلمة المرور الصحيحة !</p>
                 <p class="text-red-500 text-sm text-center mt-3 hidden">تم تجميد حسابك بناء على عدة محاولات تسجيل دخول خاطئة.
                     <br>

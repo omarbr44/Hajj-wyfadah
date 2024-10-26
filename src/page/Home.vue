@@ -1,42 +1,42 @@
 <template>
     <div class="w-full">
-        <nav class="w-full flex justify-center items-center my-8 px-5 text-black z-10 fixed top-0">
-            <RouterLink class=" mr-auto w-[5%] pl-6">
+        <nav class="w-full flex justify-center items-center py-8 px-5 text-black z-50 fixed top-0 bg-white shadow-md">
+            <RouterLink to="/" class=" mr-auto w-[5%] pl-6">
                 <img class="w-12" src="../assets/img/logo.png" alt="">
             </RouterLink>
             <div class="flex justify-center gap-40 items-center font-semibold w-[95%]">
-                <RouterLink>
+                <a href="#contact">
                 <span>التواصل</span>
-                </RouterLink>
-                <RouterLink>
-                <span>الميزات</span>
-                </RouterLink>
-                <RouterLink>
+                </a>
+                <a href="#feature">
+                <span >الميزات</span>
+                </a>
+                <a href="#about-us">
                 <span>من نحن</span>
-                </RouterLink>
-                <RouterLink class="text-xl text-site-blue">
+                </a>
+                <a href="#main">
                 <span>الرئيسية</span>
-                </RouterLink>
+                </a>
             </div>
         </nav>
-        <div class="flex items-center mt-28 relative">
+        <section id="main" class="flex items-center mt-28 relative">
             <img class=" h-[90vh]" src="../assets/img/homeHeroImg1.png" alt="">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8"> فن الادارة والتواصل في عالم الحج </h1>
                 <p class="text-center font-medium mb-10 px-24">.حيث نجمع بين فن الإدارة الاستثنائي وفن التواصل المبدع لإتاحة تجربة استثنائية في إدارة رحلات الحج. انضم إلينا في هذه الرحلة الفنية لاستكشاف إدارة عالم الحج بأسلوب فريد وفني</p>
-                <button class=" bg-site-blue text-white text-xl font-bold py-3 px-12 rounded-3xl mb-5">نشط حسابك الآن</button>
-                <p>هل تملك حساب  نشط ؟ <RouterLink class=" text-site-blue">سجل الدخول</RouterLink> </p>
+                <RouterLink to="/signup" class=" bg-site-blue text-white text-xl font-bold py-3 px-12 rounded-3xl mb-5 relative z-40">نشط حسابك الآن</RouterLink>
+                <p>هل تملك حساب  نشط ؟ <RouterLink to="/signin" class=" text-site-blue relative z-40">سجل الدخول</RouterLink> </p>
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
-        </div>
-        <div class="flex items-center relative overflow-hidden">
+        </section>
+        <section id="about-us" class="flex items-center my-28 relative overflow-hidden">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8">وفادة</h1>
                 <p class="text-center font-medium mb-10 px-44">هو نظام إداري مصمم لتحسين وتسهيل عمليات إدارة وتنظيم رحلات الحج لشركات الحج ، حيث يقدم حلاً مبتكرًا لجميع جوانب الإدارة، بدءًا من تخطيط الرحلات والإقامة، وانتهاءً بمراقبة حركة الحجاج و التواصل معهم</p>
             </div>
             <img class=" h-[90vh]" src="../assets/img/homeHeroImg2.png" alt="">
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
-        </div>
+        </section>
         <div class="flex items-center relative overflow-hidden">
             <img class=" h-[90vh]" src="../assets/img/homeHeroImg3.png" alt="">
             <div class="flex flex-col items-center">
@@ -48,7 +48,7 @@
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
         </div>
-        <div class="flex flex-col items-center relative overflow-hidden">
+        <section id="feature" class="flex flex-col items-center relative overflow-hidden">
             <h1 class="text-3xl font-bold text-site-blue text-center mb-8">ميزات وفادة</h1>
             <div class="flex flex-wrap justify-center gap-10 gap-y-20 items-center mx-28">
                 <div class="flex flex-col items-center gap-5 w-[30%]" >
@@ -180,11 +180,29 @@
                 </div>
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
-        </div>
-        <div class="flex items-center relative overflow-hidden">
-            <img class=" h-[90vh]" src="../assets/img/homeHeroImg3.png" alt="">
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
-            <div class="flex flex-col items-center text-white">
+        </section>
+        <section id="contact" class="flex items-center relative overflow-hidden h-screen">
+            <div class="flex flex-col items-center gap-14 w-1/2 rtl-d px-40 relative z-30">
+                <h1 class="text-2xl font-bold ">معلومات التواصل</h1>
+                <input 
+                     name="name" 
+                     type="text" 
+                     class="w-full border border-[#CBE5F0] py-3 pr-5 rounded-xl text-sm"
+                     placeholder="الاسم">
+                <input 
+                     name="phone" 
+                     type="text" 
+                     class="w-full border border-[#CBE5F0] py-3 pr-5 rounded-xl text-sm"
+                     placeholder="رقم الجوال">
+                <input 
+                     name="email" 
+                     type="text" 
+                     class="w-full border border-[#CBE5F0] py-3 pr-5 rounded-xl text-sm"
+                     placeholder="الايميل">
+                <button class="text-xl py-3 w-full text-white bg-gradient-to-t from-[#8DDBE5] to-[#307EBC] rounded-xl">ارسال</button>
+            </div>
+            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
+            <div class="flex flex-col mt-4 items-center text-white w-1/2">
                 <h1 class="text-5xl font-bold text-center mb-8">تواصل معنا</h1>
                 <p class="text-center font-bold mb-10 px-48">
                     و للمزيد من التفاصيل و اكتشاف أحدث الأخبار والخدمات تابعنا في مواقع التواصل الاجتماعي
@@ -215,17 +233,80 @@
                         <span>@wyfadah</span>
                     </div>
                 </div>
-                <img class="top-0 absolute w-[35%] h-[85vh] z-[-1]" src="../assets/img/contactUsImg.png" alt="">
+                <img class="top-5 absolute w-[35%] h-[85vh] z-[-1]" src="../assets/img/contactUsImg.png" alt="">
             </div>
-        </div>
+        </section>
+        <footer class="w-full flex justify-center items-center py-8 px-5 bg-gradient-to-t from-[#F5F5F5] to-[#DCF3F7]">
+            <div class="w-[30%]" >
+                <img class=" w-[70%]" src="../assets/img/map.png" alt="map">
+            </div>
+            <div class="w-[70%]" >
+                <div class="flex items-center gap-10" >
+                    <div class="w-[70%] flex flex-col items-end gap-5" >
+                        <p class="text-[#72BDD6] text-xl">الإشتراكات</p>
+                        <div class="flex items-center gap-2">
+                            <p>050 464 76 28</p>
+                            <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <g clip-path="url(#clip0_97_516)">
+                                <path d="M20 0C8.9543 0 0 8.9543 0 20C0 31.0457 8.9543 40 20 40C31.0457 40 40 31.0457 40 20C40 8.9543 31.0457 0 20 0ZM12.8125 7.94433C13.2246 7.92003 13.597 8.16633 13.8794 8.6035L16.6138 13.789C16.9017 14.4035 16.7381 15.0614 16.3086 15.5005L15.0562 16.7529C14.9789 16.8588 14.928 16.9781 14.9268 17.1093C15.4071 18.9685 16.864 20.6834 18.1495 21.8628C19.4349 23.0421 20.8164 24.6388 22.6099 25.0171C22.8315 25.0789 23.1031 25.1011 23.2617 24.9536L24.7168 23.4717C25.2191 23.091 25.9457 22.9065 26.4819 23.2178H26.5063L31.4404 26.1304C32.1646 26.5844 32.2397 27.4619 31.7211 27.9956L28.3228 31.3672C27.8209 31.8819 27.1542 32.0549 26.5064 32.0557C23.6415 31.9698 20.9345 30.5637 18.711 29.1187C15.0613 26.4636 11.7136 23.1705 9.61183 19.1919C8.80577 17.5236 7.85887 15.3949 7.94923 13.5328C7.9573 12.8322 8.14683 12.1459 8.64017 11.6944L12.0386 8.29597C12.3033 8.0707 12.5652 7.95893 12.8125 7.94433Z" fill="#72BDD6"/>
+                                </g>
+                                <defs>
+                                <clipPath id="clip0_97_516">
+                                <rect width="40" height="40" fill="white"/>
+                                </clipPath>
+                                </defs>
+                            </svg>
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <p>info@wyfadah.com</p>
+                            <svg width="27" height="27" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M0 13.333V34.6663C0 36.0808 0.421427 37.4374 1.17157 38.4376C1.92172 39.4378 2.93913 39.9997 4 39.9997H36C37.0609 39.9997 38.0783 39.4378 38.8284 38.4376C39.5786 37.4374 40 36.0808 40 34.6663V13.333L20 23.9997L0 13.333Z" fill="#72BDD6"/>
+                                <path d="M4 0C2.93913 0 1.92172 0.526784 1.17157 1.46447C0.421427 2.40215 0 3.67392 0 5L0 10L20 20L40 10V5C40 3.67392 39.5786 2.40215 38.8284 1.46447C38.0783 0.526784 37.0609 0 36 0H4Z" fill="#72BDD6"/>
+                                </svg>
+
+                        </div>
+                        <div class="flex items-center gap-2">
+                            <p>3 جدة - شارع الأربعين - جوار جامع فلسطين -مركز الزيتونة </p>
+                            <svg width="30" height="30" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M20.0003 3.3335C25.517 3.3335 30.0003 7.76683 30.0003 13.2502C30.0003 20.6835 20.0003 31.6668 20.0003 31.6668C20.0003 31.6668 10.0003 20.6835 10.0003 13.2502C10.0003 7.76683 14.4837 3.3335 20.0003 3.3335ZM20.0003 10.0002C19.1163 10.0002 18.2684 10.3514 17.6433 10.9765C17.0182 11.6016 16.667 12.4494 16.667 13.3335C16.667 14.2176 17.0182 15.0654 17.6433 15.6905C18.2684 16.3156 19.1163 16.6668 20.0003 16.6668C20.8844 16.6668 21.7322 16.3156 22.3573 15.6905C22.9825 15.0654 23.3337 14.2176 23.3337 13.3335C23.3337 12.4494 22.9825 11.6016 22.3573 10.9765C21.7322 10.3514 20.8844 10.0002 20.0003 10.0002ZM33.3337 31.6668C33.3337 35.3502 27.367 38.3335 20.0003 38.3335C12.6337 38.3335 6.66699 35.3502 6.66699 31.6668C6.66699 29.5168 8.70033 27.6002 11.8503 26.3835L12.917 27.9002C11.117 28.6502 10.0003 29.6835 10.0003 30.8335C10.0003 33.1335 14.4837 35.0002 20.0003 35.0002C25.517 35.0002 30.0003 33.1335 30.0003 30.8335C30.0003 29.6835 28.8837 28.6502 27.0837 27.9002L28.1503 26.3835C31.3003 27.6002 33.3337 29.5168 33.3337 31.6668Z" fill="#72BDD6"/>
+</svg>
+
+                        </div>
+                    </div>
+                    <div class="w-[30%]" >
+                        <img class="h-24 mx-auto"src="../assets/img/logo.png" alt="logo">
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 <script setup>
 import { RouterLink } from 'vue-router';
 
+window.addEventListener('DOMContentLoaded', () => {
 
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    const id = entry.target.getAttribute('id');
+    if (entry.intersectionRatio > 0) {
+      document.querySelector(`nav div a[href="#${id}"]`).classList.add('text-site-blue');
+    } else {
+      document.querySelector(`nav div a[href="#${id}"]`).classList.remove('text-site-blue');
+    }
+  });
+});
+
+// Track all sections that have an `id` applied
+document.querySelectorAll('section[id]').forEach((section) => {
+  observer.observe(section);
+});
+
+});
 </script>
 
-<style lang="scss" scoped>
-
+<style>
+html {
+    scroll-behavior: smooth;
+}
 </style>

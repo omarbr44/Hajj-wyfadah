@@ -1,6 +1,6 @@
 <template>
     <div class="w-[20%] bg-white pt-8 flex flex-col items-center gap-10 shadow-xl relative z-10">
-        <img src="../assets/img/logo.png" class="" alt="logo">
+        <img src="/img/logo.png" class="" alt="logo">
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">لوحة المعلومات</RouterLink>
         <RouterLink to="" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
             <div class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"

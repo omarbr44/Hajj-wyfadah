@@ -2,7 +2,7 @@
     <div class="w-full">
         <nav class="w-full flex justify-center items-center py-8 px-5 text-black z-50 fixed top-0 bg-white shadow-md sm:hidden">
             <RouterLink to="/" class=" mr-auto w-[5%] pl-6">
-                <img class="w-12" src="../assets/img/logo.png" alt="">
+                <img class="w-12" src="/img/logo.png" alt="">
             </RouterLink>
             <div class="flex justify-center gap-40 items-center font-semibold w-[95%]">
                 <a href="#contact">
@@ -20,33 +20,33 @@
             </div>
         </nav>
         <section id="main" class="flex items-center mt-28 relative">
-            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg1.png" alt="">
+            <img class=" h-[90vh] sm:hidden" src="/img/homeHeroImg1.png" alt="">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8"> فن الادارة والتواصل في عالم الحج </h1>
                 <p class="text-center font-medium mb-10 px-24">.حيث نجمع بين فن الإدارة الاستثنائي وفن التواصل المبدع لإتاحة تجربة استثنائية في إدارة رحلات الحج. انضم إلينا في هذه الرحلة الفنية لاستكشاف إدارة عالم الحج بأسلوب فريد وفني</p>
                 <RouterLink to="/signup" class=" bg-site-blue text-white text-xl font-bold py-3 px-12 rounded-3xl mb-5 relative z-40">نشط حسابك الآن</RouterLink>
                 <p>هل تملك حساب  نشط ؟ <RouterLink to="/signin" class=" text-site-blue relative z-40">سجل الدخول</RouterLink> </p>
             </div>
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
+            <img src="/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
         </section>
         <section id="about-us" class="flex items-center my-28 relative overflow-hidden">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8">وفادة</h1>
                 <p class="text-center font-medium mb-10 px-44 sm:px-10">هو نظام إداري مصمم لتحسين وتسهيل عمليات إدارة وتنظيم رحلات الحج لشركات الحج ، حيث يقدم حلاً مبتكرًا لجميع جوانب الإدارة، بدءًا من تخطيط الرحلات والإقامة، وانتهاءً بمراقبة حركة الحجاج و التواصل معهم</p>
             </div>
-            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg2.png" alt="">
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
+            <img class=" h-[90vh] sm:hidden" src="/img/homeHeroImg2.png" alt="">
+            <img src="/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
         </section>
         <div class="flex items-center relative overflow-hidden">
-            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg3.png" alt="">
+            <img class=" h-[90vh] sm:hidden" src="/img/homeHeroImg3.png" alt="">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8">نظام التواصل التلقائي </h1>
                 <p class="text-center font-medium mb-10 px-44 sm:px-10">إن نظام التواصل الذي نقدمه هو نقلة نوعية في صناعة الإدارة 
                     لرحلات الحج، يمكن أن يكون مفتاح النجاح لشركتك في تلبية احتياجات الحجاج وتقديم خدمات فعّالة ومتميزة
                 </p>
-                <img class="top-0 absolute w-1/2 sm:hidden" src="../assets/img/homeHeroImg33.png" alt="">
+                <img class="top-0 absolute w-1/2 sm:hidden" src="/img/homeHeroImg33.png" alt="">
             </div>
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
+            <img src="/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
         </div>
         <section id="feature" class="flex flex-col items-center relative overflow-hidden">
             <h1 class="text-3xl font-bold text-site-blue text-center mb-8">ميزات وفادة</h1>
@@ -179,7 +179,7 @@
                     <p class="px-14 text-center">تمكين الشركات من مراقبة وتوجيه أداء الموظفين وصلاحتيهم في خدمة الحجاج.</p>
                 </div>
             </div>
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
+            <img src="/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
         </section>
         <section id="contact" class="flex sm:flex-col items-center relative overflow-hidden h-screen sm:h-auto">
             <div class="flex flex-col items-center gap-14 w-1/2 sm:w-full rtl-d px-40 sm:px-10 relative z-30">
@@ -201,7 +201,7 @@
                      placeholder="الايميل">
                 <button class="text-xl py-3 w-full text-white bg-gradient-to-t from-[#8DDBE5] to-[#307EBC] rounded-xl">ارسال</button>
             </div>
-            <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
+            <img src="/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
             <div class="flex flex-col mt-4 items-center text-white sm:text-black w-1/2 sm:w-full sm:mb-10">
                 <h1 class="text-5xl font-bold text-center mb-8">تواصل معنا</h1>
                 <p class="text-center font-bold mb-10 px-48 sm:px-10">
@@ -233,12 +233,12 @@
                         <span>@wyfadah</span>
                     </div>
                 </div>
-                <img class="top-5 sm:hidden absolute w-[35%] h-[85vh] z-[-1]" src="../assets/img/contactUsImg.png" alt="">
+                <img class="top-5 sm:hidden absolute w-[35%] h-[85vh] z-[-1]" src="/img/contactUsImg.png" alt="">
             </div>
         </section>
         <footer class="w-full flex justify-center items-center py-8 px-5 bg-gradient-to-t from-[#F5F5F5] to-[#DCF3F7]">
             <div class="w-[30%]" >
-                <img class=" w-[70%]" src="../assets/img/map.png" alt="map">
+                <img class=" w-[70%]" src="/img/map.png" alt="map">
             </div>
             <div class="w-[70%]" >
                 <div class="flex items-center gap-10" >
@@ -274,7 +274,7 @@
                         </div>
                     </div>
                     <div class="w-[30%]" >
-                        <img class="h-24 mx-auto"src="../assets/img/logo.png" alt="logo">
+                        <img class="h-24 mx-auto"src="/img/logo.png" alt="logo">
                     </div>
                 </div>
             </div>

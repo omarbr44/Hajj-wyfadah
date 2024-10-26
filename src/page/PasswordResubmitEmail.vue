@@ -1,8 +1,8 @@
 <template>
     <div class="w-full flex lg:flex-row flex-col-reverse items-center p-5 lg:px-16 bg-[#F8F8F8] relative">
-        <img class="absolute h-full right-0 top-0 translate-x-[200px] -translate-y-[230px]" src="../assets/img/Ellipse.png" alt="">
+        <img class="absolute h-full right-0 top-0 translate-x-[200px] -translate-y-[230px]" src="/img/Ellipse.png" alt="">
         <div class="lg:w-1/2 w-full">
-            <img class="w-full" src="../assets/img/passord-resubmit.png" alt="">
+            <img class="w-full" src="/img/passord-resubmit.png" alt="">
         </div>
         <div class="flex flex-col items-center lg:w-1/2 w-full lg:px-20 px-5 mt-10">
             <h1 class="text-4xl sm:text-2xl text-site-blue font-bold my-5">إعادة تعيين كلمة المرور</h1>

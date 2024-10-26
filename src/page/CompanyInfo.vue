@@ -46,7 +46,7 @@
                             <button @click="fileinput.click()" class="w-full h-56 border border-[#BDBDBD] p-2 rounded-xl">  
 
                             </button>
-                            <img @click="fileinput.click()" src="../assets/img/uploadFile.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
+                            <img @click="fileinput.click()" src="/img/uploadFile.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
                         </div>
                     </div>
                 </div>
@@ -123,7 +123,7 @@
                                         </div>
                                     </template>
                                     <template #dropdownicon>
-                                        <img class="" src="../assets/img/dropdown-arrow.svg" alt="">
+                                        <img class="" src="/img/dropdown-arrow.svg" alt="">
                                     </template>
                                     <template #header>
                                         <div class="font-medium p-3"></div>
@@ -153,7 +153,7 @@
                                         </div>
                                     </template>
                                     <template #dropdownicon>
-                                        <img class="" src="../assets/img/dropdown-arrow.svg" alt="">
+                                        <img class="" src="/img/dropdown-arrow.svg" alt="">
                                     </template>
                                     <template #header>
                                         <div class="font-medium p-3"></div>
@@ -211,7 +211,7 @@
                         </Dialog>
                         <button @click="visible = true" class="w-full h-44 bg-white border border-[#BDBDBD] p-2 rounded-xl">  
                         </button>
-                        <img @click="visible = true" src="../assets/img/uploadFile2.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
+                        <img @click="visible = true" src="/img/uploadFile2.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
                     </div>
                     <button class="flex gap-3 m-5">
                         <h2 class="font-semibold text-site-blue">تنزيل ملف الشروط والاحكام</h2>
@@ -300,12 +300,12 @@ import NavBarComponent from '../components/NavBarComponent.vue';
 import SideBarComponent from '../components/SideBarComponent.vue';
 import Select from 'primevue/select';
 
-const fromCountry = ref({ name: 'العربية', flag: '../src/assets/img/arabicFlag.svg' });
-const toCountry = ref({ name: 'الانجليزية', flag: '../src/assets/img/englishFlag.png' });
+const fromCountry = ref({ name: 'العربية', flag: '/img/arabicFlag.svg' });
+const toCountry = ref({ name: 'الانجليزية', flag: '/img/englishFlag.png' });
 const visible = ref(false);
 const countries = ref([
-    { name: 'العربية', flag: '../src/assets/img/arabicFlag.svg' },
-    { name: 'الانجليزية', flag: '../src/assets/img/englishFlag.png' },
+    { name: 'العربية', flag: '/img/arabicFlag.svg' },
+    { name: 'الانجليزية', flag: '/img/englishFlag.png' },
 ]);
 const swapCountries = () => {
     let temp = fromCountry.value

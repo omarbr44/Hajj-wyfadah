@@ -3,22 +3,22 @@
         <div class="signup-left-side lg:w-[60%] w-full lg:h-screen h-auto bg-site-blue rounded-[25px] relative overflow-hidden">
             <swiper-container navigation="true" pagination="true" class="h-full w-full">
                 <swiper-slide class="w-full h-full relative">
-                    <img src="../assets/img/signup-11.png" alt="signup1" class="w-full h-full absolute top-0 z-[1]">
+                    <img src="/img/signup-11.png" alt="signup1" class="w-full h-full absolute top-0 z-[1]">
                     <div class="flex flex-col items-center"> 
-                      <img src="../assets/img/signup-1.png" alt="signup1" class="lg:px-28 px-12 mt-16 mb-5 relative z-[2]">
+                      <img src="/img/signup-1.png" alt="signup1" class="lg:px-28 px-12 mt-16 mb-5 relative z-[2]">
                       <h1 class="lg:text-2xl text-lg px-5 mb-20 font-bold text-white text-center relative z-[2]">استعد للحج بسلوب مبتكر وتكنولوجيا متقدمة</h1>
                     </div>
                   </swiper-slide>
                 <swiper-slide class="w-full h-full relative">
-                    <img src="../assets/img/signup-22.png" alt="signup1" class="w-full h-full absolute top-0 z-[1]">
+                    <img src="/img/signup-22.png" alt="signup1" class="w-full h-full absolute top-0 z-[1]">
                     <div class="flex flex-col items-center"> 
-                      <img src="../assets/img/signup-2.png" alt="signup2" class="lg:px-20 px-8 mt-5 lg:mt-1 relative z-[2]">
+                      <img src="/img/signup-2.png" alt="signup2" class="lg:px-20 px-8 mt-5 lg:mt-1 relative z-[2]">
                       <h1 class="lg:text-2xl text-lg px-5 font-bold text-white text-center relative z-[2]">استعد للحج بسلوب مبتكر وتكنولوجيا متقدمة</h1>
                     </div>
                 </swiper-slide>
                 <swiper-slide class="w-full h-full relative">
                   <div class="flex flex-col items-center"> 
-                    <img src="../assets/img/signup-3.png" alt="signup3" class="lg:px-20 px-8 lg:-translate-y-[80px] -translate-y-[20px] relative z-[2]">
+                    <img src="/img/signup-3.png" alt="signup3" class="lg:px-20 px-8 lg:-translate-y-[80px] -translate-y-[20px] relative z-[2]">
                     <h1 class="lg:text-2xl text-lg px-5 font-bold text-white text-center relative z-[2] lg:-translate-y-[80px] -translate-y-[20px]">استعد للحج بسلوب مبتكر وتكنولوجيا متقدمة</h1>
                   </div>
                 </swiper-slide>

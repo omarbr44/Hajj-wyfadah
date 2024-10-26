@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full flex justify-center items-center p-5 lg:px-16 bg-[#F8F8F8] relative overflow-hidden">
-        <img class="absolute h-full right-0 top-0 translate-x-[200px] -translate-y-[230px]" src="../assets/img/Ellipse.png" alt="">
-        <img class="absolute h-full left-0 bottom-0 -translate-x-[200px] translate-y-[230px]" src="../assets/img/Ellipse.png" alt="">
+        <img class="absolute h-full right-0 top-0 translate-x-[200px] -translate-y-[230px]" src="/img/Ellipse.png" alt="">
+        <img class="absolute h-full left-0 bottom-0 -translate-x-[200px] translate-y-[230px]" src="/img/Ellipse.png" alt="">
         <div class="flex flex-col items-center lg:w-1/2 w-full lg:px-20 px-5 mt-10 sm:mt-5">
             <h1 class="text-4xl sm:text-2xl text-site-blue font-bold my-5">إعادة تعيين كلمة المرور</h1>
             <p class=" text-site-text-grey font-medium mb-10 sm:mb-5 text-center px-12 sm:px-4">ادخل كلمة المرور الجديدة</p>

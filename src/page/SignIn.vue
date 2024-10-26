@@ -8,7 +8,7 @@
             <p class="text-center text-xl font-semibold text-site-blue mb-1">مرحبا بك في نظام وفادة</p>
             <h1 class="text-center text-3xl font-bold text-white ">.معا نجعل تجربتك الحجية تجربة لا تنسى
               <br>
-              سجل الدخول وكن جزءا من ذلك
+              سجل الدخول وكن جزءا من ذلك 
             </h1>
           </div>
         </div>

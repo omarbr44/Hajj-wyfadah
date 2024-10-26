@@ -1,6 +1,6 @@
 <template>
     <div class="w-full">
-        <nav class="w-full flex justify-center items-center py-8 px-5 text-black z-50 fixed top-0 bg-white shadow-md">
+        <nav class="w-full flex justify-center items-center py-8 px-5 text-black z-50 fixed top-0 bg-white shadow-md sm:hidden">
             <RouterLink to="/" class=" mr-auto w-[5%] pl-6">
                 <img class="w-12" src="../assets/img/logo.png" alt="">
             </RouterLink>
@@ -20,7 +20,7 @@
             </div>
         </nav>
         <section id="main" class="flex items-center mt-28 relative">
-            <img class=" h-[90vh]" src="../assets/img/homeHeroImg1.png" alt="">
+            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg1.png" alt="">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8"> فن الادارة والتواصل في عالم الحج </h1>
                 <p class="text-center font-medium mb-10 px-24">.حيث نجمع بين فن الإدارة الاستثنائي وفن التواصل المبدع لإتاحة تجربة استثنائية في إدارة رحلات الحج. انضم إلينا في هذه الرحلة الفنية لاستكشاف إدارة عالم الحج بأسلوب فريد وفني</p>
@@ -32,26 +32,26 @@
         <section id="about-us" class="flex items-center my-28 relative overflow-hidden">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8">وفادة</h1>
-                <p class="text-center font-medium mb-10 px-44">هو نظام إداري مصمم لتحسين وتسهيل عمليات إدارة وتنظيم رحلات الحج لشركات الحج ، حيث يقدم حلاً مبتكرًا لجميع جوانب الإدارة، بدءًا من تخطيط الرحلات والإقامة، وانتهاءً بمراقبة حركة الحجاج و التواصل معهم</p>
+                <p class="text-center font-medium mb-10 px-44 sm:px-10">هو نظام إداري مصمم لتحسين وتسهيل عمليات إدارة وتنظيم رحلات الحج لشركات الحج ، حيث يقدم حلاً مبتكرًا لجميع جوانب الإدارة، بدءًا من تخطيط الرحلات والإقامة، وانتهاءً بمراقبة حركة الحجاج و التواصل معهم</p>
             </div>
-            <img class=" h-[90vh]" src="../assets/img/homeHeroImg2.png" alt="">
+            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg2.png" alt="">
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
         </section>
         <div class="flex items-center relative overflow-hidden">
-            <img class=" h-[90vh]" src="../assets/img/homeHeroImg3.png" alt="">
+            <img class=" h-[90vh] sm:hidden" src="../assets/img/homeHeroImg3.png" alt="">
             <div class="flex flex-col items-center">
                 <h1 class="text-3xl font-bold text-site-blue text-center mb-8">نظام التواصل التلقائي </h1>
-                <p class="text-center font-medium mb-10 px-44">إن نظام التواصل الذي نقدمه هو نقلة نوعية في صناعة الإدارة 
+                <p class="text-center font-medium mb-10 px-44 sm:px-10">إن نظام التواصل الذي نقدمه هو نقلة نوعية في صناعة الإدارة 
                     لرحلات الحج، يمكن أن يكون مفتاح النجاح لشركتك في تلبية احتياجات الحجاج وتقديم خدمات فعّالة ومتميزة
                 </p>
-                <img class="top-0 absolute w-1/2" src="../assets/img/homeHeroImg33.png" alt="">
+                <img class="top-0 absolute w-1/2 sm:hidden" src="../assets/img/homeHeroImg33.png" alt="">
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
         </div>
         <section id="feature" class="flex flex-col items-center relative overflow-hidden">
             <h1 class="text-3xl font-bold text-site-blue text-center mb-8">ميزات وفادة</h1>
             <div class="flex flex-wrap justify-center gap-10 gap-y-20 items-center mx-28">
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold">نظام التسكين</p>
                         <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -67,7 +67,7 @@
                     </div>
                     <p class="px-14 text-center">يسمح بتنظيم وإدارة عمليات التسكين بفعالية وبناءً على متطلبات الحجاج وتوافر الموارد.</p>
                 </div>
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold mt-5">إدراة الخيام</p>
                         <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +79,7 @@
                     </div>
                     <p class="px-14 text-center"> تخصيص وتنظيم مكان وزمان توزيع الخيام بناءً على احتياجات الحجاج والمواقع المحددة. مما يساهم في توفير إقامة مريحة وآمنة للحجاج،</p>
                 </div>
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold">إدارة كاملة للحافلات</p>
                         <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,7 +118,7 @@
                     </div>
                     <p class="px-14 text-center">تساعد إدراة الحافلات في تنظيم وتنسيق حركة الحافلات بشكل فعال لضمان وصول الحجاج إلى وجهاتهم بسلاسة.</p>
                 </div>
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold mt-5">إدراة البطاقات </p>
                         <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -133,7 +133,7 @@
                     </div>
                     <p class="px-14 text-center">تمكين الشركات من تتبع وإدارة البطاقات والتصاريح الخاصة بالحجاج بدقة والتحقق من الهويات بشكل فعال.</p>
                 </div>
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold">إدارة بيانات الحجاج</p>
                         <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -148,7 +148,7 @@
                     </div>
                     <p class="px-14 text-center">تساعد الشركات في تنظيم ومراقبة معلومات الحجاج بشكل دقيق وآمن. </p>
                 </div>
-                <div class="flex flex-col items-center gap-5 w-[30%]" >
+                <div class="flex flex-col items-center gap-5 w-[30%] sm:w-full" >
                     <div class="flex items-center gap-3">
                         <p class="text-xl font-bold">إدراة الموظفين</p>
                         <svg width="69" height="89" viewBox="0 0 69 89" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -181,8 +181,8 @@
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0 rotate-180">
         </section>
-        <section id="contact" class="flex items-center relative overflow-hidden h-screen">
-            <div class="flex flex-col items-center gap-14 w-1/2 rtl-d px-40 relative z-30">
+        <section id="contact" class="flex sm:flex-col items-center relative overflow-hidden h-screen sm:h-auto">
+            <div class="flex flex-col items-center gap-14 w-1/2 sm:w-full rtl-d px-40 sm:px-10 relative z-30">
                 <h1 class="text-2xl font-bold ">معلومات التواصل</h1>
                 <input 
                      name="name" 
@@ -202,14 +202,14 @@
                 <button class="text-xl py-3 w-full text-white bg-gradient-to-t from-[#8DDBE5] to-[#307EBC] rounded-xl">ارسال</button>
             </div>
             <img src="../assets/img/heroOverlay.png" alt="" class=" absolute bottom-0 left-0">
-            <div class="flex flex-col mt-4 items-center text-white w-1/2">
+            <div class="flex flex-col mt-4 items-center text-white sm:text-black w-1/2 sm:w-full sm:mb-10">
                 <h1 class="text-5xl font-bold text-center mb-8">تواصل معنا</h1>
-                <p class="text-center font-bold mb-10 px-48">
+                <p class="text-center font-bold mb-10 px-48 sm:px-10">
                     و للمزيد من التفاصيل و اكتشاف أحدث الأخبار والخدمات تابعنا في مواقع التواصل الاجتماعي
                 </p>
                 <div class="flex justify-evenly items-center w-[50%] mt-2" >
                     <div class="flex flex-col items-center gap-2">
-                        <svg width="24" height="22" viewBox="0 0 44 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="22" viewBox="0 0 44 42" fill="none" class="sm:bg-black" xmlns="http://www.w3.org/2000/svg">
 <mask id="mask0_97_548" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="1" y="3" width="42" height="36">
 <path d="M30.2503 5.25H40.3337L13.7503 36.75H3.66699L30.2503 5.25Z" fill="#555555" stroke="white" stroke-width="4" stroke-linejoin="round"/>
 <path d="M13.7503 5.25H3.66699L30.2503 36.75H40.3337L13.7503 5.25Z" fill="#555555" stroke="white" stroke-width="4" stroke-linejoin="round"/>
@@ -221,19 +221,19 @@
                         <span>@wyfadah</span>
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <svg width="35" height="36" viewBox="0 0 55 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="35" height="36" viewBox="0 0 55 56" fill="none" class="sm:bg-black" xmlns="http://www.w3.org/2000/svg">
 <path d="M27.4997 22.2132C26.3756 22.2132 25.2768 22.5526 24.3422 23.1884C23.4076 23.8242 22.6791 24.728 22.249 25.7854C21.8188 26.8428 21.7063 28.0063 21.9255 29.1288C22.1448 30.2513 22.6861 31.2824 23.4809 32.0916C24.2758 32.9009 25.2885 33.452 26.3909 33.6753C27.4934 33.8986 28.6361 33.784 29.6746 33.346C30.7131 32.908 31.6007 32.1664 32.2252 31.2147C32.8497 30.2631 33.183 29.1443 33.183 27.9998C33.183 27.2399 33.036 26.4874 32.7504 25.7854C32.4648 25.0833 32.0461 24.4454 31.5184 23.908C30.9907 23.3707 30.3641 22.9445 29.6746 22.6537C28.9851 22.3628 28.246 22.2132 27.4997 22.2132ZM50.2559 16.4965C50.2439 14.6946 49.918 12.9092 49.2934 11.2232C48.8334 9.98944 48.1217 8.86906 47.2053 7.93594C46.2888 7.00282 45.1885 6.27818 43.9768 5.80984C42.3209 5.17392 40.5673 4.84211 38.7976 4.82984C35.8413 4.6665 34.9705 4.6665 27.4997 4.6665C20.0288 4.6665 19.158 4.6665 16.2018 4.82984C14.432 4.84211 12.6785 5.17392 11.0226 5.80984C9.81089 6.27818 8.71051 7.00282 7.79406 7.93594C6.8776 8.86906 6.1659 9.98944 5.70592 11.2232C5.08136 12.9092 4.75548 14.6946 4.74342 16.4965C4.58301 19.5065 4.58301 20.3932 4.58301 27.9998C4.58301 35.6065 4.58301 36.4932 4.74342 39.5032C4.76809 41.3114 5.09353 43.1023 5.70592 44.7998C6.16386 46.0279 6.87497 47.1418 7.79134 48.0665C8.70387 49.0052 9.80661 49.7299 11.0226 50.1898C12.6785 50.8258 14.432 51.1576 16.2018 51.1698C19.158 51.3332 20.0288 51.3332 27.4997 51.3332C34.9705 51.3332 35.8413 51.3332 38.7976 51.1698C40.5673 51.1576 42.3209 50.8258 43.9768 50.1898C45.1927 49.7299 46.2955 49.0052 47.208 48.0665C48.1244 47.1418 48.8355 46.0279 49.2934 44.7998C49.9174 43.1056 50.2432 41.3126 50.2559 39.5032C50.4163 36.4932 50.4163 35.6065 50.4163 27.9998C50.4163 20.3932 50.4163 19.5065 50.2559 16.4965ZM44.4351 35.1632C44.3615 36.6031 44.0597 38.0214 43.5413 39.3632C43.0965 40.4824 42.4351 41.4992 41.5965 42.353C40.758 43.2068 39.7594 43.8802 38.6601 44.3332C37.3298 44.8316 35.929 45.1074 34.5122 45.1498H20.4872C19.0703 45.1074 17.6695 44.8316 16.3393 44.3332C15.2028 43.9032 14.1766 43.2172 13.3372 42.3265C12.5068 41.4894 11.8656 40.4782 11.458 39.3632C10.9666 38.0101 10.7031 36.5822 10.6788 35.1398V20.8598C10.7031 19.4174 10.9666 17.9896 11.458 16.6365C11.8803 15.4794 12.5541 14.4345 13.4288 13.5798C14.2546 12.739 15.2467 12.0867 16.3393 11.6665C17.6695 11.1681 19.0703 10.8923 20.4872 10.8498H34.5122C35.929 10.8923 37.3298 11.1681 38.6601 11.6665C39.7965 12.0965 40.8228 12.7825 41.6622 13.6732C42.4925 14.5103 43.1338 15.5215 43.5413 16.6365C44.0308 17.991 44.3017 19.4172 44.3434 20.8598V27.9998C44.3434 32.8065 44.5038 33.2965 44.4351 35.1398V35.1632ZM40.7684 17.8032C40.4956 17.0495 40.0654 16.365 39.5075 15.797C38.9497 15.229 38.2774 14.791 37.5372 14.5132C36.5208 14.1544 35.4503 13.9807 34.3747 13.9998H20.6247C19.5436 14.0106 18.473 14.216 17.4622 14.6065C16.7333 14.8717 16.0681 15.2918 15.511 15.839C14.9539 16.3861 14.5175 17.0477 14.2309 17.7798C13.8981 18.819 13.7355 19.9069 13.7497 20.9998V34.9998C13.7724 36.0993 13.9737 37.1873 14.3455 38.2198C14.6184 38.9735 15.0486 39.658 15.6064 40.226C16.1643 40.794 16.8365 41.232 17.5768 41.5098C18.5545 41.876 19.5835 42.0808 20.6247 42.1165H34.3747C35.4557 42.1057 36.5264 41.9004 37.5372 41.5098C38.2774 41.232 38.9497 40.794 39.5075 40.226C40.0654 39.658 40.4956 38.9735 40.7684 38.2198C41.152 37.1907 41.3537 36.1005 41.3643 34.9998V20.9998C41.3649 19.898 41.1628 18.8059 40.7684 17.7798V17.8032ZM27.4997 36.9132C26.3511 36.9132 25.2139 36.6825 24.1531 36.2342C23.0922 35.786 22.1287 35.1291 21.3176 34.3011C20.5066 33.4731 19.8639 32.4903 19.4265 31.4091C18.989 30.3278 18.7654 29.1693 18.7684 27.9998C18.7684 26.236 19.2824 24.5117 20.2454 23.0454C21.2083 21.5791 22.5769 20.4367 24.1778 19.7628C25.7788 19.0888 27.5401 18.9137 29.2389 19.2595C30.9377 19.6053 32.4975 20.4566 33.7208 21.7055C34.9442 22.9543 35.7761 24.5447 36.1113 26.2753C36.4465 28.0058 36.2699 29.7987 35.6038 31.427C34.9377 33.0553 33.8121 34.4458 32.3695 35.4224C30.9268 36.399 29.2321 36.9178 27.4997 36.9132ZM36.6663 20.8365C36.1597 20.7819 35.6909 20.5384 35.3502 20.1528C35.0095 19.7672 34.8209 19.2669 34.8209 18.7482C34.8209 18.2295 35.0095 17.7292 35.3502 17.3436C35.6909 16.958 36.1597 16.7144 36.6663 16.6598C37.1729 16.7144 37.6418 16.958 37.9825 17.3436C38.3232 17.7292 38.5117 18.2295 38.5117 18.7482C38.5117 19.2669 38.3232 19.7672 37.9825 20.1528C37.6418 20.5384 37.1729 20.7819 36.6663 20.8365Z" fill="white"/>
                         </svg>
                         <span>@wyfadah</span>
                     </div>
                     <div class="flex flex-col items-center gap-2">
-                        <svg width="24" height="22" viewBox="0 0 44 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg width="24" height="22" viewBox="0 0 44 42" fill="none" class="sm:bg-black" xmlns="http://www.w3.org/2000/svg">
                             <path d="M38.1709 2.625H6.03969C4.28398 2.625 2.75 3.83086 2.75 5.48707V36.2258C2.75 37.8911 4.28398 39.375 6.03969 39.375H38.1614C39.9266 39.375 41.25 37.8812 41.25 36.2258V5.48707C41.2603 3.83086 39.9266 2.625 38.1709 2.625ZM14.6841 33.2579H9.16867V16.8886H14.6841V33.2579ZM12.1172 14.3998H12.0777C10.3125 14.3998 9.16953 13.1455 9.16953 11.5754C9.16953 9.97664 10.3426 8.75191 12.1473 8.75191C13.952 8.75191 15.0563 9.96762 15.0958 11.5754C15.0949 13.1455 13.952 14.3998 12.1172 14.3998ZM34.8416 33.2579H29.3262V24.3075C29.3262 22.1632 28.5235 20.6981 26.528 20.6981C25.0035 20.6981 24.1012 21.6825 23.6998 22.6414C23.5495 22.986 23.5091 23.4552 23.5091 23.9343V33.2579H17.9936V16.8886H23.5091V19.1666C24.3117 18.0756 25.5655 16.5055 28.4831 16.5055C32.1037 16.5055 34.8425 18.7835 34.8425 23.6947L34.8416 33.2579Z" fill="white"/>
                         </svg>
                         <span>@wyfadah</span>
                     </div>
                 </div>
-                <img class="top-5 absolute w-[35%] h-[85vh] z-[-1]" src="../assets/img/contactUsImg.png" alt="">
+                <img class="top-5 sm:hidden absolute w-[35%] h-[85vh] z-[-1]" src="../assets/img/contactUsImg.png" alt="">
             </div>
         </section>
         <footer class="w-full flex justify-center items-center py-8 px-5 bg-gradient-to-t from-[#F5F5F5] to-[#DCF3F7]">

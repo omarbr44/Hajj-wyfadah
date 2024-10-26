@@ -1,7 +1,7 @@
 <template>
     <div class="p-5 sm:px-0 md:px-0 flex lg:flex-row flex-col-reverse items-center gap-5 w-full">
         <div class="signup-left-side hidden w-[60%] h-screen rounded-[25px] lg:flex flex-col justify-end relative"
-             style="background-image: url(../assets/img/signIn.png);background-repeat: no-repeat;background-size: cover;"
+             style="background-image: url(/signIn.png);background-repeat: no-repeat;background-size: cover;"
         >
           <img src="../assets/img/dark-overlay.png" alt="overlay" class="absolute bottom-0">
           <div class="z-10 relative mb-10">

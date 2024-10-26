@@ -4,7 +4,7 @@
         <div class="lg:w-1/2 w-full">
             <img class="w-full" src="/img/passord-resubmit.png" alt="">
         </div>
-        <div class="flex flex-col items-center lg:w-1/2 w-full lg:px-20 px-5 mt-10">
+        <div class="flex flex-col items-center lg:w-1/2 w-full lg:px-20 px-5 mt-10 relative z-50">
             <h1 class="text-4xl sm:text-2xl text-site-blue font-bold my-5">إعادة تعيين كلمة المرور</h1>
             <p class=" text-site-text-grey font-medium mb-10 sm:mb-5 text-center px-12 sm:px-4">ادخل بريدك الإلكتروني لإستقبال رابط تعيين كلمة المرور الجديدة</p>
             <div class="rtl-d w-[90%] sm:w-full">

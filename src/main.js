@@ -2,15 +2,27 @@ import { createApp } from 'vue'
 import './style.css'
 import App from './App.vue'
 import router from './router';
+import { createPinia } from 'pinia';
+import { createPersistedState } from 'pinia-plugin-persistedstate'
+
 import PrimeVue from "primevue/config";
 import Select from 'primevue/select';
 import Dialog from 'primevue/dialog';
+import InputOtp from 'primevue/inputotp';
+
 
 import { register } from 'swiper/element/bundle';
 register();
+
+const pinia = createPinia()
+pinia.use(createPersistedState())
+
 const app = createApp(App);
+app.use(pinia);
+
 app.component("select", Select);
 app.component("Dialog", Dialog);
+app.component("InputOtp", InputOtp);
 app.use(PrimeVue, {
   unstyled: true
 });
@@ -18,12 +30,12 @@ app.use(PrimeVue, {
 
 /* import 'vuetify/styles' */
 import { createVuetify } from 'vuetify'
-import * as components from 'vuetify/components'
-import * as directives from 'vuetify/directives'
+import { VOtpInput } from 'vuetify/components/VOtpInput'
 
 const vuetify = createVuetify({
-    components,
-    directives,
+  components: {
+    VOtpInput
+  },
   })
 app.use(router)
 app.use(vuetify)

@@ -26,12 +26,11 @@
         </div>
         <div class="signup-right-side flex flex-col items-center lg:w-[40%] w-full">
           <Transition name="translate" mode="out-in">     
-            <component :is="active"></component> 
+            <component 
+              :is="active"
+              :message="componentMessage"
+              @nextStep="nextStep"></component> 
           </Transition>
-          <button @click="nextStep" class="w-[80%] mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold">
-            <span v-show="step < 3">التالي</span>
-            <span v-show="step == 3">تنشيط</span>
-          </button>     
           <StepperComponent :step="step" :stepsLabels="['رقم التصريح' , 'رمز التحقق' , 'حسابك']" />
         </div>
     </div>
@@ -43,18 +42,30 @@ import StepperComponent from '../components/StepperComponent.vue';
 import SignUpComponent1 from '../components/SignUp/SignUpComponent1.vue';
 import SignUpComponent2 from '../components/SignUp/SignUpComponent2.vue';
 import SignUpComponent3 from '../components/SignUp/SignUpComponent3.vue';
+import { useUserStore } from '../stores/user';
+import router from '../router';
 
+const user = useUserStore()
 const step = ref(1)
 const active = ref(SignUpComponent1)
+const componentMessage= ref()
 
-const nextStep = ()=> {
+const nextStep = (message)=> {
   if (step.value == 1) {
+    componentMessage.value = message
     active.value = SignUpComponent2
     step.value++
   }
   else if (step.value == 2) {
+    componentMessage.value = message
     active.value = SignUpComponent3
     step.value++
+  }
+  else if (step.value == 3) {
+    // User has passed all regesteration steps, message => user info
+    componentMessage.value = message
+    user.signIn(componentMessage.value.authtoken,componentMessage.value.is_superuser,componentMessage.value.username,componentMessage.value.email)
+    router.push('companyinfo')
   }
 }
 </script>

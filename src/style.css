@@ -32,6 +32,11 @@
     margin-top: 5px;
     text-align: right;
   }
+  .error {
+    color: red;
+    margin-top: 5px;
+    text-align: right;
+  }
   .rtl-d {
     direction: rtl;
   }

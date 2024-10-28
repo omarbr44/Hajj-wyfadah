@@ -4,23 +4,25 @@
                 <div>
                     <label class="font-bold" for="email">البريد الإلكتروني</label>
                     <input 
+                     v-model="user.email"
                      name="email" 
                      type="text" 
                      class="w-full relative border p-2 rounded-xl my-3 text-sm focus:border-site-blue"
-                     :class="emailError == true ? 'border-red-500' : ''"
+                     :class="requestConditions.error?.email != null ? 'border-red-500' : ''"
                      placeholder="مثال:mail@gmail.com">
-                     <span v-show="emailError" class="bg-white text-site-text-grey px-2 absolute text-xs w-max right-0 -translate-x-[40px] translate-y-[2px]">البريد الإلكتروني غير متاح</span>
+                     <span v-show="requestConditions.error?.email" class="bg-white text-site-text-grey px-2 absolute text-xs w-max right-0 -translate-x-[40px] translate-y-[2px]">البريد الإلكتروني غير متاح</span>
                 </div>
                 <div>
                     <label class="font-bold" for="password">كلمة المرور</label>
                     <input 
+                     v-model="user.password"
                      ref="togglePasswordButton"
                      name="password" 
                      type="password" 
                      class="w-full relative border p-2 rounded-xl my-3 text-sm focus:border-site-blue"
-                     :class="PasswordError == true ? 'border-red-500' : ''"
+                     :class="requestConditions.error?.password != null ? 'border-red-500' : ''"
                      placeholder="*******">
-                     <span v-show="PasswordError" class="bg-white text-site-text-grey px-2 absolute text-xs w-max right-0 -translate-x-[40px] translate-y-[2px]">كلمة المرور خاطئة</span>
+                     <span v-show="requestConditions.error?.password" class="bg-white text-site-text-grey px-2 absolute text-xs w-max right-0 -translate-x-[40px] translate-y-[2px]">كلمة المرور خاطئة</span>
                      <button  @click="togglePassword" class="absolute translate-x-[30px] translate-y-[20px]">
                         <svg v-show="!passwordVisible" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="#DADADA" class="size-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 0 0 1.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.451 10.451 0 0 1 12 4.5c4.756 0 8.773 3.162 10.065 7.498a10.522 10.522 0 0 1-4.293 5.774M6.228 6.228 3 3m3.228 3.228 3.65 3.65m7.894 7.894L21 21m-3.228-3.228-3.65-3.65m0 0a3 3 0 1 0-4.243-4.243m4.242 4.242L9.88 9.88" />
@@ -32,14 +34,15 @@
                      </button>
                 </div>
                 <p class="text-sm text-right mt-4   ">هل نسيت كلمة المرور ؟ <RouterLink to="/passwordresubmit-email" class="text-site-blue font-normal cursor-pointer">إعادة تعيين كلمة المرور</RouterLink ></p>
-<!--                 <button @click="nextStep" class="w-full mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold">
-                    <span>تسجيل الدخول</span>
-                </button> -->
-                <div class="w-full flex">
+                <button @click="loginRequest" class="w-full mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold flex justify-center items-center">
+                    <span v-if="!requestConditions.loading">تسجيل الدخول</span>
+                    <LoaderIcon v-else />
+                </button>
+<!--                 <div class="w-full flex">
                     <RouterLink to="/companyinfo" class="w-[80%] my-4 mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold flex items-center justify-center">
                   تسجيل الدخول
                 </RouterLink > 
-                </div>
+                </div> -->
                 <p class="text-red-500 text-center mt-3">تبقت محاولة واحدة لك لإدخال كلمة المرور الصحيحة !</p>
                 <p class="text-red-500 text-sm text-center mt-3 hidden">تم تجميد حسابك بناء على عدة محاولات تسجيل دخول خاطئة.
                     <br>
@@ -51,9 +54,12 @@
 <script setup>
 import { ref } from 'vue';
 import { RouterLink } from 'vue-router';
+import { usePostRequest } from '../../composables/useRequest';
+import LoaderIcon from '../icon/loaderIcon.vue';
+import router from '../../router';
+import { useUserStore } from '../../stores/user';
 
-const PasswordError = ref(true)
-const emailError = ref(true)
+const userStore = useUserStore()
 const togglePasswordButton = ref(null)
 const passwordVisible = ref(false)
 const togglePassword = () => {  
@@ -65,5 +71,34 @@ const togglePassword = () => {
         togglePasswordButton.value.type = "password";
         passwordVisible.value = false
     }
+}
+const requestConditions = ref({
+    data: null,
+    error: {
+        email: null,
+        password: null,
+    },
+    loading: false,
+})
+const user = ref({
+    email: null,
+    password: null,
+})
+const loginRequest = async () => {
+    requestConditions.value.loading = true
+    const { Data, Error} = await usePostRequest('api/v1/login',
+        {
+            email: user.value.email,
+            password: user.value.password,
+        }
+    )
+    requestConditions.value.loading = false
+    requestConditions.value.data = Data.value
+    requestConditions.value.error = Error.value?.errors
+    if(requestConditions.value.data) {
+        userStore.signIn(requestConditions.value.data.authtoken,requestConditions.value.data.is_superuser,requestConditions.value.data.username,requestConditions.value.data.email)
+        router.push('companyinfo')
+    }
+
 }
 </script>

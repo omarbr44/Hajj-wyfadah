@@ -1,4 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router';
+import { useUserStore } from './stores/user'
+
 import Home from './page/Home.vue';
 const router = createRouter({
   history: createWebHistory(),
@@ -32,6 +34,7 @@ const router = createRouter({
       path: '/companyinfo',
       name: 'companyinfo',
       component: () => import('./page/CompanyInfo.vue'),
+      meta: {requiresAuth: true}
     },
 /*     {
       path: '/retryPayment/:id',
@@ -45,5 +48,25 @@ const router = createRouter({
     }, */
   ],
 });
+router.beforeEach((to, from, next) => {
+  const user = useUserStore()
+  if(to.matched.some((record)=> record.meta.requiresAuth)){
+    if(user.userToken){
+      next()
+      return
+    }
+    next("signin")
+  }
+/*   else if(to.matched.some((record)=> record.meta.admin)){
+    if(user.token && user.userType == 1){
+      next()
+      return
+    }
+    next("login")
+  } */
+  else{
+    next()
+  }
+})
 
 export default router;

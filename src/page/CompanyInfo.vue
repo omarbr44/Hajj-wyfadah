@@ -258,9 +258,7 @@
                     </div>
                     <a :href="companyInfo.compay_terms_conditions" download class="flex gap-3 m-5">
                         <h2 class="font-semibold text-site-blue">تنزيل ملف الشروط والاحكام</h2>
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M12 16L7 11L8.4 9.55L11 12.15V4H13V12.15L15.6 9.55L17 11L12 16ZM6 20C5.45 20 4.979 19.804 4.587 19.412C4.195 19.02 3.99934 18.5493 4 18V15H6V18H18V15H20V18C20 18.55 19.804 19.021 19.412 19.413C19.02 19.805 18.5493 20.0007 18 20H6Z" fill="#5FC1CF"/>
-                        </svg>
+                        <DownloadIcon />
                     </a>
                     <div class="w-full flex flex-wrap gap-2 gap-y-10">
                         <div v-for="(terms,index) in termsConditions" :key="index" class="w-[48%]">
@@ -293,6 +291,7 @@ import PlusIconBg from '../components/icon/PlusIconBg.vue';
 import loaderIcon from '../components/icon/loaderIcon.vue';
 import { useGetRequest, usePatchRequest, usePostRequest } from '../composables/useRequest';
 import { useRouter } from 'vue-router';
+import DownloadIcon from '../components/icon/DownloadIcon.vue';
 
 const router = useRouter()
 const loadPage =ref(false)

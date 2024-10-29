@@ -40,6 +40,9 @@
   .rtl-d {
     direction: rtl;
   }
+  .dp__theme_light {
+    --dp-primary-color: #48b4c3 !important;
+  }
   @forward 'vuetify/settings' with (
   $utilities: false,
 );

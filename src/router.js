@@ -36,6 +36,18 @@ const router = createRouter({
       component: () => import('./page/CompanyInfo.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/company-departments',
+      name: 'company-departments',
+      component: () => import('./page/CompnayDepartment/CompanyDepartmentsView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/company-departments-add',
+      name: 'company-departments-add',
+      component: () => import('./page/CompnayDepartment/CompanyDepartmentsAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*     {
       path: '/retryPayment/:id',
       name: 'retryPayment',

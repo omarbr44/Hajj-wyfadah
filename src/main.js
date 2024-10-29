@@ -10,6 +10,8 @@ import Select from 'primevue/select';
 import Dialog from 'primevue/dialog';
 import InputOtp from 'primevue/inputotp';
 
+import VueDatePicker from '@vuepic/vue-datepicker';
+import '@vuepic/vue-datepicker/dist/main.css'
 
 import { register } from 'swiper/element/bundle';
 register();
@@ -34,9 +36,10 @@ import { VOtpInput } from 'vuetify/components/VOtpInput'
 
 const vuetify = createVuetify({
   components: {
-    VOtpInput
+    VOtpInput,
   },
   })
 app.use(router)
 app.use(vuetify)
+app.component('VueDatePicker', VueDatePicker);
 app.mount('#app')

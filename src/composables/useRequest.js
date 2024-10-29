@@ -10,9 +10,11 @@ const url = geturl()
     const Error = ref(null)
     try {
       const { data } = await axios.get(url+api,{
-        headers:{"Authorization": "Bearer "+userStore.userToken}
+        headers: {
+          "authorization": "Token "+userStore.userToken
+        }
       });
-      Data.value = data.data ? data.data : data
+      Data.value = data
     } catch (error) {
         Error.value = error.response.data
     }
@@ -24,10 +26,11 @@ const url = geturl()
     const Error = ref(null)
     try {
       const { data } = await axios.post(url+api,body,
-       /*  {
-        headers:{"Authorization": "Bearer "+userStore.userToken},
-  
-      } */
+        {
+          headers: {
+            "authorization": "Token "+userStore.userToken
+          }
+        } 
      );
      console.log(data)
       Data.value = data.data || data
@@ -36,14 +39,17 @@ const url = geturl()
     }
     return {Data,Error}
    }
-   export async function usePutRequest(api,body){
+   export async function usePatchRequest(api,body){
     const Data = ref(null)
     const Error = ref(null)
     try {
-      const { data } = await axios.put(url+api,body,{
-        headers:{"Authorization": "Bearer "+userStore.userToken},
+      console.log("authorization"+ "Token "+userStore.userToken)
+      const { data } = await axios.patch(url+api,body,{
+        headers: {
+          "authorization": "Token "+userStore.userToken
+        }
       });
-      Data.value = data.data || data
+      Data.value = data
     } catch (error) {
         Error.value = error.response.data
     }

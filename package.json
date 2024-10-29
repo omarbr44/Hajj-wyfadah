@@ -11,6 +11,7 @@
   "dependencies": {
     "@vuepic/vue-datepicker": "^9.0.3",
     "axios": "^1.7.7",
+    "object-to-formdata": "^4.5.1",
     "pinia": "^2.2.4",
     "pinia-plugin-persistedstate": "^4.1.2",
     "primevue": "^4.1.1",

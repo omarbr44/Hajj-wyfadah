@@ -38,16 +38,12 @@
                     <span v-if="!requestConditions.loading">تسجيل الدخول</span>
                     <LoaderIcon v-else />
                 </button>
-<!--                 <div class="w-full flex">
-                    <RouterLink to="/companyinfo" class="w-[80%] my-4 mx-auto py-4 bg-site-blue text-white rounded-xl mt-10 font-semibold flex items-center justify-center">
-                  تسجيل الدخول
-                </RouterLink > 
-                </div> -->
-                <p class="text-red-500 text-center mt-3">تبقت محاولة واحدة لك لإدخال كلمة المرور الصحيحة !</p>
+                <p v-if="requestConditions.message" class="text-red-500 text-center mt-3">{{ requestConditions.message }}</p>
+<!--                 <p class="text-red-500 text-center mt-3">تبقت محاولة واحدة لك لإدخال كلمة المرور الصحيحة !</p>
                 <p class="text-red-500 text-sm text-center mt-3 hidden">تم تجميد حسابك بناء على عدة محاولات تسجيل دخول خاطئة.
                     <br>
                     يمكنك المحاولة مرة اخرى بعد 15 دقيقة
-                </p>
+                </p> -->
             </div>
     </div>
 </template>
@@ -79,6 +75,7 @@ const requestConditions = ref({
         password: null,
     },
     loading: false,
+    message: null,
 })
 const user = ref({
     email: null,
@@ -94,7 +91,10 @@ const loginRequest = async () => {
     )
     requestConditions.value.loading = false
     requestConditions.value.data = Data.value
-    requestConditions.value.error = Error.value?.errors
+    if(Error.value?.errors)
+        requestConditions.value.error = Error.value?.errors
+    else 
+        requestConditions.value.message = Error.value?.message
     if(requestConditions.value.data) {
         userStore.signIn(requestConditions.value.data.authtoken,requestConditions.value.data.is_superuser,requestConditions.value.data.username,requestConditions.value.data.email)
         router.push('companyinfo')

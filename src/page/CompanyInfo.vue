@@ -132,7 +132,7 @@
                         <Dialog v-model:visible="modalVisible" modal closeIcon="!hidden" :closeOnEscape="true" class="bg-white rounded-lg rtl-d" :pt="{mask:'bg-[#00000042]',pcCloseButton:'!hidden !opacity-0'}" :style="{ width: '70%' }">
                             <template #container="{ closeCallback }">   
                             <h1 class="text-black text-2xl font-bold text-center my-5">إضافة لغة جديدة</h1>
-                            <div class="w-[90%] mx-auto px-5 py-2 flex items-center justify-evenly border border-site-blue rounded-3xl">
+                            <div v-if="termsConditions.length" class="w-[90%] mx-auto px-5 py-2 flex items-center justify-evenly border border-site-blue rounded-3xl">
                                 <img :src="'/img/'+fromCountry.code+'.svg'" alt="">
                                 <span class="text-lg">{{ fromCountry.name }}</span>
                                 <div class="lang-container">
@@ -188,8 +188,34 @@
                                 </Select>
                                 </div>
                             </div>
+                            <div v-else class="w-[90%] mx-auto px-5 py-2 flex items-center justify-center gap-10 border border-site-blue rounded-3xl">       
+                                <img :src="'/img/'+toCountry.code+'.svg'" alt="">
+                                <span class="text-lg">{{ toCountry.name }}</span>
+                                <div class="lang-container">
+                                <Select v-model="toCountry" :options="languages" optionLabel="name" 
+                                    placeholder="" overlayClass="bg-white rtl-d p-2" class="w-[4rem]"
+                                    :pt="{overlay:'w-[15rem] shadow-xl'}">
+                                    <template #value="slotProps">
+                                        <span></span>
+                                    </template>
+                                    <template #option="slotProps">
+                                        
+                                        <div class="flex items-center gap-3 mb-3 p-2 cursor-pointer hover:bg-[#DCF1F4] hover:text-[#1495A7]">
+                                            <img :src="'/img/'+slotProps.option.code+'.svg'" alt="flag">   
+                                            <div>{{ slotProps.option.name }}</div>
+                                        </div>
+                                    </template>
+                                    <template #dropdownicon>
+                                        <img class="" src="/img/dropdown-arrow.svg" alt="">
+                                    </template>
+                                    <template #header>
+                                        <div class="font-medium p-3"></div>
+                                    </template>
+                                </Select>
+                                </div>
+                            </div>
                             <div class="w-full flex flex-wrap gap-2 gap-y-10 my-5 px-2">
-                        <div class="w-[48%]">
+                        <div v-if="termsConditions.length" class="w-[48%]">
                             <h1 class="text-site-text-grey mb-3">أضف نص الشروط والأحكام</h1>
                             <div class=" w-full h-64 bg-white border border-[#DADADA] rounded-2xl relative p-1"> 
                                 <textarea v-model="fromTermConditon"  class="text-black w-full h-full p-5 rules-section">
@@ -205,14 +231,6 @@
                             <h1 class="text-site-text-grey mb-3">الشروط والاحكام مترجمة</h1>
                             <div class=" w-full h-64 bg-white border border-[#DADADA] rounded-2xl relative p-1"> 
                                 <textarea v-model="toTermConditon" class="text-black w-full h-full p-5 rules-section">
-                                    چھٹا: کیمپ کے اندر لباس کا نظام:
-16. مردوں کا لباس:
-جگہ اور وقت کے تقدس کو برقرار رکھنے کے لیے، ہم عازمین حج سے مطالبہ کرتے ہیں کہ وہ نام نہاد برمودا، کندھے کی ٹی شرٹس، اور کارک سکرو سے دور رہیں جن میں تصاویر اور انگریزی جملے ہوتے ہیں۔
-17. خواتین کا لباس:
-یہ ضروری ہے کہ لباس قابل احترام، غیر شفاف، کندھوں کے سامنے نہ ہو، چھوٹا، یا جسے شام کے لباس کے طور پر بیان کیا گیا ہو۔ بھی منع ہے.
-کیمپ انتظامیہ کو یہ حق حاصل ہے کہ وہ کیمپ کے بیداری پیدا کرنے کی شکل کو برقرار رکھنے کے لیے لباس کی تبدیلی پر اعتراض اور درخواست کرے۔
- 
-  میں اعلان کرتا ہوں کہ میں نے اس پروگرام کے لیے شرائط اور اس سال کے پلان کا جائزہ لیا ہے جس کے لیے میں رجسٹرڈ ہوں، جس کا اعلان عبداللہ صالح الکاف کمپنی کی ویب سائٹ پر کیا گیا ہے، اور میں اس میں بیان کردہ ہر چیز سے اتفاق کرتا ہوں۔
                                 </textarea>
                                 <button @click="print" class="print-button absolute bottom-0 left-5">
                                     <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -232,7 +250,7 @@
                                 </button>
                                 <button class="p-2 text-site-text-grey" @click="closeCallback">الغاء</button>
                             </div>
-                </template> 
+                            </template> 
                         </Dialog>
                         <button @click="modalVisible = true" class="w-full h-44 bg-white border border-[#BDBDBD] p-2 rounded-xl">  
                         </button>
@@ -297,17 +315,22 @@ onMounted(async ()=>{
    fromCountry.value = languages.value[0]
    toCountry.value = languages.value[1]
 
-   // set default values for TermConditons based on default values for languages (from , to)
-   fromTermConditon.value = termsConditions.value.filter((el)=> el.language == fromCountry.value.id)
-   fromTermConditon.value = fromTermConditon.value[0].terms_conditions
+   // set value for TermConditons based on default values for language (from)  
+   // If no termsConditions exist, make user create One
+   if(termsConditions.value.length) {
+       fromTermConditon.value = termsConditions.value.filter((el)=> el.language == fromCountry.value.id)
+       fromTermConditon.value = fromTermConditon.value[0].terms_conditions
+   }
 /*    toTermConditon.value = termsConditions.value.filter((el)=> el.language == toCountry.value.id)
    toTermConditon.value = toTermConditon.value[0].terms_conditions */
    loadPage.value = true
 })
 //change TermConditons when language changes
 watch(fromCountry, ()=>{
-   fromTermConditon.value = termsConditions.value.filter((el)=> el.language == fromCountry.value.id)
-   fromTermConditon.value = fromTermConditon.value[0].terms_conditions
+    if(termsConditions.value.length) {
+        fromTermConditon.value = termsConditions.value.filter((el)=> el.language == fromCountry.value.id)
+        fromTermConditon.value = fromTermConditon.value[0].terms_conditions
+    }
 })
 /* watch(toCountry, ()=>{
     toTermConditon.value = termsConditions.value.filter((el)=> el.language == toCountry.value.id)

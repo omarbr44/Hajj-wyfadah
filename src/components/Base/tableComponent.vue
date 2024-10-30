@@ -51,5 +51,8 @@ th,td {
   padding: 15px 10px;
   text-align: center;
 }
+td {
+  border-bottom: 0px;
+}
 
 </style>

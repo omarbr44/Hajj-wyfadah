@@ -60,6 +60,18 @@ const router = createRouter({
       component: () => import('./page/CompnayBransh/CompnayBranshAdd.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/company-employee',
+      name: 'company-employee',
+      component: () => import('./page/CompanyEmployee/CompnayEmployeeView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/company-employee-add',
+      name: 'company-employee-add',
+      component: () => import('./page/CompanyEmployee/CompnayEmployeeAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*     {
       path: '/retryPayment/:id',
       name: 'retryPayment',

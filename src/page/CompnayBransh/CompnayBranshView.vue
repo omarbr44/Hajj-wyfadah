@@ -8,6 +8,41 @@
                     <PlusIcon />
                     <span class="font-bold">إضافة فرع جديد</span>
                 </RouterLink>
+                <div class="flex items-center gap-5 mb-10">
+                    <button id="menu-activator" class="flex flex-col items-center gap-1">
+                        <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 0V2H17L11 11V18H7V11L1 2H0V0H18Z" fill="#5FC1CF"/>
+                        </svg>
+                        <p class="text-site-blue">صنف ب</p>
+                    </button>
+                    <v-menu activator="#menu-activator" :close-on-content-click="false">
+                        <div class="bg-white shadow-md rounded-md">
+                            <p class="text-site-blue font-bold rtl-d p-6">حالة التسجيل</p>
+                            <div class="flex gap-10 items-center p-10 pt-1">
+                                <div class="flex items-center">
+                                    <label for="ingredient1" class="mr-2 text-site-blue">غير مكتمل</label>
+                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="ingredient1" class="mr-2 text-site-blue">المكتمل</label>
+                                    <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="ingredient1" class="mr-2 text-site-blue">الكل</label>
+                                    <Checkbox v-model="pizza2" inputId="ingredient1" name="pizza1" value="Cheese1" />
+                                </div>
+                            </div>
+                        </div>
+                    </v-menu> 
+                    <div class="w-[40%] relative">
+                        <input 
+                            type="text" 
+                            class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 px-10 rounded-3xl"
+                        > 
+                        <SearchIcon class=" absolute right-4 top-1/2 -translate-y-1/2"/>
+                    </div> 
+
+                </div>
                 <TableComponent 
                 :modalVisible="modalVisible"
                 @closeModal="modalVisible = false"
@@ -84,17 +119,20 @@
 
 <script setup>
 import { RouterLink } from 'vue-router';
+import { ref } from 'vue';
 import TableComponent from '../../components/Base/TableComponent.vue';
 import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SideBarComponent from '../../components/SideBarComponent.vue';
-import { ref } from 'vue';
+import SearchIcon from '../../components/icon/SearchIcon.vue';
 
 const modalVisible = ref(false)
 </script>
 
-<style scoped>
-
+<style >
+div[data-pc-section="box"] {
+    display: none;
+}
 </style>

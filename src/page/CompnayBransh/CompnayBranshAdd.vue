@@ -23,11 +23,6 @@
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المدينة<span class="text-red-500">*</span></p>
-                        <!-- <input 
-                        name="bransh-city" 
-                        type="text" 
-                        class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
-                        placeholder="اختر المدينة"> -->
                         <Select v-model="fromCountry" :options="[1,2]" optionLabel="name" 
                                     placeholder="اختر المدينة" overlayClass="!bg-white rtl-d p-2" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
@@ -195,7 +190,9 @@
 
                 <div class="flex items-center justify-between my-10 text-lg font-bold">
                     <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">إضافة</button>
-                    <button class="text-red-700 py-4 px-8 ">إلغاء</button>
+                    <RouterLink to="company-branshes" class="text-red-700 py-4 px-8 ">
+                        إلغاء
+                    </RouterLink>
                 </div>
             </div>
             <SideBarComponent />
@@ -204,7 +201,6 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import SideBarComponent from '../../components/SideBarComponent.vue';
 import DownloadIcon from '../../components/icon/DownloadIcon.vue';

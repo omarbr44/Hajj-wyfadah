@@ -3,7 +3,13 @@
         <div class="flex items-center gap-16 text-black mr-72 font-bold">
             <RouterLink to="">البرامج</RouterLink>
             <RouterLink to="">إدارة الموظفين</RouterLink>
-            <RouterLink to="">إدارة الفروع</RouterLink>
+            <RouterLink 
+                to="/company-branshes" 
+                class="p-2 px-4 rounded-3xl"
+                :class="useRoute().path.includes('branshes') ? 'text-white bg-site-blue' : ''"
+                >
+                إدارة الفروع
+            </RouterLink>
             <RouterLink 
                 to="/company-departments" 
                 class="p-2 px-4 rounded-3xl"

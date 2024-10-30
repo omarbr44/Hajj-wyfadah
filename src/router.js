@@ -48,6 +48,18 @@ const router = createRouter({
       component: () => import('./page/CompnayDepartment/CompanyDepartmentsAdd.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/company-branshes',
+      name: 'company-branshes',
+      component: () => import('./page/CompnayBransh/CompnayBranshView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/company-branshes-add',
+      name: 'company-branshes-add',
+      component: () => import('./page/CompnayBransh/CompnayBranshAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*     {
       path: '/retryPayment/:id',
       name: 'retryPayment',

@@ -1,0 +1,100 @@
+<template>
+    <div>
+        <NavBarComponent />
+        <div class="flex justify-stretch">
+            <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
+                <h1 class="text-site-blue text-xl font-semibold">إدارة الفروع التابعة للحملة</h1>
+                <RouterLink to="company-branshes-add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
+                    <PlusIcon />
+                    <span class="font-bold">إضافة فرع جديد</span>
+                </RouterLink>
+                <TableComponent 
+                :modalVisible="modalVisible"
+                @closeModal="modalVisible = false"
+                :canDelete="false">
+                    <template v-slot:header>
+                        <tr>
+                            <th scope="col">إسم الفرع</th>
+                            <th scope="col">الحافلة</th>
+                            <th scope="col">سعة التسجيل</th>
+                            <th scope="col">عدد الحجاج المسجلين</th>
+                            <th scope="col">المتبقي</th>
+                            <th scope="col">حالة التسجيل</th>
+                            <th scope="col">العمليات</th>
+                        </tr>
+                    </template>
+                    <template v-slot:body>
+                        <tr>
+                            <th scope="row">جدة</th>
+                            <td>22</td>
+                            <td>10000</td>
+                            <td>900</td>
+                            <td>100</td>
+                            <td class="font-bold text-red-700 bg-red-300">غير مكتمل</td>
+                            <td class="flex items-center justify-center gap-5">
+                                <button class="flex items-center gap-2">
+                                    <EditIcon />
+                                    <span class="text-[#46814F]">تعديل</span>
+                                </button>
+                                <button @click="modalVisible = true" class="flex items-center gap-2">
+                                    <DeleteIcon />
+                                    <span class="text-[#FF3F3F]">حذف</span>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">جدة</th>
+                            <td>22</td>
+                            <td>10000</td>
+                            <td>900</td>
+                            <td>100</td>
+                            <td class="font-bold text-green-700 bg-green-300">مكتمل</td>
+                            <td class="flex items-center justify-center gap-5">
+                                <button class="flex items-center gap-2">
+                                    <EditIcon />
+                                    <span class="text-[#46814F]">تعديل</span>
+                                </button>
+                                <button @click="modalVisible = true" class="flex items-center gap-2">
+                                    <DeleteIcon />
+                                    <span class="text-[#FF3F3F]">حذف</span>
+                                </button>
+                            </td>
+                        </tr>
+                    </template>
+                    <template v-slot:delete-modal-1>
+                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد من رغبتك في حذف هذا الفرع؟</h1>
+                        <p class="text-center mb-8">سيتم حذف الفرع بشكل دائم، وسيؤدي ذلك إلى إزالة جميع المعلومات والسجلات المتعلقة به. لا يمكن التراجع عن هذا الإجراء، وسيؤثر على جميع العمليات المتعلقة بالفرع.</p>
+                    </template>
+                    <template v-slot:delete-modal-2>
+                        <h1 class="text-xl font-bold mb-5">عذرًا، لا يمكن حذف هذا الفرع حاليًا. يظهر أن هناك حجاج مسجلين مرتبطين بهذا الفرع. يرجى اتخاذ الخطوات التالية قبل محاولة الحذف:
+                        </h1>
+                        <p class="mb-8">
+                            1. تأكد من فصل جميع الحجاج المسجلين لهذا الفرع.
+                            <br>
+                            2. بعد الانتهاء من الخطوة السابقة، يمكنك محاولة حذف الفرع.
+                        </p>
+                        <p>يرجى ملاحظة أن عملية الحذف ستؤدي إلى إزالة جميع البيانات ذات الصلة ولا يمكن استعادتها بعد الحذف.</p>                              
+                    </template>
+                </TableComponent>
+            </div>
+            <SideBarComponent />
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { RouterLink } from 'vue-router';
+import TableComponent from '../../components/Base/TableComponent.vue';
+import NavBarComponent from '../../components/Company/NavBarComponent.vue';
+import PlusIcon from '../../components/icon/PlusIcon.vue';
+import EditIcon from '../../components/icon/EditIcon.vue'
+import DeleteIcon from '../../components/icon/DeleteIcon.vue'
+import SideBarComponent from '../../components/SideBarComponent.vue';
+import { ref } from 'vue';
+
+const modalVisible = ref(false)
+</script>
+
+<style scoped>
+
+</style>

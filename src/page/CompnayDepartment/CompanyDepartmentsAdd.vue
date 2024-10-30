@@ -82,29 +82,13 @@
                         </div>
                         <div class="flex gap-2 items-center w-[48%]">
                         <p class="text-black font-semibold w-[50%]">صورة الموظف <span class="text-red-500">*</span></p>
-                        <div class="w-full relative">
-                            <form>
-                                <input @change="changeEmployImg($event.target.files[0])" ref="EmployImginput" id="EmployImginput" type="file" style="display:none;"/>
-                            </form>
-                            <button @click="EmployImginput.click()" class="w-full h-56 border border-[#BDBDBD] p-2 rounded-xl">  
-
-                            </button>
-                            <img @click="EmployImginput.click()" src="/img/uploadFile2.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
-                        </div>
+                        <FileInputComponent />
                         </div>
                     </div>
                 </div>
                 <div class="mt-5">
                     <h1 class="text-xl font-bold text-site-blue mb-5">الموظفين التابعين للإدارة الجديدة  ( اختياري ) </h1>
-                    <div class="w-full relative">
-                        <form>
-                            <input @change="changeEmployImg2($event.target.files[0])" ref="EmployImginput2" id="EmployImginput2" type="file" style="display:none;"/>
-                        </form>
-                        <button @click="EmployImginput2.click()" class="w-full h-56 border border-[#BDBDBD] p-2 rounded-xl">  
-
-                        </button>
-                        <img @click="EmployImginput2.click()" src="/img/uploadFile2.png" alt="uploadFile" class="absolute top-1/2 -translate-y-1/2 right-1/2 translate-x-1/2 cursor-pointer">
-                    </div>
+                    <FileInputComponent />
                     <div class="flex items-center justify-between mt-2">
                         <p class="text-site-blue text-sm">- ارفع ملف بصيغة Excel يتضمن بيانات جميع الموظفين التابعين للإدارة الجديدة</p>
                         <a href="" download class="flex gap-3">
@@ -130,17 +114,7 @@ import SideBarComponent from '../../components/SideBarComponent.vue';
 import ArrowUpIcon from '../../components/icon/ArrowUpIcon.vue';
 import ArrowDownIcon from '../../components/icon/ArrowDownIcon.vue';
 import DownloadIcon from '../../components/icon/DownloadIcon.vue';
-
-const EmployImginput = ref(null)
-const changeEmployImg = (file) => {
-    //companyInfo.value.compay_terms_conditions = file
-    
-}
-const EmployImginput2 = ref(null)
-const changeEmployImg2 = (file) => {
-    //companyInfo.value.compay_terms_conditions = file
-    
-}
+import FileInputComponent from '../../components/Base/FileInputComponent.vue';
 
 const hideSection = ref(null)
 const sectioIsHide = ref(true)

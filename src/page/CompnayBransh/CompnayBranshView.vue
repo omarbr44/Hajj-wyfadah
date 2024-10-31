@@ -120,7 +120,7 @@
 <script setup>
 import { RouterLink } from 'vue-router';
 import { ref } from 'vue';
-import TableComponent from '../../components/Base/TableComponent.vue';
+import TableComponent from '../../components/Base/tableComponent.vue';
 import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'

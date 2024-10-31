@@ -278,6 +278,9 @@
             </div>
             <SideBarComponent />
         </div>
+        <div v-else class=" flex justify-center mt-52">
+            <PageLoader />
+        </div>
     </div>
 </template>
 
@@ -292,6 +295,7 @@ import loaderIcon from '../components/icon/loaderIcon.vue';
 import { useGetRequest, usePatchRequest, usePostRequest } from '../composables/useRequest';
 import { useRouter } from 'vue-router';
 import DownloadIcon from '../components/icon/DownloadIcon.vue';
+import PageLoader from '../components/icon/PageLoader.vue';
 
 const router = useRouter()
 const loadPage =ref(false)

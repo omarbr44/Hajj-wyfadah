@@ -5,7 +5,7 @@
             <div class="form-input">
                 <v-otp-input
                     v-model="licenceNumber"
-                    length="6"
+                    length="5"
                     :error="requestConditions.error"
                     placeholder="•"
                     :loading="requestConditions.loading"

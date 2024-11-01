@@ -67,9 +67,21 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
-      path: '/company-employee-add',
+      path: '/company-employee-add/:id',
       name: 'company-employee-add',
       component: () => import('./page/CompanyEmployee/CompnayEmployeeAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/company-location',
+      name: 'company-location',
+      component: () => import('./page/CompnayLocation/CompanyLocationView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/company-location-add',
+      name: 'company-location-add',
+      component: () => import('./page/CompnayLocation/CompanyLocationAdd.vue'),
       meta: {requiresAuth: true}
     },
 /*     {

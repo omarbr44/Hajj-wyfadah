@@ -6,6 +6,7 @@ export const useUserStore = defineStore('user', () => {
   const userName = ref(null)  
   const userEmail = ref(null)  
   const userType = ref(null)  
+  const userCompantId = ref(null)  
   /* const userImg = ref(null)  
   const userPermissions = ref(null)  */ 
   function signIn(token,type,name,email) {
@@ -15,13 +16,16 @@ export const useUserStore = defineStore('user', () => {
     userType.value = type
     console.log(userToken.value,userName.value,userEmail.value,userType.value)
   }
+  function setCompanyId(compnayId) {
+    userCompantId.value = compnayId
+  }
   function signOut() {
     userToken.value = null;
     userName.value = null
     userEmail.value = null
     userType.value = null
   }
-  return { userToken,userType,userName,userEmail,signIn,signOut }
+  return { userToken,userType,userName,userEmail,userCompantId,signIn,signOut,setCompanyId }
 },
 {
   persist: true

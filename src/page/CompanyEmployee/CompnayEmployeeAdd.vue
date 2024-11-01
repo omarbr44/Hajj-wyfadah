@@ -1,73 +1,89 @@
 <template>
     <div>
         <NavBarComponent />
-        <div class="flex justify-stretch">
+        <div v-if="loadPage" class="flex justify-stretch">
             <div class="w-[80%] rtl-d px-10 bg-[#f9f9f9] pt-28">
                 <h1 class="text-xl font-bold text-site-blue mb-5">معلومات الموظف</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl flex flex-wrap gap-4 gap-y-10">
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">اسم الموظف <span class="text-red-500">*</span></p>
                         <input 
+                        v-model="employeeObj.name"
                         name="emloyee-name" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: خالد عبد الله">
+                        <p v-if="requestConditions?.error?.name" class="text-red-500 mt-1">{{ requestConditions.error.name }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المسمى الوظيفي<span class="text-red-500">*</span></p>
                         <input 
+                        v-model="employeeObj.job_title"
                         name="emloyee-title" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: مدير عام">
+                        <p v-if="requestConditions?.error?.job_title" class="text-red-500 mt-1">{{ requestConditions.error.job_title }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">رقم الجوال<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
+                        v-model="employeeObj.phone"
                         name="emloyee-phone" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: 509873476">
+                        <p v-if="requestConditions?.error?.phone" class="text-red-500 mt-1">{{ requestConditions.error.phone }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">البريد الالكتروني<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
+                        v-model="employeeObj.email"
                         name="emloyee-email" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: mail@gmail.com">
+                        <p v-if="requestConditions?.error?.email" class="text-red-500 mt-1">{{ requestConditions.error.email }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">رقم الهوية<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
+                        v-model="employeeObj.id_number"
                         name="emloyee-id" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: 1090875684">
+                        <p v-if="requestConditions?.error?.id_number" class="text-red-500 mt-1">{{ requestConditions.error.id_number }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">الراتب<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
+                        v-model="employeeObj.salary"
                         name="emloyee-salary" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال: ٨٠٠٠ ريال">
+                        <p v-if="requestConditions?.error?.salary" class="text-red-500 mt-1">{{ requestConditions.error.salary }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">تاريخ البدء <span class="text-[#DADADA]">( اختياري )</span></p>
-                        <VueDatePicker v-model="date"></VueDatePicker>
+                        <VueDatePicker v-model="employeeObj.start_data" format="MM/dd/yyyy" :enable-time-picker="false" auto-apply />
+                        <p v-if="requestConditions?.error?.start_data" class="text-red-500 mt-1">{{ requestConditions.error.start_data }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">تاريخ الانتهاء <span class="text-[#DADADA]">( اختياري )</span></p>
-                        <VueDatePicker v-model="date"></VueDatePicker>
+                        <VueDatePicker v-model="employeeObj.end_data" format="MM/dd/yyyy" :enable-time-picker="false" auto-apply></VueDatePicker>
+                        <p v-if="requestConditions?.error?.end_data" class="text-red-500 mt-1">{{ requestConditions.error.end_data }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">العنوان<span class="text-[#DADADA]">( اختياري )</span></p>
-                        <input 
+                        <input
+                        v-model="employeeObj.address" 
                         name="emloyee-location" 
-                        type="number" 
+                        type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="مثال : رقم المبنى (8782)، نهاوند، الواحة">
+                        <p v-if="requestConditions?.error?.address" class="text-red-500 mt-1">{{ requestConditions.error.address }}</p>
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">الإدارة<span class="text-[#DADADA]">( اختياري )</span></p>
@@ -100,13 +116,21 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between my-10 text-lg font-bold">
-                    <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">إضافة</button>
-                    <RouterLink to="company-employee" class="text-red-700 py-4 px-8 ">
+                    <button @click="addEmployee" class=" bg-site-blue text-white py-3 px-10 rounded-lg">
+                        <span v-if="!requestConditions.loading">
+                            إضافة 
+                        </span>
+                        <LoaderIcon v-else />
+                    </button>
+                    <RouterLink to="/company-employee" class="text-red-700 py-4 px-8 ">
                         إلغاء
                     </RouterLink>
                 </div>
             </div>
             <SideBarComponent />
+        </div>
+        <div v-else class=" flex justify-center mt-52">
+            <PageLoader />
         </div>
     </div>
 </template>
@@ -116,6 +140,65 @@ import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import SideBarComponent from '../../components/SideBarComponent.vue';
 import FileInputComponent from '../../components/Base/FileInputComponent.vue';
 import Select from 'primevue/select';
+import { onMounted, ref } from 'vue';
+import { useUserStore } from '../../stores/user';
+import LoaderIcon from '../../components/icon/loaderIcon.vue';
+import { useGetRequest, usePatchRequest, usePostRequest } from '../../composables/useRequest';
+import moment from 'moment';
+import { useRoute, useRouter } from 'vue-router';
+import PageLoader from '../../components/icon/PageLoader.vue';
+
+const router = useRouter()
+const route = useRoute()
+const user = useUserStore()
+const loadPage = ref(false)
+const employeeObj = ref({
+    subscriber_company: user.userCompantId,
+    name: null,
+    job_title: null,
+    phone: null,
+    email: null,
+    id_number: null,
+    salary: null,
+    start_data: new Date(),
+    end_data: new Date(),
+    address: null,
+    address: null,
+    status: 1,
+})
+const requestConditions = ref({
+    data: null,
+    error: null,
+    loading: false,
+})
+onMounted(async ()=>{
+    if(route.params.id != 'add') {
+        const {Data, Error} = await useGetRequest('api/v1/company_employe/'+route.params.id)
+        employeeObj.value = Data.value.data
+        loadPage.value = true
+    }
+    else {
+        loadPage.value = true
+    }
+})
+const addEmployee = async () => {
+    // turn dates to correct format
+    employeeObj.value.start_data = moment(employeeObj.value.start_data).format("YYYY-MM-DD")
+    employeeObj.value.end_data = moment(employeeObj.value.end_data).format("YYYY-MM-DD")
+    requestConditions.value.loading = true
+    if(route.params.id == 'add') {
+        const { Data, Error } = await usePostRequest('api/v1/company_employe/',employeeObj.value)
+        requestConditions.value.error = Error?.value?.errors
+    }
+    else {
+        const { Data, Error } = await usePatchRequest('api/v1/company_employe/'+route.params.id+'/',employeeObj.value)
+        requestConditions.value.error = Error?.value?.errors
+    }
+    requestConditions.value.loading = false
+    if(requestConditions.value.error == null) {
+        router.push('/company-employee')
+    }
+}
 
 </script>
 

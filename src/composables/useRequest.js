@@ -60,9 +60,11 @@ const url = geturl()
     const Error = ref(null)
     try {
       const { data } = await axios.delete(url+api,{
-        headers:{"Authorization": "Bearer "+userStore.userToken},
+        headers: {
+          "authorization": "Token "+userStore.userToken
+        }
       });
-      Data.value = data.data
+      Data.value = data
     } catch (error) {
         Error.value = error.response.data
     }

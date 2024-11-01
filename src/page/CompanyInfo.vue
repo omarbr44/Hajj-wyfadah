@@ -296,7 +296,9 @@ import { useGetRequest, usePatchRequest, usePostRequest } from '../composables/u
 import { useRouter } from 'vue-router';
 import DownloadIcon from '../components/icon/DownloadIcon.vue';
 import PageLoader from '../components/icon/PageLoader.vue';
+import { useUserStore } from '../stores/user';
 
+const user = useUserStore()
 const router = useRouter()
 const loadPage =ref(false)
 // defining variables related to APIs
@@ -310,6 +312,7 @@ const toTermConditon = ref()
 onMounted(async ()=>{
    const { Data } = await useGetRequest('api/v1/company/')
    companyInfo.value = Data.value.data.result[0]
+   user.setCompanyId(companyInfo.value.id)
    const { Data:terms } = await useGetRequest('api/v1/terms_conditions/')
    termsConditions.value = terms.value.data.result
    const { Data:language } = await useGetRequest('api/v1/language')

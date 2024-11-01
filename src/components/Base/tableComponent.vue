@@ -18,7 +18,10 @@
                             <template v-if="props.canDelete" #container="{ closeCallback }">
                                 <slot name="delete-modal-1"></slot>   
                                 <div class="flex items-center justify-between my-2 text-lg font-bold">
-                                    <button class=" bg-red-500 text-white py-2 px-7 rounded-lg">حذف</button>
+                                    <button @click="deleteItem" class=" bg-red-500 text-white py-2 px-7 rounded-lg flex justify-center items-center">
+                                        <span v-if="!deleteLoading">حذف</span>
+                                        <LoaderIcon v-else />
+                                    </button>
                                     <button @click="$emit('closeModal',closeCallback)" class="text-site-blue py-4 px-8">إلغاء</button>
                                 </div>
                             </template> 
@@ -35,14 +38,28 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
 import Xicon from '../icon/Xicon.vue';
+import { useDeleteRequest } from '../../composables/useRequest';
+import { ref } from 'vue';
+import LoaderIcon from '../icon/loaderIcon.vue';
+import { useRouter } from 'vue-router';
+
+const router = useRouter()
 const props = defineProps({
     modalVisible:{type: Boolean, required: true},
-    canDelete:{type: Boolean, required: true}
+    canDelete:{type: Boolean, required: true},
+    deleteLink:{type: String, required: true}
 })
 const emit = defineEmits(['closeModal'])
 
+const deleteLoading = ref(false)
+const deleteItem = async () => {
+    deleteLoading.value = true
+    const { Data } = await useDeleteRequest(props.deleteLink)
+    deleteLoading.value = false
+    if(Data.value.success)
+        router.go()
+}
 </script>
 
 <style>

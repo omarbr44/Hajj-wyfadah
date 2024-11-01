@@ -188,7 +188,7 @@
 
                 <div class="flex items-center justify-between my-10 text-lg font-bold">
                     <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">إضافة</button>
-                    <RouterLink to="company-branshes" class="text-red-700 py-4 px-8 ">
+                    <RouterLink to="/company-branshes" class="text-red-700 py-4 px-8 ">
                         إلغاء
                     </RouterLink>
                 </div>

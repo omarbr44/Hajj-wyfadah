@@ -1,10 +1,10 @@
 <template>
     <div>
         <NavBarComponent />
-        <div class="flex justify-stretch">
+        <div v-if="loadPage" class="flex justify-stretch">
             <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">إدارة الموظفين </h1>
-                <RouterLink to="company-employee-add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
+                <RouterLink to="company-employee-add/add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
                     <PlusIcon />
                     <span class="font-bold">إضافة موظف</span>
                 </RouterLink>
@@ -80,8 +80,10 @@
                 </div>
                 <TableComponent 
                 :modalVisible="modalVisible"
+                :canDelete="true"
+                :deleteLink="deleteLink"
                 @closeModal="modalVisible = false"
-                :canDelete="false">
+                >
                     <template v-slot:header>
                         <tr>
                             <th scope="col">الاسم</th>
@@ -94,38 +96,13 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <tr>
-                            <th scope="row">عبدالله خالد</th>
-                            <td>058964137</td>
-                            <td>المدير العام</td>
-                            <td>عرفة</td>
+                        <tr v-for="(employee,index) in employeeObj" :key="index">
+                            <th scope="row">{{ employee.name }}</th>
+                            <td>{{ employee.phone }}</td>
+                            <td>{{ employee.job_title }}</td>
+                            <td></td>
                             <td class="text-white">
-                                <span class="bg-green-900 rounded-2xl p-2" >تفعيل</span>
-                            </td>
-                            <td class="text-white">
-                                <button @click="print" class="bg-gray-800 rounded-2xl py-1 w-[80%] mx-auto flex items-center justify-center gap-1">
-                                    <PrintIcon />
-                                    <span>طباعة البطاقة</span>
-                                </button>
-                            </td>
-                            <td class="flex items-center justify-center gap-5">
-                                <button class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </button>
-                                <button @click="modalVisible = true" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">عبدالله خالد</th>
-                            <td>058964137</td>
-                            <td>المدير العام</td>
-                            <td>عرفة</td>
-                            <td class="text-white">
-                                <span class="bg-green-900 rounded-2xl p-2" >تفعيل</span>
+                                <span class="bg-green-900 rounded-2xl p-2" >مفعل</span>
                             </td>
                             <td class="text-white">
                                 <button @click="print" class="bg-gray-800 rounded-2xl py-1 w-[80%] mx-auto flex items-center justify-center gap-1">
@@ -134,36 +111,11 @@
                                 </button>
                             </td>
                             <td class="flex items-center justify-center gap-5">
-                                <button class="flex items-center gap-2">
+                                <RouterLink :to="'company-employee-add/'+employee.id" class="flex items-center gap-2">
                                     <EditIcon />
                                     <span class="text-[#46814F]">تعديل</span>
-                                </button>
-                                <button @click="modalVisible = true" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">عبدالله خالد</th>
-                            <td>058964137</td>
-                            <td>المدير العام</td>
-                            <td>عرفة</td>
-                            <td class="text-white">
-                                <span class="bg-green-900 rounded-2xl p-2" >تفعيل</span>
-                            </td>
-                            <td class="text-white">
-                                <button @click="print" class="bg-gray-800 rounded-2xl py-1 w-[80%] mx-auto flex items-center justify-center gap-1">
-                                    <PrintIcon />
-                                    <span>طباعة البطاقة</span>
-                                </button>
-                            </td>
-                            <td class="flex items-center justify-center gap-5">
-                                <button class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </button>
-                                <button @click="modalVisible = true" class="flex items-center gap-2">
+                                </RouterLink >
+                                <button @click="showDeleteModal(employee.id)" class="flex items-center gap-2">
                                     <DeleteIcon />
                                     <span class="text-[#FF3F3F]">حذف</span>
                                 </button>
@@ -191,11 +143,14 @@
             </div>
             <SideBarComponent />
         </div>
+        <div v-else class=" flex justify-center mt-52">
+            <PageLoader />
+        </div>
     </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { RouterLink } from 'vue-router';
 import TableComponent from '../../components/Base/tableComponent.vue';
 import NavBarComponent from '../../components/Company/NavBarComponent.vue';
@@ -205,8 +160,24 @@ import PrintIcon from '../../components/icon/PrintIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SideBarComponent from '../../components/SideBarComponent.vue';
 import SearchIcon from '../../components/icon/SearchIcon.vue';
+import { useGetRequest } from '../../composables/useRequest';
+import PageLoader from '../../components/icon/PageLoader.vue';
+
+
+const loadPage = ref(false)
+const employeeObj = ref(null)
+onMounted(async ()=>{
+    const {Data, Error} = await useGetRequest('api/v1/company_employe/')
+    employeeObj.value = Data.value.data.result
+    loadPage.value = true
+})
 
 const modalVisible = ref(false)
+const deleteLink = ref(null)
+const showDeleteModal = (id) => {
+    modalVisible.value = true
+    deleteLink.value = 'api/v1/company_employe/'+id+'/'
+}
 const print = ()=>{
     window.print()
 }

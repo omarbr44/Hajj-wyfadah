@@ -1,7 +1,7 @@
 <template>
     <div class="w-full relative">
         <form>
-            <input @change="changeFile($event.target.files[0])" ref="Fileinput" id="fileinput" type="file" style="display:none;"/>
+            <input @change="$emit('changeFile',$event.target.files[0])" ref="Fileinput" id="fileinput" type="file" style="display:none;"/>
         </form>
         <button @click="Fileinput.click()" class="w-full h-56 border border-[#BDBDBD] p-2 rounded-xl">  
         </button>
@@ -11,10 +11,10 @@
 
 <script setup>
 import { ref } from 'vue';
+const emit = defineEmits(['changeFile'])
 const Fileinput = ref(null)
-const changeFile = (file) => {
-    //companyInfo.value.compay_terms_conditions = file
-}
+/* const changeFile = (file) => {
+} */
 </script>
 
 <style lang="scss" scoped>

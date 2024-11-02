@@ -327,8 +327,6 @@ onMounted(async ()=>{
        fromTermConditon.value = termsConditions.value.filter((el)=> el.language == fromCountry.value.id)
        fromTermConditon.value = fromTermConditon.value[0].terms_conditions
    }
-/*    toTermConditon.value = termsConditions.value.filter((el)=> el.language == toCountry.value.id)
-   toTermConditon.value = toTermConditon.value[0].terms_conditions */
    loadPage.value = true
 })
 //change TermConditons when language changes

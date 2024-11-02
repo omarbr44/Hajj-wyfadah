@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="non-print">
         <NavBarComponent />
         <div v-if="loadPage" class="flex justify-stretch">
             <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
@@ -18,38 +18,14 @@
                     <v-menu activator="#menu-activator" :close-on-content-click="false">
                         <div class="bg-white shadow-md rounded-md">
                             <p class="text-site-blue font-bold rtl-d p-3">الإدارة</p>
-                            <div class="flex gap-10 items-center px-10 pt-1 justify-end">
+                            <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
                                 <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">عرفة</label>
-                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
+                                    <label for="all" class="mr-2 text-site-blue">الكل</label>
+                                    <Checkbox v-model="departmentFilter" inputId="all" name="Checkbox" value="all" />
                                 </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الإدارة العامة</label>
-                                    <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الكل</label>
-                                    <Checkbox v-model="pizza2" inputId="ingredient1" name="pizza1" value="Cheese1" />
-                                </div>
-                            </div>
-                            <div class="flex gap-10 items-center px-10 py-4 justify-end">
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">منى</label>
-                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">النقل</label>
-                                    <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الإعاشة</label>
-                                    <Checkbox v-model="pizza2" inputId="ingredient1" name="pizza1" value="Cheese1" />
-                                </div>
-                            </div>
-                            <div class="flex gap-10 items-center px-10 justify-end">
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الأطباء</label>
-                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
+                                <div v-for="(department,index) in departments" :key="index" class="flex items-center">
+                                    <label for="ingredient1" class="mr-2 text-site-blue">{{department.name_ar}}</label>
+                                    <Checkbox v-model="departmentFilter" inputId="Checkbox" name="Checkbox" :value="department.name_ar" />
                                 </div>
                             </div>
                             <hr>
@@ -100,9 +76,11 @@
                             <th scope="row">{{ employee.name }}</th>
                             <td>{{ employee.phone }}</td>
                             <td>{{ employee.job_title }}</td>
-                            <td></td>
+                            <td>{{ employee.name_department }}</td>
                             <td class="text-white">
-                                <span class="bg-green-900 rounded-2xl p-2" >مفعل</span>
+                                <span 
+                                class="rounded-2xl p-2"
+                                :class="employee.status == 1 ? 'bg-site-text-grey' : ( employee.status == 2 ? 'bg-green-900' : 'bg-red-700')" >{{ employee.name_status }}</span>
                             </td>
                             <td class="text-white">
                                 <button @click="print" class="bg-gray-800 rounded-2xl py-1 w-[80%] mx-auto flex items-center justify-center gap-1">
@@ -147,10 +125,30 @@
             <PageLoader />
         </div>
     </div>
+    <div id="print" class="hidden">
+        <h1 class=" text-center text-4xl font-bold text-red-800 mt-60">
+            شركة عبدالله صالح الكاف
+            <br>
+            لخدمات حجاج الداخل
+        </h1>
+        <div class="flex items-center gap-5 my-7 justify-center">
+            <div class="w-[200px] h-[300px] bg-site-text-grey"></div>
+            <div class="w-[300px] h-[200px] bg-site-text-grey"></div>
+        </div>
+        <h1 class=" text-center text-3xl font-bold mb-3">
+            ابوبكر عبدالعزيز الكثيري
+        </h1>
+        <h1 class=" text-center text-xl font-bold mb-3">
+            الوظيفة: مسؤول التسجيل والنظام
+        </h1>
+        <h1 class=" text-center text-xl font-bold mb-3">
+            صالحة لغاية: 15/12/1444
+        </h1>
+    </div>
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import { RouterLink } from 'vue-router';
 import TableComponent from '../../components/Base/tableComponent.vue';
 import NavBarComponent from '../../components/Company/NavBarComponent.vue';
@@ -166,9 +164,18 @@ import PageLoader from '../../components/icon/PageLoader.vue';
 
 const loadPage = ref(false)
 const employeeObj = ref(null)
+const departments = ref(null)
+const departmentFilter = ref()
+watch(departmentFilter,()=>{
+    if(departmentFilter.value.length > 1)
+        departmentFilter.value = departmentFilter.value.slice(0,1)
+    console.log(departmentFilter.value)
+})
 onMounted(async ()=>{
     const {Data, Error} = await useGetRequest('api/v1/company_employe/')
     employeeObj.value = Data.value.data.result
+    const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
+    departments.value = departmentsValue.value.data.result
     loadPage.value = true
 })
 
@@ -183,6 +190,18 @@ const print = ()=>{
 }
 </script>
 
-<style scoped>
-
+<style >
+div[data-pc-section="box"] {
+    display: none !important;
+}
+input[type="checkbox"]:checked {
+}
+@media print {
+  #non-print{
+    display: none !important;
+  }
+  #print{
+    display: block !important;
+  }
+}
 </style>

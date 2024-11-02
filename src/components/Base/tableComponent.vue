@@ -1,16 +1,10 @@
 <template>
     <div>
-        <table class="w-full border border-[#979797]">
+        <table class="w-full border border-[#979797] mb-10">
             <thead class="bg-[#828282] text-white">
                 <slot name="header"></slot>
             </thead>
             <tbody>
-                 <!-- <tr v-for="(row,index) in props.tableBody" :key="index">
-                    <td>{{row.}}</td>
-                    <td>{{row.}}</td>
-                    <td>{{row.}}</td>
-                    <td>{{row.}}</td>
-                </tr> -->
                 <slot name="body"></slot>    
             </tbody>
         </table>

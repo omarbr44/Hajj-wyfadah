@@ -43,7 +43,7 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
-      path: '/company-departments-add',
+      path: '/company-departments-add/:id',
       name: 'company-departments-add',
       component: () => import('./page/CompnayDepartment/CompanyDepartmentsAdd.vue'),
       meta: {requiresAuth: true}

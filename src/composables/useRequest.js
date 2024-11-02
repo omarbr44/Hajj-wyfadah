@@ -43,7 +43,6 @@ const url = geturl()
     const Data = ref(null)
     const Error = ref(null)
     try {
-      console.log("authorization"+ "Token "+userStore.userToken)
       const { data } = await axios.patch(url+api,body,{
         headers: {
           "authorization": "Token "+userStore.userToken

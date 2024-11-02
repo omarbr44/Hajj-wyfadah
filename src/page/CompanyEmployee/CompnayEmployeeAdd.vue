@@ -197,9 +197,9 @@ const requestConditions = ref({
     loading: false,
 })
 const statuses = ref([
-    {id: 1, name: 'مفعل'},
-    {id: 2, name: 'غير مفعل'},
-    {id: 3, name: 'في الانتظار'},
+    {id: 2, name: 'مفعل'},
+    {id: 3, name: 'غير مفعل'},
+    {id: 1, name: 'في الانتظار'},
 ])
 const departments = ref(null)
 const departmentObj = ref(null)
@@ -211,6 +211,7 @@ onMounted(async ()=>{
         employeeObj.value = Data.value.data
         // get department object by id so it work with Select element
         //departmentObj.value = departments.value.filter( el => el.id == employeeObj.value.id_department )[0] 
+        employeeObj.value.status = statuses.value.filter( el => el.id == employeeObj.value.status )[0] 
         loadPage.value = true
     }
     else {

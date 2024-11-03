@@ -20,28 +20,24 @@
                             <p class="text-site-blue font-bold rtl-d p-3">الإدارة</p>
                             <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
                                 <div class="flex items-center">
-                                    <label for="all" class="mr-2 text-site-blue">الكل</label>
-                                    <Checkbox v-model="departmentFilter" inputId="all" name="Checkbox" value="all" />
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="departmentFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
-                                <div v-for="(department,index) in departments" :key="index" class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">{{department.name_ar}}</label>
-                                    <Checkbox v-model="departmentFilter" inputId="Checkbox" name="Checkbox" :value="department.name_ar" />
+                                <div  v-for="(department,index) in departments" :key="index" class="flex items-center gap-1">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{department.name_ar}}</label>
+                                    <input id="default-radio-1" type="radio" :value="department.id" v-model="departmentFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                             <hr>
                             <p class="text-site-blue font-bold rtl-d p-3">حالة التفعيل</p>
-                            <div class="flex gap-10 items-center p-10 pt-1 justify-end">
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">غير مكتمل</label>
-                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
+                            <div class="flex gap-10 items-center p-10 pt-1 justify-end flex-wrap gap-y-5 w-[23rem]">
+                                <div v-for="(status,index) in statuses" :key="index" class="flex items-center gap-1">
+                                    <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{status.name}}</label>
+                                    <input id="default-radio-2" type="radio" :value="status.id" v-model="statusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                                 <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">المكتمل</label>
-                                    <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الكل</label>
-                                    <Checkbox v-model="pizza2" inputId="ingredient1" name="pizza1" value="Cheese1" />
+                                    <label for="default-radio-2" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
+                                    <input id="default-radio-2" type="radio" value="" v-model="statusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                         </div>
@@ -166,17 +162,28 @@ const loadPage = ref(false)
 const employeeObj = ref(null)
 const departments = ref(null)
 const departmentFilter = ref()
-watch(departmentFilter,()=>{
-    if(departmentFilter.value.length > 1)
-        departmentFilter.value = departmentFilter.value.slice(0,1)
-    console.log(departmentFilter.value)
-})
+const statuses = ref([
+    {id: 2, name: 'مفعل'},
+    {id: 3, name: 'غير مفعل'},
+    {id: 1, name: 'في الانتظار'},
+])
+const statusFilter = ref()
+
 onMounted(async ()=>{
     const {Data, Error} = await useGetRequest('api/v1/company_employe/')
     employeeObj.value = Data.value.data.result
     const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
     departments.value = departmentsValue.value.data.result
     loadPage.value = true
+})
+// watch filters values to send request when they change
+watch(departmentFilter, async () => {
+    const {Data} = await useGetRequest('api/v1/company_employe/?department='+departmentFilter.value)
+    employeeObj.value = Data.value.data.result
+})
+watch(statusFilter, async () => {
+    const {Data} = await useGetRequest('api/v1/company_employe/?status='+statusFilter.value)
+    employeeObj.value = Data.value.data.result
 })
 
 const modalVisible = ref(false)
@@ -191,10 +198,40 @@ const print = ()=>{
 </script>
 
 <style >
-div[data-pc-section="box"] {
+/* div[data-pc-section="box"] {
     display: none !important;
+} */
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  margin: 0;
+  font: inherit;
+  color: currentColor;
+  width: 1.15em;
+  height: 1.15em;
+  border: 1px solid currentColor;
+  transform: translateY(-0.075em);
+  display: grid;
+  place-content: center;
 }
-input[type="checkbox"]:checked {
+input[type="radio"]::before {
+  content: "✔";
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  text-align: center;
+  width: 1.15em;
+  height: 1.15em;
+  transform: scale(0);
+  transition: 50ms transform ease-in-out;
+  background-color: #48b4c3;
+  border: 1px solid #48b4c3;
+
+}
+input[type="radio"]:checked::before {
+  transform: scale(1);
 }
 @media print {
   #non-print{

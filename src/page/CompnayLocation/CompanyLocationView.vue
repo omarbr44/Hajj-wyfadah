@@ -47,11 +47,7 @@
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
-                        <input 
-                            type="text" 
-                            class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 px-10 rounded-3xl"
-                        > 
-                        <SearchIcon class=" absolute right-4 top-1/2 -translate-y-1/2"/>
+                      <SearchComponent />
                     </div> 
                 </div>
                 <TableComponent
@@ -130,9 +126,9 @@ import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SideBarComponent from '../../components/SideBarComponent.vue';
-import SearchIcon from '../../components/icon/SearchIcon.vue';
 import { useGetRequest } from '../../composables/useRequest';
 import PageLoader from '../../components/icon/PageLoader.vue';
+import SearchComponent from '../../components/Base/SearchComponent.vue';
 
 const loadPage = ref(false)
 const locations = ref(null)

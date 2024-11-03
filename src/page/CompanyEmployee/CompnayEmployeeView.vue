@@ -43,11 +43,9 @@
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
-                        <input 
-                            type="text" 
-                            class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 px-10 rounded-3xl"
-                        > 
-                        <SearchIcon class=" absolute right-4 top-1/2 -translate-y-1/2"/>
+                      <SearchComponent
+                       api="api/v1/company_employe/?search="
+                       @resultSearch="searchResult" />
                     </div> 
                 </div>
                 <TableComponent 
@@ -153,9 +151,9 @@ import EditIcon from '../../components/icon/EditIcon.vue'
 import PrintIcon from '../../components/icon/PrintIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SideBarComponent from '../../components/SideBarComponent.vue';
-import SearchIcon from '../../components/icon/SearchIcon.vue';
 import { useGetRequest } from '../../composables/useRequest';
 import PageLoader from '../../components/icon/PageLoader.vue';
+import SearchComponent from '../../components/Base/SearchComponent.vue';
 
 
 const loadPage = ref(false)
@@ -185,6 +183,10 @@ watch(statusFilter, async () => {
     const {Data} = await useGetRequest('api/v1/company_employe/?status='+statusFilter.value)
     employeeObj.value = Data.value.data.result
 })
+
+const searchResult = (result) => {
+    employeeObj.value = result
+}
 
 const modalVisible = ref(false)
 const deleteLink = ref(null)

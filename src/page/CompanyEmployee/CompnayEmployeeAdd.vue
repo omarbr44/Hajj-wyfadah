@@ -220,7 +220,7 @@ const addEmployee = async () => {
     employeeObj.value.start_data = moment(employeeObj.value.start_data).format("YYYY-MM-DD")
     employeeObj.value.end_data = moment(employeeObj.value.end_data).format("YYYY-MM-DD")
 
-    employeeObj.value.status = employeeObj.value.status.id
+    employeeObj.value.status = employeeObj.value.status?.id
 
     // If there is already file stored as url then we need to convert it to file
     if(typeof employeeObj.value.image == 'string') {

@@ -104,6 +104,10 @@
                         <p>يرجى ملاحظة أن عملية الحذف ستؤدي إلى إزالة جميع البيانات ذات الصلة ولا يمكن استعادتها بعد الحذف.</p>                              
                     </template>
                 </TableComponent>
+                <PaginationComponent
+                 :next="nextPage"
+                 :previous="previousPage"
+                 @changePage="chnagePage" />
             </div>
         </div>
     </div>
@@ -117,6 +121,7 @@ import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SearchComponent from '../../components/Base/SearchComponent.vue';
+import PaginationComponent from '../../components/Base/PaginationComponent.vue';
 
 
 const statuses = ref([
@@ -124,6 +129,18 @@ const statuses = ref([
     {id: 1, name: 'مكتمل'},
 ])
 const statusesFilter = ref()
+const nextPage = ref(false)
+const previousPage = ref(false)
+
+onMounted(async ()=>{
+    /* const {Data, Error} = await useGetRequest('api/v1/company_employe/')
+    employeeObj.value = Data.value.data.result
+    nextPage.value = Data.value.data.next ? true : false
+    previousPage.value = Data.value.data.previous ? true : false
+    const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
+    departments.value = departmentsValue.value.data.result
+    loadPage.value = true */
+})
 // watch filters values to send request when they change
 watch(statusesFilter, async () => {
 /*     const {Data} = await useGetRequest('api/v1/location/?department='+trainStatusFilter.value)
@@ -132,6 +149,14 @@ watch(statusesFilter, async () => {
 const searchResult = (result) => {
     locations.value = result
 }
+// pagination
+const chnagePage = async (newPage) => {
+    const {Data} = await useGetRequest('api/v1/company_employe/?page='+newPage)
+    employeeObj.value = Data.value.data.result
+    nextPage.value = Data.value.data.next ? true : false
+    previousPage.value = Data.value.data.previous ? true : false
+}
+
 const modalVisible = ref(false)
 </script>
 

@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <NavBarComponent />
-        <div v-if="loadPage" class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-10 bg-[#f9f9f9] pt-28">
+    <div class="w-[80%] bg-[#f9f9f9]">
+        <div v-if="loadPage">
+            <div class="rtl-d px-10 pt-28">
                 <h1 class="text-xl font-bold text-site-blue mb-5">إضافة موقع جديد</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl flex flex-wrap gap-y-4">
                     <div class="w-[45%]">
@@ -213,7 +212,6 @@ Camp No. ( D19 ) (6-5) (E)Opposite Muzdalifah Train Station No.3"
                     </RouterLink>
                 </div>
             </div>
-            <SideBarComponent />
         </div>
         <div v-else class=" flex justify-center mt-52">
             <PageLoader />
@@ -226,8 +224,6 @@ import { onMounted, ref } from 'vue';
 import { useUserStore } from '../../stores/user';
 import LoaderIcon from '../../components/icon/loaderIcon.vue';
 import { useGetRequest, usePatchRequest, usePostRequest } from '../../composables/useRequest';
-import NavBarComponent from '../../components/Company/NavBarComponent.vue';
-import SideBarComponent from '../../components/SideBarComponent.vue';
 import LocationIcon from '../../components/icon/LocationIcon.vue';
 import { useRoute, useRouter } from 'vue-router';
 import PageLoader from '../../components/icon/PageLoader.vue';

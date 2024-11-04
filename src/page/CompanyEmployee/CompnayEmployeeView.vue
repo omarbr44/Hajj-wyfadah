@@ -1,8 +1,7 @@
 <template>
-    <div id="non-print">
-        <NavBarComponent />
-        <div v-if="loadPage" class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
+    <div id="non-print" class="w-[80%] bg-[#f9f9f9]">
+        <div v-if="loadPage">
+            <div class="rtl-d px-5 pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">إدارة الموظفين </h1>
                 <RouterLink to="company-employee-add/add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
                     <PlusIcon />
@@ -113,7 +112,6 @@
                     </template>
                 </TableComponent>
             </div>
-            <SideBarComponent />
         </div>
         <div v-else class=" flex justify-center mt-52">
             <PageLoader />
@@ -145,12 +143,10 @@
 import { onMounted, ref, watch } from 'vue';
 import { RouterLink } from 'vue-router';
 import TableComponent from '../../components/Base/tableComponent.vue';
-import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import PrintIcon from '../../components/icon/PrintIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
-import SideBarComponent from '../../components/SideBarComponent.vue';
 import { useGetRequest } from '../../composables/useRequest';
 import PageLoader from '../../components/icon/PageLoader.vue';
 import SearchComponent from '../../components/Base/SearchComponent.vue';
@@ -203,38 +199,7 @@ const print = ()=>{
 /* div[data-pc-section="box"] {
     display: none !important;
 } */
-input[type="radio"] {
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: #fff;
-  margin: 0;
-  font: inherit;
-  color: currentColor;
-  width: 1.15em;
-  height: 1.15em;
-  border: 1px solid currentColor;
-  transform: translateY(-0.075em);
-  display: grid;
-  place-content: center;
-}
-input[type="radio"]::before {
-  content: "✔";
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #fff;
-  text-align: center;
-  width: 1.15em;
-  height: 1.15em;
-  transform: scale(0);
-  transition: 50ms transform ease-in-out;
-  background-color: #48b4c3;
-  border: 1px solid #48b4c3;
 
-}
-input[type="radio"]:checked::before {
-  transform: scale(1);
-}
 @media print {
   #non-print{
     display: none !important;

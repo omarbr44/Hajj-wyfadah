@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <NavBarComponent />
-        <div v-if="loadPage" class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
+    <div class="w-[80%] bg-[#f9f9f9]">
+        <div v-if="loadPage">
+            <div class="rtl-d px-5 pt-28">
                 <h1 class="text-xl font-bold text-site-blue mb-5">المعلومات الخاصة بالشركة</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl flex flex-wrap gap-4 gap-y-10">
                     <div class="flex gap-2 items-center w-[48%]">
@@ -276,7 +275,6 @@
                     </div>
                 </div>
             </div>
-            <SideBarComponent />
         </div>
         <div v-else class=" flex justify-center mt-52">
             <PageLoader />
@@ -287,8 +285,6 @@
 <script setup>
 import { onMounted, ref, watch } from 'vue';
 import { serialize } from 'object-to-formdata';
-import NavBarComponent from '../components/Company/NavBarComponent.vue';
-import SideBarComponent from '../components/SideBarComponent.vue';
 import Select from 'primevue/select';
 import PlusIconBg from '../components/icon/PlusIconBg.vue';
 import loaderIcon from '../components/icon/loaderIcon.vue';

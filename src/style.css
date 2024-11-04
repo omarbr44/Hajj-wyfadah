@@ -61,6 +61,40 @@
   .dp__theme_light {
     --dp-primary-color: #48b4c3 !important;
   }
+
+
+  input[type="radio"] {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: #fff;
+    margin: 0;
+    font: inherit;
+    color: currentColor;
+    width: 1.15em;
+    height: 1.15em;
+    border: 1px solid currentColor;
+    transform: translateY(-0.075em);
+    display: grid;
+    place-content: center;
+  }
+  input[type="radio"]::before {
+    content: "✔";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    text-align: center;
+    width: 1.15em;
+    height: 1.15em;
+    transform: scale(0);
+    transition: 50ms transform ease-in-out;
+    background-color: #48b4c3;
+    border: 1px solid #48b4c3;
+  
+  }
+  input[type="radio"]:checked::before {
+    transform: scale(1);
+  }
   @forward 'vuetify/settings' with (
   $utilities: false,
 );

@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <NavBarComponent />
-        <div class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
+    <div class="w-[80%] bg-[#f9f9f9]">
+        <div>
+            <div class="rtl-d px-5 pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">إدارة الفروع التابعة للحملة</h1>
                 <RouterLink to="company-branshes-add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
                     <PlusIcon />
@@ -20,22 +19,20 @@
                             <p class="text-site-blue font-bold rtl-d p-6">حالة التسجيل</p>
                             <div class="flex gap-10 items-center p-10 pt-1">
                                 <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">غير مكتمل</label>
-                                    <Checkbox v-model="pizza1" inputId="ingredient1" name="pizza2" value="Cheese2" />
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="statusesFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">المكتمل</label>
-                                    <Checkbox v-model="pizza" inputId="ingredient1" name="pizza" value="Cheese" />
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="ingredient1" class="mr-2 text-site-blue">الكل</label>
-                                    <Checkbox v-model="pizza2" inputId="ingredient1" name="pizza1" value="Cheese1" />
+                                <div  v-for="(status,index) in statuses" :key="index" class="flex items-center gap-1">
+                                    <label for="default-radio-1" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{status.name}}</label>
+                                    <input id="default-radio-1" type="radio" :value="status.id" v-model="statusesFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
-                      <SearchComponent />
+                        <SearchComponent
+                        api="api/v1/location/?search="
+                        @resultSearch="searchResult" />
                     </div> 
 
                 </div>
@@ -108,22 +105,33 @@
                     </template>
                 </TableComponent>
             </div>
-            <SideBarComponent />
         </div>
     </div>
 </template>
 
 <script setup>
 import { RouterLink } from 'vue-router';
-import { ref } from 'vue';
+import { ref, watch, onMounted } from 'vue';
 import TableComponent from '../../components/Base/tableComponent.vue';
-import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
-import SideBarComponent from '../../components/SideBarComponent.vue';
 import SearchComponent from '../../components/Base/SearchComponent.vue';
 
+
+const statuses = ref([
+    {id: 2, name: 'غير مكتمل'},
+    {id: 1, name: 'مكتمل'},
+])
+const statusesFilter = ref()
+// watch filters values to send request when they change
+watch(statusesFilter, async () => {
+/*     const {Data} = await useGetRequest('api/v1/location/?department='+trainStatusFilter.value)
+    locations.value = Data.value.data.result */
+})
+const searchResult = (result) => {
+    locations.value = result
+}
 const modalVisible = ref(false)
 </script>
 

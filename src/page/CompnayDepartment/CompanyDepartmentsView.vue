@@ -1,8 +1,7 @@
 <template>
-    <div id="non-print">
-        <NavBarComponent />
-        <div v-if="loadPage" class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-5 bg-[#f9f9f9] pt-28">
+    <div id="non-print" class="w-[80%] bg-[#f9f9f9]">
+        <div v-if="loadPage">
+            <div class="rtl-d px-5 pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">الإدارات التابعة للشركة </h1>
                 <RouterLink to="company-departments-add/add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
                     <PlusIcon />
@@ -56,7 +55,6 @@
                     </template>
                 </TableComponent>
             </div>
-            <SideBarComponent />
         </div>
         <div v-else class=" flex justify-center mt-52">
             <PageLoader />
@@ -87,12 +85,10 @@
 <script setup>
 import { ref,onMounted } from 'vue';
 import { RouterLink } from 'vue-router';
-import TableComponent from '../../components/Base/tableComponent.vue';
-import NavBarComponent from '../../components/Company/NavBarComponent.vue';
 import PlusIcon from '../../components/icon/PlusIcon.vue';
 import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
-import SideBarComponent from '../../components/SideBarComponent.vue';
+import TableComponent from '../../components/Base/tableComponent.vue';
 import { useGetRequest } from '../../composables/useRequest';
 import PageLoader from '../../components/icon/PageLoader.vue';
 

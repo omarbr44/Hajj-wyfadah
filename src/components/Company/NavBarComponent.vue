@@ -8,7 +8,13 @@
                 >
                 المواقع
             </RouterLink>
-            <RouterLink to="">البرامج</RouterLink>
+            <RouterLink 
+                to="/company-program" 
+                class="p-2 px-4 rounded-3xl"
+                :class="useRoute().path.includes('program') ? 'text-white bg-site-blue' : ''"
+                >
+                البرامج
+            </RouterLink>
             <RouterLink 
                 to="/company-employee" 
                 class="p-2 px-4 rounded-3xl"

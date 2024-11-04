@@ -1,8 +1,7 @@
 <template>
-    <div>
-        <NavBarComponent />
-        <div v-if="loadPage" class="flex justify-stretch">
-            <div class="w-[80%] rtl-d px-10 bg-[#f9f9f9] pt-28">
+    <div class="w-[80%] bg-[#f9f9f9]">
+        <div v-if="loadPage">
+            <div class="rtl-d px-10 pt-28">
                 <h1 class="text-xl font-bold text-site-blue mb-5">معلومات الإدارة</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl flex flex-wrap">
                     <div class="w-[45%]">
@@ -160,7 +159,6 @@
                     </RouterLink>
                 </div>
             </div>
-            <SideBarComponent />
         </div>
         <div v-else class=" flex justify-center mt-52">
             <PageLoader />
@@ -170,8 +168,6 @@
 
 <script setup>
 import { ref,onMounted } from 'vue';
-import NavBarComponent from '../../components/Company/NavBarComponent.vue';
-import SideBarComponent from '../../components/SideBarComponent.vue';
 import ArrowUpIcon from '../../components/icon/ArrowUpIcon.vue';
 import ArrowDownIcon from '../../components/icon/ArrowDownIcon.vue';
 import DownloadIcon from '../../components/icon/DownloadIcon.vue';

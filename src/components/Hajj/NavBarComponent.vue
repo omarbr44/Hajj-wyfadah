@@ -1,47 +1,47 @@
 <template>
     <div class="bg-white pt-8 w-full flex justify-end border-b-4 border-site-blue fixed top-0 z-10">
-        <div class="flex items-center gap-16 text-black mr-72 font-bold">
+        <div class="flex items-center gap-10 text-black mr-72 font-bold">
             <RouterLink 
-                to="/company-location" 
+                to="" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('location') ? 'text-white bg-site-blue' : ''"
                 >
-                المواقع
+                مرفقات الحاج
             </RouterLink>
             <RouterLink 
-                to="/company-program" 
+                to="" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('program') ? 'text-white bg-site-blue' : ''"
                 >
-                البرامج
+                حالات الحاج
             </RouterLink>
             <RouterLink 
-                to="/company-employee" 
+                to="" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('employee') ? 'text-white bg-site-blue' : ''"
                 >
-                إدارة الموظفين
+                المجموعات الداخلية
             </RouterLink>
             <RouterLink 
-                to="/company-branshes" 
+                to="" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('branshes') ? 'text-white bg-site-blue' : ''"
                 >
-                إدارة الفروع
+                جنسيات المجموعات
             </RouterLink>
             <RouterLink 
-                to="/company-departments" 
+                to="" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('departments') ? 'text-white bg-site-blue' : ''"
                 >
-                الإدارات
+                المجموعات
             </RouterLink>
             <RouterLink 
-                to="/company-info" 
+                to="/hajj-info" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path == '/company-info' ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('hajj-info') ? 'text-white bg-site-blue' : ''"
                 >
-                معلومات الشركة
+                الحجاج
             </RouterLink>
         </div>
 

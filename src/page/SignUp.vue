@@ -65,7 +65,7 @@ const nextStep = (message)=> {
     // User has passed all regesteration steps, message => user info
     componentMessage.value = message
     user.signIn(componentMessage.value.authtoken,componentMessage.value.is_superuser,componentMessage.value.username,componentMessage.value.email)
-    router.push('companyinfo')
+    router.push('company-info')
   }
 }
 </script>

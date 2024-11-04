@@ -97,7 +97,7 @@ const loginRequest = async () => {
         requestConditions.value.message = Error.value?.message
     if(requestConditions.value.data) {
         userStore.signIn(requestConditions.value.data.authtoken,requestConditions.value.data.is_superuser,requestConditions.value.data.username,requestConditions.value.data.email)
-        router.push('companyinfo')
+        router.push('company-info')
     }
 
 }

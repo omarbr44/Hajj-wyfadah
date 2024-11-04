@@ -2,12 +2,20 @@
     <div class="w-[20%] bg-white pt-8 flex flex-col items-center gap-10 shadow-xl relative z-10">
         <img src="/img/logo.png" class="" alt="logo">
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">لوحة المعلومات</RouterLink>
-        <RouterLink to="" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
-            <div class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+        <RouterLink to="/company-info" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('company-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
                  style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
-            <span class="text-white z-10 relative">الشركة</span>
+            <span 
+            class="z-10 relative"
+            :class="useRoute().path.includes('company-') ? 'text-white' : ''">الشركة</span>
         </RouterLink>
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey">الحجاج</RouterLink>
+        <RouterLink to="/hajj-info" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('hajj-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="useRoute().path.includes('hajj-') ? 'text-white' : ''">الحجاج</span>
+        </RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">التواصل</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">التسكين</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">المواصلات</RouterLink>
@@ -27,7 +35,7 @@
 </template>
 
 <script setup>
-import { RouterLink } from 'vue-router';
+import { RouterLink, useRoute } from 'vue-router';
 import { useUserStore } from '../stores/user';
 const user = useUserStore()
 </script>

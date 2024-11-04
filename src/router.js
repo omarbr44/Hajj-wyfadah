@@ -30,9 +30,11 @@ const router = createRouter({
       name: 'passwordresubmit-password',
       component: () => import('./page/PasswordResubmitPassword.vue'),
     },
+
+    // Company routes
     {
-      path: '/companyinfo',
-      name: 'companyinfo',
+      path: '/company-info',
+      name: 'company-info',
       component: () => import('./page/CompanyInfo.vue'),
       meta: {requiresAuth: true}
     },
@@ -96,11 +98,21 @@ const router = createRouter({
       component: () => import('./page/CompnayProgram/CompanyProgramAdd.vue'),
       meta: {requiresAuth: true}
     },
-/*     {
-      path: '/retryPayment/:id',
-      name: 'retryPayment',
-      component: () => import('./pages/validatePayment.vue'),
+
+    // Hajj routes
+    {
+      path: '/hajj-info',
+      name: 'hajj-info',
+      component: () => import('./page/Hajj/HajjInfo/HajjInfoView.vue'),
+      meta: {requiresAuth: true}
     },
+    {
+      path: '/hajj-info-add/:id',
+      name: 'hajj-info-add',
+      component: () => import('./page/Hajj/HajjInfo/HajjInfoAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+/*   
     {
       path: '/:pathMatch(.*)*',
       name: 'Error',

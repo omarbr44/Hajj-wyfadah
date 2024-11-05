@@ -3,10 +3,16 @@
         <div v-if="loadPage">
             <div class="rtl-d px-5 pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">معلومات جميع الحجاج</h1>
-                <button class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
-                    <DownloadIcon color="white" />
-                    <span class="font-bold">إستيراد  الحجاج</span>
-                </button>
+                <div class="w-full relative">
+                            <form>
+                                <input @change="changeHajjFile($event.target.files[0])" ref="hajjFileinput" id="termsFileinput" type="file" style="display:none;"/>
+                            </form>
+                            <button @click="hajjFileinput.click()" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
+                                <DownloadIcon color="white" />
+                                <span class="font-bold">إستيراد  الحجاج</span>
+                            </button>
+
+                </div>
                 <p class=" text-site-text-grey font-medium my-5">*قم برفع ملف اكسيل لإستيراد معلومات حجاجك</p>
                 <div class="flex items-center gap-5 mb-10">
                     <button id="menu-activator" class="flex flex-col items-center gap-1">
@@ -169,6 +175,8 @@ const loadPage = ref(false)
 const locations = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
+const hajjFileinput = ref(null)
+
 onMounted(async ()=>{
 /*     const {Data, Error} = await useGetRequest('api/v1/location/')
     locations.value = Data.value.data.result

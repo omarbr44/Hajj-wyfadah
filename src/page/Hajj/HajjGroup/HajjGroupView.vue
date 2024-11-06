@@ -2,18 +2,7 @@
     <div class="w-[80%] bg-[#f9f9f9]">
         <div v-if="loadPage">
             <div class="rtl-d px-5 pt-28">
-                <h1 class="text-site-blue text-xl font-semibold">معلومات جميع الحجاج</h1>
-                <div class="w-full relative">
-                            <form>
-                                <input @change="changeHajjFile($event.target.files[0])" ref="hajjFileinput" id="termsFileinput" type="file" style="display:none;"/>
-                            </form>
-                            <button @click="hajjFileinput.click()" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
-                                <DownloadIcon color="white" />
-                                <span class="font-bold">إستيراد  الحجاج</span>
-                            </button>
-
-                </div>
-                <p class=" text-site-text-grey font-medium my-5">*قم برفع ملف اكسيل لإستيراد معلومات حجاجك</p>
+                <h1 class="text-site-blue text-xl font-semibold mb-10">مجموعات الحجاج</h1>
                 <div class="flex items-center gap-5 mb-10">
                     <button id="menu-activator" class="flex flex-col items-center gap-1">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -54,6 +43,37 @@
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
+                            <hr>
+                            <p class="text-site-blue font-bold rtl-d p-3">حالة التفعيل</p>
+                            <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مفعل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">مفعل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                            </div>
+                            <p class="text-site-blue font-bold rtl-d p-3">المجموعات</p>
+                            <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">مرتبط بمجموعة</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                                <div class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مرتبط بمجموعة</label>
+                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                </div>
+                            </div>
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
@@ -69,24 +89,16 @@
                 :canDelete="true">
                     <template v-slot:header>
                         <tr>
-                            <th v-if="viewAll" scope="col">رقم حجز الوزراة</th>
-                            <th scope="col">اسم الحاج</th>
-                            <th scope="col">عمر الحاج</th>
-                            <th v-if="viewAll" scope="col">خيمة 
-                                منى</th>
-                            <th v-if="viewAll" scope="col">مقعد
-                                منى</th>
-                            <th v-if="viewAll" scope="col">عرفات</th>
-                            <th scope="col">رقم الباص</th>
-                            <th scope="col">الجنس</th>
-                            <th v-if="viewAll" scope="col">رقم المخيم</th>
-                            <th scope="col">الجنسية</th>
-                            <th v-if="viewAll" scope="col">رقم
-                                الهوية</th>
-                            <th scope="col">رقم الجوال </th>
-                            <th v-if="viewAll" scope="col">المدينة</th>
-                            <th v-if="!viewAll" scope="col">رقم
-                                الباقة</th>
+                            <th scope="col">اسم المجموعة</th>
+                            <th scope="col">المجموع</th>
+                            <th scope="col">الباص</th>
+                            <th scope="col">المدينة</th>
+                            <th scope="col">الموقع</th>
+                            <th scope="col">المجموعات المرتبطة</th>
+                            <th scope="col">حالة التفعيل</th>
+                            <th scope="col">توزيع 
+                                الباص</th>
+                            <th scope="col">ربط مجموعة</th>
                             <th scope="col">العمليات</th>
                         </tr>
                     </template>
@@ -116,29 +128,27 @@
                             </td>
                         </tr> -->
                         <tr v-for="index in 5" >
-                            <td v-if="viewAll">28858326</td>
-                            <td>ABDUL HAMEED MUHAMMAD SIDDIQ</td>
-                            <td>34</td>
-                            <td v-if="viewAll">805</td>
-                            <td v-if="viewAll">8</td>
-                            <td v-if="viewAll">صالون 8</td>
-                            <td>99</td>
-                            <td>ذكر</td>
-                            <td v-if="viewAll">باقة (1) D-19 الخيام المطورة</td>
-                            <td>هندي</td>
-                            <td v-if="viewAll">2176788</td>
+                            <td>
+                                <RouterLink to="hajj-info/28858326" class="text-site-blue font-bold" >28858326</RouterLink>
+                            </td>
+                            <td>88</td>
+                            <td>805</td>
+                            <td>جدة</td>
+                            <td>باقة (1) D-19 الخيام المطورة</td>
                             <td>507770875</td>
-                            <td v-if="viewAll">جدة</td>
-                            <td v-if="!viewAll">2176788</td>
+                            <td class="bg-[#DADADA] text-site-text-grey">غير مفعل</td>
+                            <td>
+                                <RouterLink to="" class="block bg-red-200 w-max text-red-600 border border-red-600 rounded-3xl px-3 py-1">إلغاء توزيع الباص</RouterLink>
+                            </td>
+                            <td>
+                                <RouterLink :to="'hajj-group-link/1'" class="block bg-blue-100 w-max text-[#5FC1CF] border border-[#5FC1CF] rounded-3xl px-3 py-1">ربط مجموعة</RouterLink>
+                            </td>
                             <td class="">
-                                <div class="flex items-center justify-center gap-2 border-0 relative w-[17rem]">
-                                    <RouterLink :to="'/hajj-info-add/add'" class="flex items-center gap-1">
+                                <div class="flex items-center justify-center gap-2 border-0 relative w-[8rem]">
+                                    <RouterLink :to="'hajj-group-add/add'" class="flex items-center gap-1">
                                         <EditIcon />
-                                        <span class="text-[#46814F] text-base text-nowrap">تحديث رقم الجوال</span>
+                                        <span class="text-[#46814F] text-base text-nowrap">تعديل</span>
                                     </RouterLink >
-                                    <button @click="showDeleteModal(1)" class="flex items-center gap-1 rounded-2xl bg-black bg-opacity-80 p-2">
-                                        <span class="text-white text-nowrap">الغاء توزيع الخيمة</span>
-                                    </button>
                                 </div>
                             </td>
                         </tr>
@@ -163,38 +173,26 @@
 </template>
 
 <script setup>
-import { ref, onMounted, watch, computed } from 'vue';
-import { RouterLink, useRoute } from 'vue-router';
+import { ref, onMounted, watch } from 'vue';
+import { RouterLink } from 'vue-router';
 import TableComponent from '../../../components/Base/tableComponent.vue';
 import EditIcon from '../../../components/icon/EditIcon.vue'
 import { useGetRequest } from '../../../composables/useRequest';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import PaginationComponent from '../../../components/Base/PaginationComponent.vue';
-import DownloadIcon from '../../../components/icon/DownloadIcon.vue';
 
 const loadPage = ref(false)
-const viewAll = ref(true)
 const locations = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
-const hajjFileinput = ref(null)
-const route = useRoute()
-const routeParams = computed(()=> route.params.id)
+
 onMounted(async ()=>{
-    if(route.params.id != 'all')
-        viewAll.value = false
 /*     const {Data, Error} = await useGetRequest('api/v1/location/')
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false */
     loadPage.value = true
-})
-watch(routeParams,()=>{
-    if(routeParams.value != 'all')
-        viewAll.value = false
-    else
-        viewAll.value = true
 })
 
 const trainStatuses = ref([
@@ -211,12 +209,12 @@ const searchResult = (result) => {
     locations.value = result
 }
 // pagination
-const chnagePage = async (newPage) => {
+/* const chnagePage = async (newPage) => {
     const {Data} = await useGetRequest('api/v1/location/?page='+newPage)
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
-}
+} */
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {
     modalVisible.value = true

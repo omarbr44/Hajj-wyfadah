@@ -9,7 +9,7 @@
             class="z-10 relative"
             :class="useRoute().path.includes('company-') ? 'text-white' : ''">الشركة</span>
         </RouterLink>
-        <RouterLink to="/hajj-info" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+        <RouterLink to="/hajj-info/all" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
             <div v-if="useRoute().path.includes('hajj-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
                  style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
             <span

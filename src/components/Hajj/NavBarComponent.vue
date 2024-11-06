@@ -30,14 +30,14 @@
                 جنسيات المجموعات
             </RouterLink>
             <RouterLink 
-                to="" 
+                to="/hajj-group" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('departments') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('hajj-group') ? 'text-white bg-site-blue' : ''"
                 >
                 المجموعات
             </RouterLink>
             <RouterLink 
-                to="/hajj-info" 
+                to="/hajj-info/all" 
                 class="p-2 px-4 rounded-3xl"
                 :class="useRoute().path.includes('hajj-info') ? 'text-white bg-site-blue' : ''"
                 >

@@ -114,6 +114,7 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">الجنسية</p>
                             <input 
+                            disabled
                             v-model="locationObj.name_ar"
                             name="" 
                             type="text" 
@@ -295,9 +296,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="w-full py-8 bg-site-text-grey text-white text-center text-3xl font-bold absolute bottom-auto z-50">
-                <span class="text-green-800" >ملاحظة :</span> جنسية الحاج غير قابلة للتعديل
             </div>
         </div>
         <div v-else class=" flex justify-center mt-52">

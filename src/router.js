@@ -101,7 +101,7 @@ const router = createRouter({
 
     // Hajj routes
     {
-      path: '/hajj-info',
+      path: '/hajj-info/:id',
       name: 'hajj-info',
       component: () => import('./page/Hajj/HajjInfo/HajjInfoView.vue'),
       meta: {requiresAuth: true}
@@ -110,6 +110,24 @@ const router = createRouter({
       path: '/hajj-info-add/:id',
       name: 'hajj-info-add',
       component: () => import('./page/Hajj/HajjInfo/HajjInfoAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajj-group',
+      name: 'hajj-group',
+      component: () => import('./page/Hajj/HajjGroup/HajjGroupView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajj-group-add/:id',
+      name: 'hajj-group-add',
+      component: () => import('./page/Hajj/HajjGroup/HajjGroupAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajj-group-link/:id',
+      name: 'hajj-group-link',
+      component: () => import('./page/Hajj/HajjGroup/HajjGroupLink.vue'),
       meta: {requiresAuth: true}
     },
 /*   

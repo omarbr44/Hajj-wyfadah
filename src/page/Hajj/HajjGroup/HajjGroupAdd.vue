@@ -44,7 +44,11 @@
                                         </svg>
                                     </template>
                                     <template #header>
-                                        <div class="font-medium"></div>
+                                        <div class="mx-5 my-5">
+                                            <SearchComponent
+                                            api=""
+                                            @resultSearch="searchResult" />
+                                        </div>
                                     </template>
                         </Select>
                         <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
@@ -131,6 +135,8 @@ import { useGetRequest, usePatchRequest, usePostRequest } from '../../../composa
 import { useRoute, useRouter } from 'vue-router';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import Select from 'primevue/select';
+import SearchComponent from '../../../components/Base/SearchComponent.vue';
+
 const router = useRouter()
 const route = useRoute()
 const user = useUserStore()

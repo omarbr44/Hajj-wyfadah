@@ -9,9 +9,9 @@
                 مرفقات الحاج
             </RouterLink>
             <RouterLink 
-                to="" 
+                to="/hajj-state" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('program') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('hajj-state') ? 'text-white bg-site-blue' : ''"
                 >
                 حالات الحاج
             </RouterLink>

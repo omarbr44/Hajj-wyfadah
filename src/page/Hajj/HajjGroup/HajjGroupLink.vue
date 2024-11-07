@@ -89,7 +89,7 @@
                         <tr v-for="index in 5" >
                             <td>66551176389.</td>
                             <td class="flex items-center justify-center">
-                                <button @click="showDeleteModal(location.id)" class="flex items-center gap-2">
+                                <button @click="showDeleteModal(1)" class="flex items-center gap-2">
                                     <DeleteIcon />
                                     <span class="text-[#FF3F3F]">حذف</span>
                                 </button>
@@ -97,9 +97,10 @@
                         </tr>
                     </template>
                     <template v-slot:delete-modal-1>
-                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في إلغاء توزيع الخيمة  
-                            للحاج ABDUL HAMEED MUHAMMAD SIDDIQ ؟                        </h1>
-                        <p class="text-center mb-8">إلغاء توزيع الخيام سيعني عدم تخصيص مكان إقامة للحاج  في الوقت الحالي. يرجى التأكد من تقديم هذا القرار بعناية، حيث لا يمكن التراجع عن هذه العملية بعد تنفيذها.</p>
+                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في حذف إرتباط  المجموعة 2879996 المرتبطة 
+                            بالمجموعة 28858326 ؟                       </h1>
+                        <p class="text-center mb-8"> سيتم إزالة الارتباط بين المجموعتين، يرجى مراجعة هذا القرار بعناية لضمان عدم تأثير سلبي على سير العمل.
+                        </p>
                     </template>
                 </TableComponent>
                 </div>
@@ -156,8 +157,14 @@ onMounted(async ()=>{
         locationObj.value = Data.value.data */
         loadPage.value = true
 })
+const deleteLink = ref(null)
+const modalVisible = ref(false)
 
-const addLocation = async () => {
+const showDeleteModal = (id) => {
+    modalVisible.value = true
+    deleteLink.value = 'api/v1/location/'+id+'/'
+}
+/* const addLocation = async () => {
     requestConditions.value.loading = true
     if(route.params.id == 'add') {
         const { Data, Error } = await usePostRequest('api/v1/location/',locationObj.value)
@@ -175,7 +182,7 @@ const addLocation = async () => {
     else {
         router.push('/company-location')
     }
-}
+} */
 </script>
 
 <style scoped>

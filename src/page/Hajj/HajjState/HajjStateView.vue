@@ -1,8 +1,8 @@
 <template>
-    <div class="w-[80%] bg-[#f9f9f9]">
+<div class="w-[80%] bg-[#f9f9f9]">
         <div v-if="loadPage">
             <div class="rtl-d px-5 pt-28">
-                <h1 class="text-site-blue text-xl font-semibold mb-10">مجموعات الحجاج</h1>
+                <h1 class="text-site-blue text-xl font-semibold mb-10">حالات الحجاج</h1>
                 <div class="flex items-center gap-5 mb-10">
                     <button id="menu-activator" class="flex flex-col items-center gap-1">
                         <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -12,68 +12,39 @@
                     </button>
                     <v-menu activator="#menu-activator" :close-on-content-click="false">
                         <div class="bg-white shadow-md rounded-md">
-                            <p class="text-site-blue font-bold rtl-d p-3">الموقع</p>
+                            <p class="text-site-blue font-bold rtl-d p-3">حالة تسجيل الدخول في نظام الويب</p>
                             <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
                                 <div class="flex items-center">
                                     <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                                 <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">باقة (4) الخيام المطورة</label>
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">تم تسجيل الدخول</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                                 <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">باقة (٣) الخيام العزيزية</label>
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مسجل الدخول</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                             <hr>
-                            <p class="text-site-blue font-bold rtl-d p-3">اسم الفرع</p>
-                            <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">جدة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الرياض</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">المدينة المنورة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                            </div>
-                            <hr>
-                            <p class="text-site-blue font-bold rtl-d p-3">حالة التفعيل</p>
+                            <p class="text-site-blue font-bold rtl-d p-3">حالة تسجيل الدخول في تطبيق الجوال</p>
                             <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
                                 <div class="flex items-center">
                                     <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                                 <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مفعل</label>
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">تم تسجيل الدخول</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                                 <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">مفعل</label>
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مسجل الدخول</label>
                                     <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                             <p class="text-site-blue font-bold rtl-d p-3">المجموعات</p>
-                            <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الكل</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">مرتبط بمجموعة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">غير مرتبط بمجموعة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                            </div>
+
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
@@ -85,21 +56,20 @@
                 <TableComponent class=" overflow-auto"
                 :modalVisible="modalVisible"
                 @closeModal="modalVisible = false"
-                :deleteLink="deleteLink"
+                deleteLink=""
                 :canDelete="true">
                     <template v-slot:header>
                         <tr>
-                            <th scope="col">اسم المجموعة</th>
-                            <th scope="col">المجموع</th>
-                            <th scope="col">الباص</th>
-                            <th scope="col">المدينة</th>
-                            <th scope="col">الموقع</th>
-                            <th scope="col">المجموعات المرتبطة</th>
-                            <th scope="col">حالة التفعيل</th>
-                            <th scope="col">توزيع 
-                                الباص</th>
-                            <th scope="col">ربط مجموعة</th>
-                            <th scope="col">العمليات</th>
+                            <th scope="col">الحاج</th>
+                            <th scope="col">رقم
+                                الهوية</th>
+                            <th scope="col">رقم 
+                                حجز الوزارة</th>
+                            <th scope="col">حالة دخول نظام الويب</th>
+                            <th scope="col">رقم 
+                                الجوال</th>
+                            <th scope="col">حالة دخول تطبيق الجوال</th>
+                            <th scope="col">محادثة الواتس اب</th>
                         </tr>
                     </template>
                     <template v-slot:body>
@@ -128,28 +98,16 @@
                             </td>
                         </tr> -->
                         <tr v-for="index in 5" >
+                            <td>khalid saad abduallah</td>
+                            <td>112320</td>
+                            <td>22435</td>
+                            <td class="bg-green-300 text-green-600 font-bold">تم تسجيل الدخول</td>
                             <td>
-                                <RouterLink to="hajj-info/28858326" class="text-site-blue font-bold" >28858326</RouterLink>
+                                <RouterLink to="" class="text-site-blue font-bold" >50789766</RouterLink>
                             </td>
-                            <td>88</td>
-                            <td>805</td>
-                            <td>جدة</td>
-                            <td>باقة (1) D-19 الخيام المطورة</td>
-                            <td>507770875</td>
-                            <td class="bg-[#DADADA] text-site-text-grey">غير مفعل</td>
-                            <td>
-                                <button @click="showDeleteModal(1)" class="block bg-red-200 w-max text-red-600 border border-red-600 rounded-3xl px-3 py-1">إلغاء توزيع الباص</button>
-                            </td>
-                            <td>
-                                <RouterLink :to="'hajj-group-link/1'" class="block bg-blue-100 w-max text-[#5FC1CF] border border-[#5FC1CF] rounded-3xl px-3 py-1">ربط مجموعة</RouterLink>
-                            </td>
-                            <td class="">
-                                <div class="flex items-center justify-center gap-2 border-0 relative w-[8rem]">
-                                    <RouterLink :to="'hajj-group-add/add'" class="flex items-center gap-1">
-                                        <EditIcon />
-                                        <span class="text-[#46814F] text-base text-nowrap">تعديل</span>
-                                    </RouterLink >
-                                </div>
+                            <td class=" bg-red-300 text-red-600 font-bold" >غير مسجل دخول بالتطبيق</td>
+                            <td class="bg-[#e2f1f3]">
+                                <a href="https://wa.me/552196312" class="text-site-blue font-bold" >دردشة الواتس اب</a>
                             </td>
                         </tr>
                     </template>
@@ -176,7 +134,6 @@
 import { ref, onMounted, watch } from 'vue';
 import { RouterLink } from 'vue-router';
 import TableComponent from '../../../components/Base/tableComponent.vue';
-import EditIcon from '../../../components/icon/EditIcon.vue'
 import { useGetRequest } from '../../../composables/useRequest';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import SearchComponent from '../../../components/Base/SearchComponent.vue';
@@ -215,11 +172,6 @@ const searchResult = (result) => {
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
 } */
-const deleteLink = ref(null)
-const showDeleteModal = (id) => {
-    modalVisible.value = true
-    deleteLink.value = 'api/v1/location/'+id+'/'
-}
 const modalVisible = ref(false)
 
 </script>

@@ -10,6 +10,7 @@ import Select from 'primevue/select';
 import Dialog from 'primevue/dialog';
 import InputOtp from 'primevue/inputotp';
 import Checkbox from 'primevue/checkbox';
+import MultiSelect from 'primevue/multiselect';
 
 import VueDatePicker from '@vuepic/vue-datepicker';
 import '@vuepic/vue-datepicker/dist/main.css'
@@ -27,6 +28,7 @@ app.component("select", Select);
 app.component("Dialog", Dialog);
 app.component("InputOtp", InputOtp);
 app.component("Checkbox", Checkbox);
+app.component("MultiSelect", MultiSelect);
 
 app.use(PrimeVue, {
   unstyled: true

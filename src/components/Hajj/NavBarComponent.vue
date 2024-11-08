@@ -23,9 +23,9 @@
                 المجموعات الداخلية
             </RouterLink>
             <RouterLink 
-                to="" 
+                to="/hajj-nation" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('branshes') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('hajj-nation') ? 'text-white bg-site-blue' : ''"
                 >
                 جنسيات المجموعات
             </RouterLink>

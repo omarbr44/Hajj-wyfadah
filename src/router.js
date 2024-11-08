@@ -136,6 +136,12 @@ const router = createRouter({
       component: () => import('./page/Hajj/HajjState/HajjStateView.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/hajj-nation',
+      name: 'hajj-nation',
+      component: () => import('./page/Hajj/HajjNation/HajjNationView.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

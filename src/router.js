@@ -142,6 +142,18 @@ const router = createRouter({
       component: () => import('./page/Hajj/HajjNation/HajjNationView.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/hajj-attachment',
+      name: 'hajj-attachment',
+      component: () => import('./page/Hajj/HajjAttachment/HajjAttachmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajj-attachment-add',
+      name: 'hajj-attachment-add',
+      component: () => import('./page/Hajj/HajjAttachment/HajjAttachmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

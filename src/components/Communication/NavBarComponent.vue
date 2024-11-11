@@ -30,16 +30,16 @@
                 جدولة الرسائل والردود
             </RouterLink>
             <RouterLink 
-                to="/hajj-group" 
+                to="/communication-send" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('hajj-group') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-send') ? 'text-white bg-site-blue' : ''"
                 >
                 ارسال الرسائل
             </RouterLink>
             <RouterLink 
-                to="/communication-send" 
+                to="/communication-login" 
                 class="p-2 rounded-3xl"
-                :class="useRoute().path.includes('communication-send') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-login') ? 'text-white bg-site-blue' : ''"
                 >
                 حساب التواصل
             </RouterLink>

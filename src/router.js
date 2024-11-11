@@ -162,6 +162,18 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationSend/CommunicationSendMsg.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/communication-login',
+      name: 'communication-login',
+      component: () => import('./page/Communication/CommunicationAccount/CommunicationAccountLogin.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-login/account/:id',
+      name: 'communication-account',
+      component: () => import('./page/Communication/CommunicationAccount/CommunicationAccount.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

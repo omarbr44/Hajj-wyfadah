@@ -405,7 +405,7 @@ const print = ()=>{
 
 </script>
 
-<style scoped>
+<style>
 .rules-section::-webkit-scrollbar {
             width: 15px;
         }

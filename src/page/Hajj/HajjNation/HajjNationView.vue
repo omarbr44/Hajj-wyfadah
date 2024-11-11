@@ -210,12 +210,5 @@ const modalVisible = ref(false)
 const addModalVisible = ref(false)
 </script>
 <style>
-div[data-pc-section="box"], div[data-pc-name="pcoptioncheckbox"], div[data-pc-name="pcheadercheckbox"] {
-    display: none;
-}
-li[role="option"] {
-    display: flex !important; 
-    align-items: center;
-    gap: 5px;
-}
+
 </style>

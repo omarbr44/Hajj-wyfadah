@@ -16,7 +16,13 @@
              class="z-10 relative"
              :class="useRoute().path.includes('hajj-') ? 'text-white' : ''">الحجاج</span>
         </RouterLink>
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey">التواصل</RouterLink>
+        <RouterLink to="/communication-send" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('communication-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="useRoute().path.includes('communication-') ? 'text-white' : ''">التواصل</span>
+        </RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">التسكين</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">المواصلات</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">ادوات الإدارة والتنظيم</RouterLink>

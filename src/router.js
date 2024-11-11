@@ -154,6 +154,14 @@ const router = createRouter({
       component: () => import('./page/Hajj/HajjAttachment/HajjAttachmentAdd.vue'),
       meta: {requiresAuth: true}
     },
+    
+    // Communication routes
+    {
+      path: '/communication-send',
+      name: 'communication-send',
+      component: () => import('./page/Communication/CommunicationSend/CommunicationSendMsg.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

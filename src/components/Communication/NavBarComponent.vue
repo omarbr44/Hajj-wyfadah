@@ -9,9 +9,9 @@
                 الرسائل المرسلة
             </RouterLink>
             <RouterLink 
-                to="/hajj-state" 
+                to="/communication-hajjmsgs" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('hajj-state') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-hajjmsgs') ? 'text-white bg-site-blue' : ''"
                 >
                 رسائل الحجاج
             </RouterLink>

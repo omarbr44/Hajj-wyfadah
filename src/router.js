@@ -174,6 +174,24 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationAccount/CommunicationAccount.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/communication-hajjmsgs',
+      name: 'communication-hajjmsgs',
+      component: () => import('./page/Communication/CommunicationHajjMsg/CommunicationHajjMsgView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-hajjmsgs/:id',
+      name: 'communication-hajjmsg',
+      component: () => import('./page/Communication/CommunicationHajjMsg/CommunicationHajjMsg.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-hajjmsgs/:id/details/:id',
+      name: 'communication-hajjmsg-detals',
+      component: () => import('./page/Communication/CommunicationHajjMsg/CommunicationHajjMsgDetails.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

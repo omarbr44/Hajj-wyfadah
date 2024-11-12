@@ -39,6 +39,19 @@
   </div>
 </template>
 
-<style scoped>
-
+<style>
+.rules-section::-webkit-scrollbar {
+            width: 15px;
+        }
+.rules-section::-webkit-scrollbar-track {
+            border-radius: 2px;
+            background-color: none;
+        }
+.rules-section::-webkit-scrollbar-thumb {
+            cursor: auto;
+            border-radius: 8px;
+            border: 3px solid transparent;
+            background-clip: content-box;
+            background-color: #48b4c3;
+        }
 </style>

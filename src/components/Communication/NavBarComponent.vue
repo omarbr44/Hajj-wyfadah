@@ -16,9 +16,9 @@
                 رسائل الحجاج
             </RouterLink>
             <RouterLink 
-                to="" 
+                to="/communication-inquery" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('employee') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-inquery') ? 'text-white bg-site-blue' : ''"
                 >
                 الاستفسارات
             </RouterLink>

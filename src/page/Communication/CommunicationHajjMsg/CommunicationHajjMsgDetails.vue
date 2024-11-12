@@ -10,7 +10,6 @@
                     <textarea
                     class="rules-section w-full bg-white border border-[#BDBDBD] py-2 px-5 rounded-xl h-52"
                     >
-                     
 الى حجاج شركة الابرار
 السلام عليكم ورحمة الله وبركاته،
 الى الحاج: خالد

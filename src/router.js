@@ -192,6 +192,18 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationHajjMsg/CommunicationHajjMsgDetails.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/communication-inquery',
+      name: 'communication-inquery',
+      component: () => import('./page/Communication/CommunicationInquery/CommunicationInqueryView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-inquery/:id',
+      name: 'communication-inquery-add',
+      component: () => import('./page/Communication/CommunicationInquery/CommunicationInqueryAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

@@ -204,6 +204,24 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationInquery/CommunicationInqueryAdd.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/communication-schedule',
+      name: 'communication-schedule',
+      component: () => import('./page/Communication/CommunicationSchedule/CommunicationScheduleView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-schedule-add',
+      name: 'communication-schedule-add',
+      component: () => import('./page/Communication/CommunicationSchedule/CommunicationScheduleNew.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-schedule-edit/:id',
+      name: 'communication-schedule-edit',
+      component: () => import('./page/Communication/CommunicationSchedule/CommunicationScheduleEdit.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

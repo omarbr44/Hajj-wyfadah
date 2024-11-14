@@ -23,9 +23,9 @@
                 الاستفسارات
             </RouterLink>
             <RouterLink 
-                to="/hajj-nation" 
+                to="/communication-schedule" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('hajj-nation') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-schedule') ? 'text-white bg-site-blue' : ''"
                 >
                 جدولة الرسائل والردود
             </RouterLink>

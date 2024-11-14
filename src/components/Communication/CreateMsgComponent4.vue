@@ -141,7 +141,10 @@
                         <button @click="switchTagsToText = false" class="text-site-text-grey">
                             السابق
                         </button>
-                        <button @click="switchTagsToText = true" class=" text-site-blue">
+                        <button v-if="route.path == '/communication-schedule-add'" @click="$emit('nextStep')" class=" text-site-blue">
+                            التالي
+                        </button>
+                        <button v-else @click="switchTagsToText = true" class=" text-site-blue">
                             التأكيد والارسال
                         </button>
                     </div>
@@ -151,6 +154,7 @@
 <script setup>
 import Select from 'primevue/select';
 import { ref } from 'vue';
+import { useRoute } from 'vue-router';
 
 const emit = defineEmits(['nextStep'])
 const hajjStatus = ref(false)
@@ -161,7 +165,7 @@ const footer = ref(false)
 const checkoutNumber = ref(false)
 const textareaValue = ref('')
 const switchTagsToText = ref(false)
-
+const route = useRoute()
 const toggleTag = (state,value = 'hajjStatus') => {
     if(state == 'add') {
         if(value == 'email') {

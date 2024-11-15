@@ -222,6 +222,19 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationSchedule/CommunicationScheduleEdit.vue'),
       meta: {requiresAuth: true}
     },
+    // bed
+    {
+      path: '/bed-tent-view',
+      name: 'bed-tent-view',
+      component: () => import('./page/Bed/BedTent/BedView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/bed-tent-add/:id',
+      name: 'bed-tent-add',
+      component: () => import('./page/Bed/BedTent/BedAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

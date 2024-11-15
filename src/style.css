@@ -192,6 +192,10 @@ li[role="option"] {
     align-items: center;
     gap: 5px;
 }
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
 
   @forward 'vuetify/settings' with (
   $utilities: false,

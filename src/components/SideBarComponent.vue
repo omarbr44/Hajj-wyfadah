@@ -23,7 +23,13 @@
              class="z-10 relative"
              :class="useRoute().path.includes('communication-') ? 'text-white' : ''">التواصل</span>
         </RouterLink>
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey">التسكين</RouterLink>
+        <RouterLink to="/bed-tent-view" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('bed-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="useRoute().path.includes('bed-') ? 'text-white' : ''">التسكين</span>
+        </RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">المواصلات</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">ادوات الإدارة والتنظيم</RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey">إدارة المستخدمين</RouterLink>

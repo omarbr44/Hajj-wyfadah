@@ -5,7 +5,9 @@
   import NavBarComponent3 from './components/Communication/NavBarComponent.vue';
   import NavBarComponent4 from './components/Bed/NavBarComponent.vue';
   import SideBarComponent from './components/SideBarComponent.vue';
-  import { computed, ref } from 'vue';
+  import { computed } from 'vue';
+
+
   const route = useRoute()
   const showNavs = computed(()=>{
     if( route.path == '/' || route.path == '/signup' || route.path == '/signin' 
@@ -28,6 +30,7 @@
 </script>
 
 <template>
+    <notifications  />
   <div class="overflow-x-hidden">
     <component 
       :is="showActiveNav"
@@ -56,4 +59,7 @@
             background-clip: content-box;
             background-color: #48b4c3;
         }
+.vue-notification{
+  font-size: 1.2rem !important;
+}
 </style>

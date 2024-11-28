@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@kyvg/vue3-notification": "^3.4.1",
     "@vuepic/vue-datepicker": "^9.0.3",
     "axios": "^1.7.7",
     "lodash": "^4.17.21",

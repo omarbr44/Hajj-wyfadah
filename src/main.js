@@ -4,6 +4,7 @@ import App from './App.vue'
 import router from './router';
 import { createPinia } from 'pinia';
 import { createPersistedState } from 'pinia-plugin-persistedstate'
+import Notifications from '@kyvg/vue3-notification'
 
 import PrimeVue from "primevue/config";
 import Select from 'primevue/select';
@@ -48,5 +49,6 @@ const vuetify = createVuetify({
   })
 app.use(router)
 app.use(vuetify)
+app.use(Notifications)
 app.component('VueDatePicker', VueDatePicker);
 app.mount('#app')

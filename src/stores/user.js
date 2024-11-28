@@ -14,7 +14,6 @@ export const useUserStore = defineStore('user', () => {
     userName.value = name
     userEmail.value = email
     userType.value = type
-    console.log(userToken.value,userName.value,userEmail.value,userType.value)
   }
   function setCompanyId(compnayId) {
     userCompantId.value = compnayId

@@ -41,15 +41,24 @@
             </div>
             <h1 class="text-2xl font-bold text-black my-1">{{ user.userName }}</h1>
             <p class="text-site-text-grey">{{ user.userEmail }}</p>
+            <button @click="logout" class=" bg-red-600 text-white p-3 rounded-xl font-bold my-3">
+                <span>تسجيل الخروج</span>
+            </button>
         </div>
 
     </div>
 </template>
 
 <script setup>
-import { RouterLink, useRoute } from 'vue-router';
+import { RouterLink, useRoute, useRouter } from 'vue-router';
 import { useUserStore } from '../stores/user';
 const user = useUserStore()
+
+const router = useRouter()
+const logout = async () => {
+    user.signOut()
+    router.push('/')
+}
 </script>
 
 <style scoped>

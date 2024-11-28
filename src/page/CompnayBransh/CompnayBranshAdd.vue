@@ -22,15 +22,15 @@
                     </div>
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المدينة<span class="text-red-500">*</span></p>
-                        <Select v-model="fromCountry" :options="[1,2]" optionLabel="name" 
+                        <Select v-model="bransh.city" :options="cities" optionLabel="name_ar" 
                                     placeholder="اختر المدينة" overlayClass="!bg-white rtl-d p-2" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
-                                        <span>جدة</span>
+                                        <span v-if="slotProps.value">{{ slotProps.value.name_ar }}</span>
                                     </template>
                                     <template #option="slotProps">
                                         <div class="flex items-center gap-3 mb-3 cursor-pointer py-1 hover:bg-[#DCF1F4] hover:text-[#1495A7]">
-                                            <div>جدة</div>
+                                            <div>{{ slotProps.option.name_ar }}</div>
                                         </div>
                                     </template>
                                     <template #dropdownicon>
@@ -197,11 +197,24 @@
 </template>
 
 <script setup>
+import { ref, onMounted } from 'vue';
+import { useGetRequest } from '../../composables/useRequest';
 import DownloadIcon from '../../components/icon/DownloadIcon.vue';
 import FileInputComponent from '../../components/Base/FileInputComponent.vue';
 import Select from 'primevue/select';
 import LocationIcon from '../../components/icon/LocationIcon.vue';
 
+const bransh = ref({
+    city: null
+})
+const cities = ref()
+onMounted(async ()=>{
+    const {Data, Error} = await useGetRequest('api/v1/city/')
+    cities.value = Data.value.data
+/*     nextPage.value = Data.value.data.next ? true : false
+    previousPage.value = Data.value.data.previous ? true : false */
+    loadPage.value = true
+})
 </script>
 
 <style>

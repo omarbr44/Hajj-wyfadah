@@ -165,20 +165,20 @@ const previousPage = ref(false)
 const route = useRoute()
 const routeParams = computed(()=> route.params.id)
 onMounted(async ()=>{
-    if(route.params.id != 'all')
-        viewAll.value = false
-/*     const {Data, Error} = await useGetRequest('api/v1/location/')
+/*     if(route.params.id != 'all')
+        viewAll.value = false */
+    const {Data, Error} = await useGetRequest('api/v1/camp/')
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false
     loadPage.value = true
 })
-watch(routeParams,()=>{
+/* watch(routeParams,()=>{
     if(routeParams.value != 'all')
         viewAll.value = false
     else
         viewAll.value = true
-})
+}) */
 
 const trainStatuses = ref([
     {id: 2, name: 'غير متوفر'},

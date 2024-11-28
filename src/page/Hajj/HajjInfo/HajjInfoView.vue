@@ -41,24 +41,16 @@
                             <hr>
                             <p class="text-site-blue font-bold rtl-d p-3">اسم الفرع</p>
                             <div class="flex gap-10 items-center px-10 pt-1 mb-1 justify-end flex-wrap gap-y-5 w-[23rem]">
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">جدة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">الرياض</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                </div>
-                                <div class="flex items-center">
-                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">المدينة المنورة</label>
-                                    <input id="default-radio-1" type="radio" value="" v-model="trainStatusFilter" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                <div v-for="(programm,index) in programs" :key="index" class="flex items-center">
+                                    <label for="default-radio-1" class="mx-1 text-sm font-medium text-gray-900 dark:text-gray-300">{{ programm.name_ar }}</label>
+                                    <input id="default-radio-1" type="radio" :value="programm.id" v-model="program" name="default-radio" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                 </div>
                             </div>
                         </div>
                     </v-menu> 
                     <div class="w-[40%] relative">
                        <SearchComponent
-                       api="api/v1/location/?search="
+                       api="api/v1/pilgrim/?search="
                        @resultSearch="searchResult" />
                     </div> 
                 </div>
@@ -91,48 +83,24 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <!-- <tr v-for="(location,index) in locations" :key="index">
-                            <th scope="row">{{ location.name_ar }}</th>
-                            <td>{{ location.capacity }}</td>
-                            <td>{{ location.number_management }}</td>
-                            <td></td>
-                            <td>{{ location.number_man }}</td>
-                            <td>{{ location.number_women }}</td>
-                            <td 
-                            class="font-bold"
-                            :class="location.have_train == true ? 'text-green-700 bg-green-300' : 'text-red-700 bg-red-300'">
-                                <span v-if="location.have_train">متواجد</span>
-                                <span v-else>غير متواجد</span>
-                            </td>
-                            <td class="flex items-center justify-center gap-5">
-                                <RouterLink :to="'company-location-add/'+location.id" class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </RouterLink >
-                                <button @click="showDeleteModal(location.id)" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr> -->
-                        <tr v-for="index in 5" >
-                            <td v-if="viewAll">28858326</td>
-                            <td>ABDUL HAMEED MUHAMMAD SIDDIQ</td>
-                            <td>34</td>
-                            <td v-if="viewAll">805</td>
-                            <td v-if="viewAll">8</td>
-                            <td v-if="viewAll">صالون 8</td>
-                            <td>99</td>
-                            <td>ذكر</td>
-                            <td v-if="viewAll">باقة (1) D-19 الخيام المطورة</td>
-                            <td>هندي</td>
-                            <td v-if="viewAll">2176788</td>
-                            <td>507770875</td>
-                            <td v-if="viewAll">جدة</td>
-                            <td v-if="!viewAll">2176788</td>
+                        <tr v-for="(hajj,index) in hajjsInfo" :key="index">
+                            <td v-if="viewAll">{{ hajj.package_number }}</td>
+                            <td>{{ hajj.name }}</td>
+                            <td>{{ hajj.age }}</td>
+                            <td v-if="viewAll">{{ hajj.mona_tent_number }}</td>
+                            <td v-if="viewAll">{{ hajj.mona_seat_number }}</td>
+                            <td v-if="viewAll">{{ hajj.arafat_tent_number }}</td>
+                            <td>{{ hajj.transport_number }}</td>
+                            <td>{{ hajj.gender == 1 ? 'ذكر' : (hajj.gender == 2 ? 'انثى' : '') }}</td>
+                            <td v-if="viewAll">{{ hajj.name_camp }}</td>
+                            <td>{{ hajj.name_nationalitie }}</td>
+                            <td v-if="viewAll">{{ hajj.id_number }}</td>
+                            <td>{{ hajj.phone }}</td>
+                            <td v-if="viewAll">{{ hajj.name_city }}</td>
+                            <td v-if="!viewAll">{{ hajj.program }}</td>
                             <td class="">
                                 <div class="flex items-center justify-center gap-2 border-0 relative w-[17rem]">
-                                    <RouterLink :to="'/hajj-info-add/add'" class="flex items-center gap-1">
+                                    <RouterLink :to="'/hajj-info-add/'+hajj.id" class="flex items-center gap-1">
                                         <EditIcon />
                                         <span class="text-[#46814F] text-base text-nowrap">تحديث رقم الجوال</span>
                                     </RouterLink >
@@ -167,15 +135,17 @@ import { ref, onMounted, watch, computed } from 'vue';
 import { RouterLink, useRoute } from 'vue-router';
 import TableComponent from '../../../components/Base/tableComponent.vue';
 import EditIcon from '../../../components/icon/EditIcon.vue'
-import { useGetRequest } from '../../../composables/useRequest';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import PaginationComponent from '../../../components/Base/PaginationComponent.vue';
 import DownloadIcon from '../../../components/icon/DownloadIcon.vue';
+import { useGetRequest,usePostRequest } from '../../../composables/useRequest';
+import { serialize } from 'object-to-formdata';
 
 const loadPage = ref(false)
 const viewAll = ref(true)
-const locations = ref(null)
+
+const hajjsInfo = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
 const hajjFileinput = ref(null)
@@ -184,10 +154,12 @@ const routeParams = computed(()=> route.params.id)
 onMounted(async ()=>{
     if(route.params.id != 'all')
         viewAll.value = false
-/*     const {Data, Error} = await useGetRequest('api/v1/location/')
-    locations.value = Data.value.data.result
+    const {Data, Error} = await useGetRequest('api/v1/pilgrim/')
+    hajjsInfo.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false
+    const {Data:Data1} = await useGetRequest('api/v1/program/')
+    programs.value = Data1.value.data.result
     loadPage.value = true
 })
 watch(routeParams,()=>{
@@ -197,30 +169,42 @@ watch(routeParams,()=>{
         viewAll.value = true
 })
 
-const trainStatuses = ref([
-    {id: 2, name: 'غير متوفر'},
-    {id: 1, name: 'متوفر'},
-])
-const trainStatusFilter = ref()
+const programs = ref(null)
+const program = ref(null)
 // watch filters values to send request when they change
-watch(trainStatusFilter, async () => {
-/*     const {Data} = await useGetRequest('api/v1/location/?department='+trainStatusFilter.value)
-    locations.value = Data.value.data.result */
+watch(program, async () => {
+    const {Data} = await useGetRequest('api/v1/pilgrim/?program='+program.value)
+    hajjsInfo.value = Data.value.data.result
 })
+const changeHajjFile = async (file) => {
+    console.log(file)
+    loadPage.value = false
+    const formData = serialize({'file_info_pilgrims':file})
+    const {Data, Error} = await usePostRequest('api/v1/pilgrim_import/', formData)
+    loadPage.value = true
+    console.log(Data)
+/*     if(Data.value == null) {
+        NewLangError.value = Error.value.message
+    }
+    else {
+        
+    } */
+}
+
 const searchResult = (result) => {
-    locations.value = result
+    hajjsInfo.value = result
 }
 // pagination
 const chnagePage = async (newPage) => {
-    const {Data} = await useGetRequest('api/v1/location/?page='+newPage)
-    locations.value = Data.value.data.result
+    const {Data} = await useGetRequest('api/v1/pilgrim/?page='+newPage)
+    hajjsInfo.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
 }
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {
     modalVisible.value = true
-    deleteLink.value = 'api/v1/location/'+id+'/'
+    deleteLink.value = 'api/v1/pilgrim/'+id+'/'
 }
 const modalVisible = ref(false)
 

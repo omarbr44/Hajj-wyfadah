@@ -93,18 +93,18 @@
                         <div class="w-[8%]"></div>
                         <div class="w-[45%]">
                                 <p class="text-black font-semibold w-[50%] mb-3">الجنسية<span class="text-red-500">*</span></p>
-                                <MultiSelect v-model="multiNations" :options="nations" optionLabel="name" 
+                                <MultiSelect v-model="multiNations" :options="nations" optionLabel="name_ar" 
                                     placeholder="" overlayClass="!bg-white rtl-d p-2 overflow-y-auto" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
-                                        <span v-if="slotProps.value.length">{{ slotProps.value.map(el => el.name) }}</span>
+                                        <span v-if="slotProps.value.length">{{ slotProps.value.map(el => el.name_ar) }}</span>
                                     </template>
                                     <template #option="slotProps">
                                         <div @click="slotProps.option.selected = !slotProps.option.selected" class="w-full cursor-pointer">
                                             <div
                                              class="flex items-center justify-between rounded-md p-2 my-2"
                                              :class="slotProps.option.selected ? 'bg-site-blue bg-opacity-30' : ''">
-                                                <div>{{ slotProps.option.name }}</div>
+                                                <div>{{ slotProps.option.name_ar }}</div>
                                                 <svg v-show="slotProps.option.selected" width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M2.08594 12L4.6901 8.875L9.89844 15.125L20.3151 2.625L22.9193 5.75L9.89844 21.375L2.08594 12Z" fill="#008093" stroke="#008093" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                                                 </svg>
@@ -170,16 +170,17 @@ const loadPage = ref(false)
 const locations = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
-const nations = ref([
+const nations = ref()
+/* const nations = ref([
     {name:'سعودي',selected:false},
     {name:'لبناني',selected:false},
     {name:'مصري',selected:false},
 
-])
+]) */
 onMounted(async ()=>{
-/*     const {Data, Error} = await useGetRequest('api/v1/location/')
-    locations.value = Data.value.data.result
-    nextPage.value = Data.value.data.next ? true : false
+    const {Data, Error} = await useGetRequest('api/v1/nationalitie/')
+    nations.value = Data.value.data.result
+/*     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false */
     loadPage.value = true
 })

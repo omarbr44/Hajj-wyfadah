@@ -7,38 +7,51 @@
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">رقم الجوال الثاني<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        v-model="hajjInfo.phone"
                         name="phone" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="57534770">
-                        <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
+                        <p v-if="requestConditions?.error?.name" class="text-red-500 mt-1">{{ requestConditions.error.name }}</p>
                     </div>
                     <div class="w-[8%]"></div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">البريد الالكتروني<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        disabled
+                        v-model="hajjInfo.email"
                         name="mail" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="mail@gmail.com">
-                        <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
+                        <p v-if="requestConditions?.error?.email" class="text-red-500 mt-1">{{ requestConditions.error.email }}</p>
                     </div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">عمر الحاج</p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        disabled
+                        v-model="hajjInfo.age"
                         name="mail" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
                         placeholder="40">
-                        <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
+                        <p v-if="requestConditions?.error?.age" class="text-red-500 mt-1">{{ requestConditions.error.age }}</p>
                     </div>
                     <div class="w-[8%]"></div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المدينة<span class="text-[#DADADA]">( اختياري )</span></p>
-                        <Select v-model="fromCountry" :options="[1,2]" optionLabel="name" 
+                        <input 
+                        disabled
+                        v-model="hajjInfo.name_city"
+                        name="city" 
+                        type="text" 
+                        class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
+                        placeholder="mail@gmail.com">
+                        <p v-if="requestConditions?.error?.name_city" class="text-red-500 mt-1">{{ requestConditions.error.name_city }}</p>
+                    </div>
+<!--                     <div class="w-[45%]">
+                        <p class="text-black font-semibold w-[50%] mb-3">المدينة<span class="text-[#DADADA]">( اختياري )</span></p>
+                        <Select v-model="fromCountry" :options="[1,2]" optionLabel="name" disabled
                                     placeholder="اختر المدينة" overlayClass="!bg-white rtl-d p-2" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
@@ -59,9 +72,9 @@
                                     </template>
                         </Select>
                         <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
-                    </div>
+                    </div> -->
                     <div class="flex justify-end w-full">
-                        <button @click="addLocation" class=" bg-site-blue font-bold text-white py-3 px-10 rounded-lg">
+                        <button @click="updatePhone" class=" bg-site-blue font-bold text-white py-3 px-10 rounded-lg">
                             <span v-if="!requestConditions.loading">
                                 تحديث 
                             </span>
@@ -69,6 +82,7 @@
                         </button>
                     </div>
                 </div>
+
                 <h1 class="text-xl font-bold text-site-blue my-5">معلومات الحاج</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl">
                     <h1 class="text-xl font-bold text-site-blue mb-5">المعلومات الشخصية</h1>
@@ -76,7 +90,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">اسم الحاج</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -86,7 +101,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]"> اسم الحاج الاخير</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.last_name"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -95,7 +111,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم الجوال</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.phone"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -105,7 +122,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم الهوية</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.id_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -115,7 +133,7 @@
                             <p class="text-site-blue font-semibold w-[40%]">الجنسية</p>
                             <input 
                             disabled
-                            v-model="locationObj.name_ar"
+                            v-model="hajjInfo.name_nationalitie"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -125,7 +143,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">الجنس</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.gender"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -134,7 +153,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">المدينة</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name_city"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -145,7 +165,8 @@
                             <p class="text-site-blue font-semibold w-[40%]">حالة 
                                 التصريح</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name_status_pilgrim"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -155,7 +176,7 @@
                             <p class="text-site-blue font-semibold w-[40%]">حالة 
                                 تفعيل ذهاب الحاج للمخيم</p>
                             <div class="checkbox-wrapper-6">
-                                <input v-model="aa" class="tgl tgl-light" id="cb1-6" type="checkbox"/>
+                                <input v-model="hajjInfo.status_pilgrim" disabled class="tgl tgl-light" id="cb1-6" type="checkbox"/>
                                 <label class="tgl-btn" for="cb1-6" />
                           </div>
                         </div>
@@ -163,7 +184,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">المخيم</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name_camp"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -176,7 +198,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم الحجز</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.booking_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -186,7 +209,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">الباقة</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.program"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -195,7 +219,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم الباقة</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name_ar"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -205,7 +230,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">الجنس</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.gender"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -215,7 +241,8 @@
                             <div class="w-[45%] flex gap-2 items-center">
                                 <p class="text-site-blue font-semibold w-[40%]">رقم التصريح</p>
                                 <input 
-                                v-model="locationObj.name_ar"
+                                disabled
+                                v-model="hajjInfo.package_number"
                                 name="" 
                                 type="number" 
                                 class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -229,7 +256,8 @@
                             <p class="text-site-blue font-semibold w-[40%]">خيمة 
                                 منى</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.mona_tent_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -239,7 +267,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم المقعد في منى</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.mona_seat_number"
                             name="" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -248,7 +277,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">خيمة مزدلفة</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.muztalifa_tent_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -257,8 +287,9 @@
                         <div class="w-[8%]"></div>
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">رقم المقعد في مزدلفة</p>
-                            <input 
-                            v-model="locationObj.name_ar"
+                            <input
+                            disabled 
+                            v-model="hajjInfo.muztalifa_seat_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -268,7 +299,8 @@
                             <p class="text-site-blue font-semibold w-[40%]">خيمة 
                                 عرفة</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.arafat_tent_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -279,7 +311,8 @@
                             <p class="text-site-blue font-semibold w-[40%]">رقم 
                                 المقعد في عرفات</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.arafat_seat_number"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -288,7 +321,8 @@
                         <div class="w-[45%] flex gap-2 items-center">
                             <p class="text-site-blue font-semibold w-[40%]">الباص</p>
                             <input 
-                            v-model="locationObj.name_ar"
+                            disabled
+                            v-model="hajjInfo.name_transport"
                             name="" 
                             type="number" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -316,25 +350,40 @@ const router = useRouter()
 const route = useRoute()
 const user = useUserStore()
 const loadPage = ref(false)
-const locationObj = ref({
-    subscriber_company: user.userCompantId,
-    name_ar: null,
-    name_en: null,
-    capacity: null,
-    number_location: null,
+const hajjInfo = ref()
+/* const hajjInfo = ref({
+    age: null, 
+    arafat_seat_number: null, 
+    arafat_tent_number: null, 
+    booking_number: null, 
+    camp: null, 
+    city: null, 
+    create_at: null, 
+    date_booking: null, 
+    date_of_birth: null, 
+    gender: null, 
+    id: null, 
+    id_number: null, 
+    last_name: null, 
+    mona_seat_number: null,
+    mona_tent_number: null,
+    muztalifa_seat_number: null, 
+    muztalifa_tent_number: null, 
+    name: null,
+    name_camp: null, 
+    name_city: null,
+    name_nationalitie: null,
+    name_status_pilgrim: null,
+    name_transport: null,
+    nationalitie: null,
+    package_number: null,
     phone: null,
-    number_man: null,
-    number_women: null,
-    number_services: null,
-    number_management: null,
-    have_train: null,
-    url_location_munaa: null,
-    address_munaa: null,
-    url_location_earafah: null,
-    address_earafah: null,
-    url_location_muzdalifah: null,
-    address_muzdalifah: null,
-})
+    program: null,
+    status_pilgrim: null,
+    subscriber_company: null,
+    transport: null,
+    transport_number: null
+}) */
 const requestConditions = ref({
     data: null,
     error: null,
@@ -343,8 +392,9 @@ const requestConditions = ref({
 
 onMounted(async ()=>{
     if(route.params.id != 'add') {
-        const {Data, Error} = await useGetRequest('api/v1/location/'+route.params.id)
-        locationObj.value = Data.value.data
+        const {Data, Error} = await useGetRequest('api/v1/pilgrim/'+route.params.id)
+        hajjInfo.value = Data.value.data
+        hajjInfo.value.gender = hajjInfo.value.gender == 1 ? 'ذكر' : (hajjInfo.value.gender == 2 ? 'انثى' : '')
         loadPage.value = true
     }
     else {
@@ -352,23 +402,16 @@ onMounted(async ()=>{
     }
 })
 
-const addLocation = async () => {
+const updatePhone = async () => {
     requestConditions.value.loading = true
-    if(route.params.id == 'add') {
-        const { Data, Error } = await usePostRequest('api/v1/location/',locationObj.value)
+        const { Data, Error } = await usePatchRequest('api/v1/pilgrim/'+route.params.id+'/',{phone: hajjInfo.value.phone})
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
-    }
-    else {
-        const { Data, Error } = await usePatchRequest('api/v1/location/'+route.params.id+'/',locationObj.value)
-        requestConditions.value.error = Error?.value?.errors
-        requestConditions.value.data = Data.value
-    }
     if(requestConditions.value.error != null) {
         requestConditions.value.loading = false
     }
     else {
-        router.push('/company-location')
+        router.go()
     }
 }
 </script>

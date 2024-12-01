@@ -7,7 +7,7 @@
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">اسم البرنامج <span class="text-red-500">*</span></p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        v-model="programObj.name_ar"
                         name="location-name" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -18,7 +18,7 @@
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">السعر<span class="text-red-500">*</span></p>
                         <input 
-                        v-model="locationObj.capacity"
+                        v-model="programObj.capacity"
                         name="location-size" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -53,7 +53,7 @@
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">رمز الوزارة<span class="text-red-500">*</span></p>
                         <input 
-                        v-model="locationObj.phone"
+                        v-model="programObj.phone"
                         name="number" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -64,7 +64,7 @@
                         <p class="text-black font-semibold w-[50%] mb-3">معلومات برنامج الفرع باللغة العربية<span class="text-[#DADADA]">( اختياري )</span></p>
                         <div class="relative">
                                 <input 
-                                v-model="locationObj.url_location_munaa"
+                                v-model="programObj.url_location_munaa"
                                 name="link" 
                                 type="text" 
                                 class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -102,7 +102,7 @@
                         <p class="text-black font-semibold w-[50%] mb-3">معلومات برنامج الفرع باللغة الانجليزية<span class="text-[#DADADA]">( اختياري )</span></p>
                         <div class="relative">
                                 <input 
-                                v-model="locationObj.url_location_munaa"
+                                v-model="programObj.url_location_munaa"
                                 name="link" 
                                 type="text" 
                                 class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -116,7 +116,7 @@
                         <p class="text-black font-semibold w-[50%] mb-3">معلومات برنامج الفرع باللغة التركية<span class="text-[#DADADA]">( اختياري )</span></p>
                         <div class="relative">
                                 <input 
-                                v-model="locationObj.url_location_munaa"
+                                v-model="programObj.url_location_munaa"
                                 name="link" 
                                 type="text" 
                                 class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -127,7 +127,7 @@
                     </div>
                 </div>
                 <div class="flex items-center justify-between my-10 text-lg font-bold">
-                    <button @click="addLocation" class=" bg-site-blue text-white py-3 px-10 rounded-lg">
+                    <button @click="addProgram" class=" bg-site-blue text-white py-3 px-10 rounded-lg">
                         <span v-if="!requestConditions.loading">
                             إضافة 
                         </span>
@@ -159,7 +159,7 @@ const router = useRouter()
 const route = useRoute()
 const user = useUserStore()
 const loadPage = ref(false)
-const locationObj = ref({
+const programObj = ref({
     subscriber_company: user.userCompantId,
     name_ar: null,
     name_en: null,
@@ -186,8 +186,8 @@ const requestConditions = ref({
 
 onMounted(async ()=>{
     if(route.params.id != 'add') {
-        /* const {Data, Error} = await useGetRequest('api/v1/location/'+route.params.id)
-        locationObj.value = Data.value.data */
+        const {Data, Error} = await useGetRequest('api/v1/program/'+route.params.id)
+        programObj.value = Data.value.data
         loadPage.value = true
     }
     else {
@@ -195,23 +195,23 @@ onMounted(async ()=>{
     }
 })
 
-const addLocation = async () => {
+const addProgram = async () => {
     requestConditions.value.loading = true
     if(route.params.id == 'add') {
-        const { Data, Error } = await usePostRequest('api/v1/location/',locationObj.value)
+        const { Data, Error } = await usePostRequest('api/v1/program/',programObj.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
     }
     else {
-        const { Data, Error } = await usePatchRequest('api/v1/location/'+route.params.id+'/',locationObj.value)
+        const { Data, Error } = await usePatchRequest('api/v1/program/'+route.params.id+'/',programObj.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
     }
-    if(requestConditions.value.error != null) {
+/*     if(requestConditions.value.error != null) {
         requestConditions.value.loading = false
     }
     else {
         router.push('/company-program')
-    }
+    } */
 }
 </script>

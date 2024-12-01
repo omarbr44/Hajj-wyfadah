@@ -103,7 +103,7 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <!-- <tr v-for="(location,index) in locations" :key="index">
+                        <!-- <tr v-for="(location,index) in groups" :key="index">
                             <th scope="row">{{ location.name_ar }}</th>
                             <td>{{ location.capacity }}</td>
                             <td>{{ location.number_management }}</td>
@@ -183,13 +183,13 @@ import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import PaginationComponent from '../../../components/Base/PaginationComponent.vue';
 
 const loadPage = ref(false)
-const locations = ref(null)
+const groups = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
 
 onMounted(async ()=>{
-/*     const {Data, Error} = await useGetRequest('api/v1/location/')
-    locations.value = Data.value.data.result
+/*     const {Data, Error} = await useGetRequest('api/v1/group/')
+    groups.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false */
     loadPage.value = true
@@ -203,22 +203,22 @@ const trainStatusFilter = ref()
 // watch filters values to send request when they change
 watch(trainStatusFilter, async () => {
 /*     const {Data} = await useGetRequest('api/v1/location/?department='+trainStatusFilter.value)
-    locations.value = Data.value.data.result */
+    groups.value = Data.value.data.result */
 })
 const searchResult = (result) => {
-    locations.value = result
+    groups.value = result
 }
 // pagination
-/* const chnagePage = async (newPage) => {
-    const {Data} = await useGetRequest('api/v1/location/?page='+newPage)
-    locations.value = Data.value.data.result
+const chnagePage = async (newPage) => {
+    const {Data} = await useGetRequest('api/v1/group/?page='+newPage)
+    groups.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
-} */
+}
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {
     modalVisible.value = true
-    deleteLink.value = 'api/v1/location/'+id+'/'
+    deleteLink.value = 'api/v1/group/'+id+'/'
 }
 const modalVisible = ref(false)
 

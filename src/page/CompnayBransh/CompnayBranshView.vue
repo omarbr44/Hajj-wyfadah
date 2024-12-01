@@ -3,7 +3,7 @@
         <div>
             <div class="rtl-d px-5 pt-28">
                 <h1 class="text-site-blue text-xl font-semibold">إدارة الفروع التابعة للحملة</h1>
-                <RouterLink to="company-branshes-add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
+                <RouterLink to="company-branshes-add/add" class="bg-site-blue w-fit text-white rounded-xl p-4 flex items-center gap-2 my-8">
                     <PlusIcon />
                     <span class="font-bold">إضافة فرع جديد</span>
                 </RouterLink>
@@ -39,7 +39,8 @@
                 <TableComponent 
                 :modalVisible="modalVisible"
                 @closeModal="modalVisible = false"
-                :canDelete="false">
+                :deleteLink="deleteLink"
+                :canDelete="true">
                     <template v-slot:header>
                         <tr>
                             <th scope="col">إسم الفرع</th>
@@ -52,37 +53,19 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <tr>
-                            <th scope="row">جدة</th>
-                            <td>22</td>
-                            <td>10000</td>
-                            <td>900</td>
-                            <td>100</td>
-                            <td class="font-bold text-red-700 bg-red-300">غير مكتمل</td>
+                        <tr v-for="(bransh,index) in branshes" :key="index">
+                            <th scope="row">{{ bransh.name_ar }}</th>
+                            <td></td>
+                            <td>{{ bransh.capacity }}</td>
+                            <td></td>
+                            <td></td>
+                            <td class="font-bold text-green-700 bg-green-300"></td>
                             <td class="flex items-center justify-center gap-5">
-                                <button class="flex items-center gap-2">
+                                <RouterLink :to="'company-branshes-add/'+bransh.id" class="flex items-center gap-2">
                                     <EditIcon />
                                     <span class="text-[#46814F]">تعديل</span>
-                                </button>
-                                <button @click="modalVisible = true" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <th scope="row">جدة</th>
-                            <td>22</td>
-                            <td>10000</td>
-                            <td>900</td>
-                            <td>100</td>
-                            <td class="font-bold text-green-700 bg-green-300">مكتمل</td>
-                            <td class="flex items-center justify-center gap-5">
-                                <button class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </button>
-                                <button @click="modalVisible = true" class="flex items-center gap-2">
+                                </RouterLink>
+                                <button @click="showDeleteModal(bransh.id)" class="flex items-center gap-2">
                                     <DeleteIcon />
                                     <span class="text-[#FF3F3F]">حذف</span>
                                 </button>
@@ -122,6 +105,7 @@ import EditIcon from '../../components/icon/EditIcon.vue'
 import DeleteIcon from '../../components/icon/DeleteIcon.vue'
 import SearchComponent from '../../components/Base/SearchComponent.vue';
 import PaginationComponent from '../../components/Base/PaginationComponent.vue';
+import { useGetRequest } from '../../composables/useRequest';
 
 
 const statuses = ref([
@@ -129,35 +113,42 @@ const statuses = ref([
     {id: 1, name: 'مكتمل'},
 ])
 const statusesFilter = ref()
+const branshes = ref()
 const nextPage = ref(false)
 const previousPage = ref(false)
 
 onMounted(async ()=>{
-    /* const {Data, Error} = await useGetRequest('api/v1/company_employe/')
-    employeeObj.value = Data.value.data.result
+    const {Data, Error} = await useGetRequest('api/v1/branch_company/')
+    branshes.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
-    const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
-    departments.value = departmentsValue.value.data.result
-    loadPage.value = true */
+/*     const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
+    departments.value = departmentsValue.value.data.result */
+    loadPage.value = true
 })
 // watch filters values to send request when they change
 watch(statusesFilter, async () => {
 /*     const {Data} = await useGetRequest('api/v1/location/?department='+trainStatusFilter.value)
-    locations.value = Data.value.data.result */
+    branshes.value = Data.value.data.result */
 })
 const searchResult = (result) => {
-    locations.value = result
+    branshes.value = result
 }
 // pagination
 const chnagePage = async (newPage) => {
-    const {Data} = await useGetRequest('api/v1/company_employe/?page='+newPage)
-    employeeObj.value = Data.value.data.result
+    const {Data} = await useGetRequest('api/v1/branch_company/?page='+newPage)
+    branshes.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
 }
 
 const modalVisible = ref(false)
+const deleteLink = ref(null)
+
+const showDeleteModal = (id) => {
+    modalVisible.value = true
+    deleteLink.value = 'api/v1/branch_company/'+id+'/'
+}
 </script>
 
 <style >

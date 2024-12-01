@@ -32,7 +32,7 @@
                     </v-menu> 
                     <div class="w-[40%] relative">
                         <SearchComponent
-                        api="api/v1/location/?search="
+                        api="api/v1/program/?search="
                         @resultSearch="searchResult" />
                     </div> 
 
@@ -56,36 +56,21 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <!-- <tr v-for="(department,index) in programs" :key="index">
-                            <th scope="row">{{ department.name_ar }}</th>
-                            <td>{{ department.employe_count }} موظف</td>
-                            <td class="text-site-blue cursor-pointer" @click="print()">{{ department.name_manager }}</td>
+                        <tr v-for="(program,index) in programs" :key="index">
+                            <th scope="row">{{ program.name_ar }}</th>
+                            <th scope="row">{{ program.name_location }}</th>
+                            <th scope="row">{{ program.name_branch_company }}</th>
+                            <th scope="row">{{ program.price }}</th>
+                            <th scope="row">{{ program.number_ministry }}</th>
+                            <th scope="row">{{ program.capacity }}</th>
+                            <th scope="row"></th>
+                            <td class="font-bold text-red-700 bg-red-300"></td>
                             <td class="flex items-center justify-center gap-5">
-                                <RouterLink :to="'company-departments-add/'+department.id" class="flex items-center gap-2">
+                                <RouterLink :to="'company-program-add/'+program.id" class="flex items-center gap-2">
                                     <EditIcon />
                                     <span class="text-[#46814F]">تعديل</span>
                                 </RouterLink >
-                                <button @click="showDeleteModal(department.id)" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr> -->
-                        <tr>
-                            <td>باقة 8 - جدة</td>
-                            <td>باقة 8 - الخيام المطورة</td>
-                            <td>جدة</td>
-                            <td>4500</td>
-                            <td>7031637</td>
-                            <td>10000</td>
-                            <td>10000</td>
-                            <td class="font-bold text-red-700 bg-red-300">0</td>
-                            <td class="flex items-center justify-center gap-5">
-                                <RouterLink :to="'company-departments-add/add'" class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </RouterLink >
-                                <button @click="showDeleteModal(1)" class="flex items-center gap-2">
+                                <button @click="showDeleteModal(program.id)" class="flex items-center gap-2">
                                     <DeleteIcon />
                                     <span class="text-[#FF3F3F]">حذف</span>
                                 </button>
@@ -136,10 +121,10 @@ const programs = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
 onMounted(async ()=>{
-/*     const {Data, Error} = await useGetRequest('api/v1/department_company/')
+    const {Data, Error} = await useGetRequest('api/v1/program/')
     programs.value = Data.value.data.result 
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false
     loadPage.value = true
 })
 const statusesFilter = ref()
@@ -149,12 +134,12 @@ watch(statusesFilter, async () => {
     locations.value = Data.value.data.result */
 })
 const searchResult = (result) => {
-    locations.value = result
+    programs.value = result
 }
 // pagination
 const chnagePage = async (newPage) => {
-    const {Data} = await useGetRequest('api/v1/company_employe/?page='+newPage)
-    employeeObj.value = Data.value.data.result
+    const {Data} = await useGetRequest('api/v1/program/?page='+newPage)
+    programs.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
     previousPage.value = Data.value.data.previous ? true : false
 }
@@ -162,7 +147,7 @@ const modalVisible = ref(false)
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {
     modalVisible.value = true
-    deleteLink.value = 'api/v1/department_company/'+id+'/'
+    deleteLink.value = 'api/v1/program/'+id+'/'
 }
 
 </script>

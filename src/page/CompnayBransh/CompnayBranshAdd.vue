@@ -7,6 +7,7 @@
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">اسم الفرع <span class="text-red-500">*</span></p>
                         <input 
+                        v-model="bransh.name_ar"
                         name="bransh-name" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -15,6 +16,7 @@
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">معلومات الفرع</p>
                         <input 
+                        v-model="bransh.info_branch"
                         name="bransh-info" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -46,6 +48,7 @@
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">عنوان<span class="text-red-500">*</span></p>
                         <input 
+                        v-model="bransh.place_ar"
                         name="bransh-city" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -54,6 +57,7 @@
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">سعة التسجيل<span class="text-red-500">*</span></p>
                         <input 
+                        v-model="bransh.capacity"
                         name="bransh-city" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -62,6 +66,7 @@
                     <div class="w-[48%]">
                         <p class="text-black font-semibold w-[50%] mb-3">رقم الواتس<span class="text-red-500">*</span></p>
                         <input 
+                        v-model="bransh.phone"
                         name="bransh-city" 
                         type="number" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -99,6 +104,7 @@
                         <div class="relative" >
                             <p class="text-black font-semibold w-[50%] mb-3 mt-5">رابط التجمع</p>
                             <input 
+                            v-model="bransh.url_location_gathering"
                             name="link" 
                             type="text" 
                             class="w-full bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -108,6 +114,7 @@
                         <div>
                             <p class="text-black font-semibold w-[50%] mb-3">موعد التجمع</p>
                             <input 
+                            v-model="bransh.data_time_gathering"
                             name="time" 
                             type="text" 
                             class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -186,7 +193,7 @@
                 </div>
 
                 <div class="flex items-center justify-between my-10 text-lg font-bold">
-                    <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">إضافة</button>
+                    <button @click="addBransh" class=" bg-site-blue text-white py-3 px-10 rounded-lg">إضافة</button>
                     <RouterLink to="/company-branshes" class="text-red-700 py-4 px-8 ">
                         إلغاء
                     </RouterLink>
@@ -198,23 +205,62 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-import { useGetRequest } from '../../composables/useRequest';
+import { useGetRequest, usePostRequest, usePatchRequest } from '../../composables/useRequest';
 import DownloadIcon from '../../components/icon/DownloadIcon.vue';
 import FileInputComponent from '../../components/Base/FileInputComponent.vue';
 import Select from 'primevue/select';
 import LocationIcon from '../../components/icon/LocationIcon.vue';
+import { useRoute } from 'vue-router';
 
+const route = useRoute()
+const loadPage = ref(false)
 const bransh = ref({
-    city: null
+    name_ar: null,
+    city: null,
+    capacity: null,
+    info_branch: null,
+    phone: null,
+    place_ar: null,
+    barnch_status: null,
+    data_time_gathering: null,
+    url_location_gathering: null,
+})
+const requestConditions = ref({
+    data: null,
+    error: null,
+    loading: false,
 })
 const cities = ref()
 onMounted(async ()=>{
+    if(route.params.id != 'add') {
+        const {Data, Error} = await useGetRequest('api/v1/branch_company/'+route.params.id)
+        bransh.value = Data.value.data
+        loadPage.value = true
+    }
     const {Data, Error} = await useGetRequest('api/v1/city/')
     cities.value = Data.value.data
-/*     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
     loadPage.value = true
 })
+
+const addBransh = async () => {
+    requestConditions.value.loading = true
+    if(route.params.id == 'add') {
+        const { Data, Error } = await usePostRequest('api/v1/branch_company/',bransh.value)
+        requestConditions.value.error = Error?.value?.errors
+        requestConditions.value.data = Data.value
+    }
+    else {
+        const { Data, Error } = await usePatchRequest('api/v1/branch_company/'+route.params.id+'/',bransh.value)
+        requestConditions.value.error = Error?.value?.errors
+        requestConditions.value.data = Data.value
+    }
+/*     if(requestConditions.value.error != null) {
+        requestConditions.value.loading = false
+    }
+    else {
+        router.push('/company-program')
+    } */
+}
 </script>
 
 <style>

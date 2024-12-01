@@ -17,7 +17,7 @@
                         <p class="text-black font-semibold w-[50%] mb-3">اسم المجموعة</p>
                         <input 
                         disabled
-                        v-model="locationObj.name_ar"
+                        v-model="groupObj.name_ar"
                         name="phone" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -105,7 +105,7 @@
                     <div class="w-full">
                         <p class="text-black font-semibold w-[50%] mb-3">ملحوظة<span class="text-[#DADADA]">( اختياري )</span></p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        v-model="groupObj.name_ar"
                         name="" 
                         type="text" 
                         class="w-full pb-12 relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -113,7 +113,7 @@
                         <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
                     </div>
                     <div class="w-full flex items-center justify-between my-10 text-lg font-bold">
-                    <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">تعديل</button>
+                    <button @click="addGroup" class=" bg-site-blue text-white py-3 px-10 rounded-lg">تعديل</button>
                     <RouterLink to="/company-branshes" class="text-red-700 py-4 px-8 ">
                         إلغاء
                     </RouterLink>
@@ -141,7 +141,7 @@ const router = useRouter()
 const route = useRoute()
 const user = useUserStore()
 const loadPage = ref(false)
-const locationObj = ref({
+const groupObj = ref({
     subscriber_company: user.userCompantId,
     name_ar: null,
     name_en: null,
@@ -168,8 +168,8 @@ const requestConditions = ref({
 
 onMounted(async ()=>{
     if(route.params.id != 'add') {
-        const {Data, Error} = await useGetRequest('api/v1/location/'+route.params.id)
-        locationObj.value = Data.value.data
+        const {Data, Error} = await useGetRequest('api/v1/group/'+route.params.id)
+        groupObj.value = Data.value.data
         loadPage.value = true
     }
     else {
@@ -177,24 +177,24 @@ onMounted(async ()=>{
     }
 })
 
-const addLocation = async () => {
+const addGroup = async () => {
     requestConditions.value.loading = true
     if(route.params.id == 'add') {
-        const { Data, Error } = await usePostRequest('api/v1/location/',locationObj.value)
+        const { Data, Error } = await usePostRequest('api/v1/group/',groupObj.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
     }
     else {
-        const { Data, Error } = await usePatchRequest('api/v1/location/'+route.params.id+'/',locationObj.value)
+        const { Data, Error } = await usePatchRequest('api/v1/group/'+route.params.id+'/',groupObj.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
     }
-    if(requestConditions.value.error != null) {
+/*     if(requestConditions.value.error != null) {
         requestConditions.value.loading = false
     }
     else {
         router.push('/company-location')
-    }
+    } */
 }
 </script>
 

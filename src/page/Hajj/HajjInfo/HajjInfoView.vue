@@ -152,12 +152,19 @@ const hajjFileinput = ref(null)
 const route = useRoute()
 const routeParams = computed(()=> route.params.id)
 onMounted(async ()=>{
-    if(route.params.id != 'all')
+    if(route.params.id != 'all')  {
         viewAll.value = false
-    const {Data, Error} = await useGetRequest('api/v1/pilgrim/')
-    hajjsInfo.value = Data.value.data.result
-    nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+        const {Data, Error} = await useGetRequest('api/v1/group/'+route.params.id)
+        hajjsInfo.value = Data.value.data.pilgrims_details
+        nextPage.value = Data.value.data.next ? true : false
+        previousPage.value = Data.value.data.previous ? true : false     
+    }
+    else {
+        const {Data, Error} = await useGetRequest('api/v1/pilgrim/?group=1239')
+        hajjsInfo.value = Data.value.data.result
+        nextPage.value = Data.value.data.next ? true : false
+        previousPage.value = Data.value.data.previous ? true : false   
+    }
     const {Data:Data1} = await useGetRequest('api/v1/program/')
     programs.value = Data1.value.data.result
     loadPage.value = true

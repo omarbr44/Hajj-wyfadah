@@ -7,7 +7,8 @@
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المجموعة الحالية</p>
                         <input 
-                        v-model="locationObj.name_ar"
+                        disabled
+                        v-model="groupLink.group"
                         name="" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -17,15 +18,15 @@
                     <div class="w-[8%]"></div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المجموعة المراد الربط بها<span class="text-red-500">*</span></p>
-                        <Select v-model="fromCountry" :options="[1,2]" optionLabel="name" 
-                                    placeholder="المجموعات" overlayClass="!bg-white rtl-d p-2" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
+                        <Select v-model="groupLink.link_group" :options="groups" optionLabel="name_ar" 
+                                    placeholder="المجموعات" overlayClass="!bg-white rtl-d p-2 overflow-auto" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
-                                        <span>سعودي / اندونسي</span>
+                                        <span v-if="slotProps.value">{{ slotProps.value.name_ar }}</span>
                                     </template>
                                     <template #option="slotProps">
                                         <div class="flex items-center gap-3 mb-3 cursor-pointer py-1 hover:bg-[#DCF1F4] hover:text-[#1495A7]">
-                                            <div>سعودي / اندونسي</div>
+                                            <div>{{ slotProps.option.name_ar }}</div>
                                         </div>
                                     </template>
                                     <template #dropdownicon>
@@ -37,13 +38,18 @@
                                         <div class="font-medium"></div>
                                     </template>
                         </Select>
-                        <p v-if="requestConditions?.error?.name_ar" class="text-red-500 mt-1">{{ requestConditions.error.name_ar }}</p>
+                        <p v-if="requestConditions?.error?.name" class="text-red-500 mt-1">{{ requestConditions.error.name }}</p>
                     </div>
                     <div class="w-full flex items-center justify-end my-10 text-lg font-bold">
-                    <button class=" bg-site-blue text-white py-3 px-10 rounded-lg">ربط</button>
+                    <button @click="addLink" class=" bg-site-blue text-white py-3 px-10 rounded-lg">
+                        <span v-if="!requestConditions.loading">
+                            ربط 
+                        </span>
+                        <LoaderIcon v-else />
+                    </button>
                 </div>
                 </div>
-                <h1 class="text-xl font-bold text-site-blue my-5">المجموعات المرتبطة مع المجموعة ( 28858326 )</h1>
+                <h1 class="text-xl font-bold text-site-blue my-5">المجموعات المرتبطة مع المجموعة ( {{ route.params.id }} )</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl">
                     <div class=" w-[40%] mx-5 my-5">
                         <SearchComponent
@@ -62,34 +68,10 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <!-- <tr v-for="(location,index) in locations" :key="index">
-                            <th scope="row">{{ location.name_ar }}</th>
-                            <td>{{ location.capacity }}</td>
-                            <td>{{ location.number_management }}</td>
-                            <td></td>
-                            <td>{{ location.number_man }}</td>
-                            <td>{{ location.number_women }}</td>
-                            <td 
-                            class="font-bold"
-                            :class="location.have_train == true ? 'text-green-700 bg-green-300' : 'text-red-700 bg-red-300'">
-                                <span v-if="location.have_train">متواجد</span>
-                                <span v-else>غير متواجد</span>
-                            </td>
-                            <td class="flex items-center justify-center gap-5">
-                                <RouterLink :to="'company-location-add/'+location.id" class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </RouterLink >
-                                <button @click="showDeleteModal(location.id)" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
-                            </td>
-                        </tr> -->
-                        <tr v-for="index in 5" >
-                            <td>66551176389.</td>
+                        <tr v-for="(group,index) in groupLinks" >
+                            <td>{{ group.link_group }}</td>
                             <td class="flex items-center justify-center">
-                                <button @click="showDeleteModal(1)" class="flex items-center gap-2">
+                                <button @click="showDeleteModal(group)" class="flex items-center gap-2">
                                     <DeleteIcon />
                                     <span class="text-[#FF3F3F]">حذف</span>
                                 </button>
@@ -97,8 +79,8 @@
                         </tr>
                     </template>
                     <template v-slot:delete-modal-1>
-                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في حذف إرتباط  المجموعة 2879996 المرتبطة 
-                            بالمجموعة 28858326 ؟                       </h1>
+                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في حذف إرتباط  المجموعة {{route.params.id}} المرتبطة 
+                            بالمجموعة {{deletedGroup}} ؟                       </h1>
                         <p class="text-center mb-8"> سيتم إزالة الارتباط بين المجموعتين، يرجى مراجعة هذا القرار بعناية لضمان عدم تأثير سلبي على سير العمل.
                         </p>
                     </template>
@@ -114,38 +96,25 @@
 
 <script setup>
 import { onMounted, ref } from 'vue';
-import { useUserStore } from '../../../stores/user';
 import LoaderIcon from '../../../components/icon/loaderIcon.vue';
-import { useGetRequest, usePatchRequest, usePostRequest } from '../../../composables/useRequest';
+import { useGetRequest, usePostRequest } from '../../../composables/useRequest';
 import { useRoute, useRouter } from 'vue-router';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import Select from 'primevue/select';
 import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import DeleteIcon from '../../../components/icon/DeleteIcon.vue';
 import TableComponent from '../../../components/Base/tableComponent.vue';
+
 const router = useRouter()
 const route = useRoute()
-const user = useUserStore()
 const loadPage = ref(false)
-const locationObj = ref({
-    subscriber_company: user.userCompantId,
-    name_ar: null,
-    name_en: null,
-    capacity: null,
-    number_location: null,
-    phone: null,
-    number_man: null,
-    number_women: null,
-    number_services: null,
-    number_management: null,
-    have_train: null,
-    url_location_munaa: null,
-    address_munaa: null,
-    url_location_earafah: null,
-    address_earafah: null,
-    url_location_muzdalifah: null,
-    address_muzdalifah: null,
+const deletedGroup = ref()
+const groupLink = ref({
+    group: route.params.id,
+    link_group: null,
 })
+const groupLinks = ref()
+const groups = ref()
 const requestConditions = ref({
     data: null,
     error: null,
@@ -153,36 +122,33 @@ const requestConditions = ref({
 })
 
 onMounted(async ()=>{
-/*         const {Data, Error} = await useGetRequest('api/v1/location/'+route.params.id)
-        locationObj.value = Data.value.data */
+        const {Data, Error} = await useGetRequest('api/v1/group/')
+        groups.value = Data.value.data.result
+        const {Data:linkss} = await useGetRequest('api/v1/links/?group='+route.params.id)
+        groupLinks.value = linkss.value.data.result
         loadPage.value = true
 })
 const deleteLink = ref(null)
 const modalVisible = ref(false)
 
-const showDeleteModal = (id) => {
+const showDeleteModal = (group) => {
+    deletedGroup.value = group.link_group
     modalVisible.value = true
-    deleteLink.value = 'api/v1/location/'+id+'/'
+    deleteLink.value = 'api/v1/links/'+group.id+'/'
 }
-/* const addLocation = async () => {
+const addLink = async () => {
     requestConditions.value.loading = true
-    if(route.params.id == 'add') {
-        const { Data, Error } = await usePostRequest('api/v1/location/',locationObj.value)
+    groupLink.value.link_group = groupLink.value?.link_group?.id
+        const { Data, Error } = await usePostRequest('api/v1/links/',groupLink.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
-    }
-    else {
-        const { Data, Error } = await usePatchRequest('api/v1/location/'+route.params.id+'/',locationObj.value)
-        requestConditions.value.error = Error?.value?.errors
-        requestConditions.value.data = Data.value
-    }
     if(requestConditions.value.error != null) {
         requestConditions.value.loading = false
     }
     else {
-        router.push('/company-location')
+        router.go('')
     }
-} */
+}
 </script>
 
 <style scoped>

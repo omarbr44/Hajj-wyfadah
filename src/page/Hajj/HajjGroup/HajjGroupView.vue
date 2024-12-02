@@ -103,31 +103,31 @@
                         </tr>
                     </template>
                     <template v-slot:body>
-                        <!-- <tr v-for="(location,index) in groups" :key="index">
-                            <th scope="row">{{ location.name_ar }}</th>
-                            <td>{{ location.capacity }}</td>
-                            <td>{{ location.number_management }}</td>
+                        <tr v-for="(group,index) in groups" :key="index">
+
+                            <th scope="row"><RouterLink :to="'hajj-info/'+group.id" class="text-site-blue font-bold" >{{ group.name_ar }}</RouterLink></th>
                             <td></td>
-                            <td>{{ location.number_man }}</td>
-                            <td>{{ location.number_women }}</td>
-                            <td 
-                            class="font-bold"
-                            :class="location.have_train == true ? 'text-green-700 bg-green-300' : 'text-red-700 bg-red-300'">
-                                <span v-if="location.have_train">متواجد</span>
-                                <span v-else>غير متواجد</span>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td>{{ group.number_group }}</td>
+                            <td class="bg-[#DADADA] text-site-text-grey"></td>
+                            <td>
+                                <button @click="showDeleteModal(group.id)" class="block bg-red-200 w-max text-red-600 border border-red-600 rounded-3xl px-3 py-1">إلغاء توزيع الباص</button>
                             </td>
-                            <td class="flex items-center justify-center gap-5">
-                                <RouterLink :to="'company-location-add/'+location.id" class="flex items-center gap-2">
-                                    <EditIcon />
-                                    <span class="text-[#46814F]">تعديل</span>
-                                </RouterLink >
-                                <button @click="showDeleteModal(location.id)" class="flex items-center gap-2">
-                                    <DeleteIcon />
-                                    <span class="text-[#FF3F3F]">حذف</span>
-                                </button>
+                            <td>
+                                <RouterLink :to="'hajj-group-link/'+group.id" class="block bg-blue-100 w-max text-[#5FC1CF] border border-[#5FC1CF] rounded-3xl px-3 py-1">ربط مجموعة</RouterLink>
                             </td>
-                        </tr> -->
-                        <tr v-for="index in 5" >
+                            <td class="">
+                                <div class="flex items-center justify-center gap-2 border-0 relative w-[8rem]">
+                                    <RouterLink :to="'hajj-group-add/'+group.id" class="flex items-center gap-1">
+                                        <EditIcon />
+                                        <span class="text-[#46814F] text-base text-nowrap">تعديل</span>
+                                    </RouterLink >
+                                </div>
+                            </td>
+                        </tr>
+<!--                         <tr v-for="index in 5" >
                             <td>
                                 <RouterLink to="hajj-info/28858326" class="text-site-blue font-bold" >28858326</RouterLink>
                             </td>
@@ -151,7 +151,7 @@
                                     </RouterLink >
                                 </div>
                             </td>
-                        </tr>
+                        </tr> -->
                     </template>
                     <template v-slot:delete-modal-1>
                         <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في إلغاء توزيع الباص  
@@ -188,10 +188,10 @@ const nextPage = ref(false)
 const previousPage = ref(false)
 
 onMounted(async ()=>{
-/*     const {Data, Error} = await useGetRequest('api/v1/group/')
+    const {Data, Error} = await useGetRequest('api/v1/group/')
     groups.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false
     loadPage.value = true
 })
 

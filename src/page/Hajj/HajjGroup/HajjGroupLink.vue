@@ -8,7 +8,7 @@
                         <p class="text-black font-semibold w-[50%] mb-3">المجموعة الحالية</p>
                         <input 
                         disabled
-                        v-model="groupLink.group"
+                        v-model="groupData.name_ar"
                         name="" 
                         type="text" 
                         class="w-full relative bg-[#f9f9f9] border border-[#BDBDBD] p-2 rounded-xl"
@@ -38,7 +38,7 @@
                                         <div class="font-medium"></div>
                                     </template>
                         </Select>
-                        <p v-if="requestConditions?.error?.name" class="text-red-500 mt-1">{{ requestConditions.error.name }}</p>
+                        <p v-if="requestConditions?.error?.link_group" class="text-red-500 mt-1">{{ requestConditions.error.link_group }}</p>
                     </div>
                     <div class="w-full flex items-center justify-end my-10 text-lg font-bold">
                     <button @click="addLink" class=" bg-site-blue text-white py-3 px-10 rounded-lg">
@@ -49,7 +49,7 @@
                     </button>
                 </div>
                 </div>
-                <h1 class="text-xl font-bold text-site-blue my-5">المجموعات المرتبطة مع المجموعة ( {{ route.params.id }} )</h1>
+                <h1 class="text-xl font-bold text-site-blue my-5">المجموعات المرتبطة مع المجموعة ( {{ groupData.name_ar }} )</h1>
                 <div class="w-full p-4 border border-[#DADADA] rounded-2xl">
                     <div class=" w-[40%] mx-5 my-5">
                         <SearchComponent
@@ -79,7 +79,7 @@
                         </tr>
                     </template>
                     <template v-slot:delete-modal-1>
-                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في حذف إرتباط  المجموعة {{route.params.id}} المرتبطة 
+                        <h1 class="text-center text-3xl font-bold mb-5">هل أنت متأكد أنك ترغب في حذف إرتباط  المجموعة {{groupData.name_ar}} المرتبطة 
                             بالمجموعة {{deletedGroup}} ؟                       </h1>
                         <p class="text-center mb-8"> سيتم إزالة الارتباط بين المجموعتين، يرجى مراجعة هذا القرار بعناية لضمان عدم تأثير سلبي على سير العمل.
                         </p>
@@ -115,6 +115,7 @@ const groupLink = ref({
 })
 const groupLinks = ref()
 const groups = ref()
+const groupData = ref()
 const requestConditions = ref({
     data: null,
     error: null,
@@ -122,6 +123,8 @@ const requestConditions = ref({
 })
 
 onMounted(async ()=>{
+        const {Data:groupdata} = await useGetRequest('api/v1/group/'+route.params.id)
+        groupData.value = groupdata.value.data
         const {Data, Error} = await useGetRequest('api/v1/group/')
         groups.value = Data.value.data.result
         const {Data:linkss} = await useGetRequest('api/v1/links/?group='+route.params.id)
@@ -132,6 +135,7 @@ const deleteLink = ref(null)
 const modalVisible = ref(false)
 
 const showDeleteModal = (group) => {
+    console.log(group)
     deletedGroup.value = group.link_group
     modalVisible.value = true
     deleteLink.value = 'api/v1/links/'+group.id+'/'
@@ -142,7 +146,7 @@ const addLink = async () => {
         const { Data, Error } = await usePostRequest('api/v1/links/',groupLink.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
-    if(requestConditions.value.error != null) {
+    if(Error.value != null) {
         requestConditions.value.loading = false
     }
     else {

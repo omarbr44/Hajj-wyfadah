@@ -112,6 +112,7 @@
                     </template>
                 </TableComponent>
                 <PaginationComponent
+                :pages="Math.ceil(pages)"
                  :next="nextPage"
                  :previous="previousPage"
                  @changePage="chnagePage" />
@@ -169,12 +170,14 @@ const statuses = ref([
 const statusFilter = ref()
 const nextPage = ref(false)
 const previousPage = ref(false)
+const pages = ref(0)
 
 onMounted(async ()=>{
     const {Data, Error} = await useGetRequest('api/v1/company_employe/')
     employeeObj.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15   
     const {Data:departmentsValue} = await useGetRequest('api/v1/department_company/')
     departments.value = departmentsValue.value.data.result
     loadPage.value = true
@@ -198,7 +201,8 @@ const chnagePage = async (newPage) => {
     const {Data} = await useGetRequest('api/v1/company_employe/?page='+newPage)
     employeeObj.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15   
 }
 
 const modalVisible = ref(false)

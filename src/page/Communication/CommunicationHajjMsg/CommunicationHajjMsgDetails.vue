@@ -66,8 +66,6 @@ import PageLoader from '../../../components/icon/PageLoader.vue';
 const loadPage = ref(false)
 const viewAll = ref(true)
 const locations = ref(null)
-const nextPage = ref(false)
-const previousPage = ref(false)
 const route = useRoute()
 onMounted(async ()=>{
     if(route.params.id != 'all')
@@ -75,7 +73,8 @@ onMounted(async ()=>{
 /*     const {Data, Error} = await useGetRequest('api/v1/location/')
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15 */
     loadPage.value = true
 })
 

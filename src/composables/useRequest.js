@@ -4,6 +4,7 @@ import { ref } from "vue";
 import { useNotification } from "@kyvg/vue3-notification";
 const { notify }  = useNotification()
 import { useUserStore } from '../stores/user'
+import { isString } from "lodash";
 
 
 const url = geturl()
@@ -45,7 +46,7 @@ const url = geturl()
         Error.value = error.response.data
         notify({
           title: Error.value.message,
-          /* text: Error.value.errors, */
+          text: isString(Error.value.errors) ? Error.value.errors : '',
           type: 'error',
       });
     }

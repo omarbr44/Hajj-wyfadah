@@ -135,6 +135,7 @@
                     </template>
                 </TableComponent>
                 <PaginationComponent
+                :pages="Math.ceil(pages)"
                  class="mt-5"
                  :next="nextPage"
                  :previous="previousPage"
@@ -162,6 +163,7 @@ const viewAll = ref(true)
 const locations = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
+const pages = ref(0)
 const route = useRoute()
 const routeParams = computed(()=> route.params.id)
 onMounted(async ()=>{
@@ -170,7 +172,8 @@ onMounted(async ()=>{
     const {Data, Error} = await useGetRequest('api/v1/camp/')
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15
     loadPage.value = true
 })
 /* watch(routeParams,()=>{
@@ -198,7 +201,8 @@ const chnagePage = async (newPage) => {
     const {Data} = await useGetRequest('api/v1/location/?page='+newPage)
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15
 }
 </script>
 

@@ -160,6 +160,7 @@
                     </template>
                 </TableComponent>
                 <PaginationComponent
+                :pages="Math.ceil(pages)"
                  class="mt-5"
                  :next="nextPage"
                  :previous="previousPage"
@@ -186,12 +187,14 @@ const loadPage = ref(false)
 const groups = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
+const pages = ref(0)
 
 onMounted(async ()=>{
     const {Data, Error} = await useGetRequest('api/v1/group/')
     groups.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15
     loadPage.value = true
 })
 
@@ -213,7 +216,8 @@ const chnagePage = async (newPage) => {
     const {Data} = await useGetRequest('api/v1/group/?page='+newPage)
     groups.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15
 }
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {

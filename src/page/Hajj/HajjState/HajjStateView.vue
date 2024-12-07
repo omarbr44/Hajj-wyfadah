@@ -118,6 +118,7 @@
                     </template>
                 </TableComponent>
                 <PaginationComponent
+                :pages="Math.ceil(pages)"
                  class="mt-5"
                  :next="nextPage"
                  :previous="previousPage"
@@ -143,12 +144,14 @@ const loadPage = ref(false)
 const locations = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
+const pages = ref(0)
 
 onMounted(async ()=>{
 /*     const {Data, Error} = await useGetRequest('api/v1/location/')
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false */
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15 */
     loadPage.value = true
 })
 
@@ -170,7 +173,8 @@ const searchResult = (result) => {
     const {Data} = await useGetRequest('api/v1/location/?page='+newPage)
     locations.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15
 } */
 const modalVisible = ref(false)
 

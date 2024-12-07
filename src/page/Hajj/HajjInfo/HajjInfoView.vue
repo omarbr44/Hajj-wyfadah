@@ -11,6 +11,7 @@
                                 <DownloadIcon color="white" />
                                 <span class="font-bold">إستيراد  الحجاج</span>
                             </button>
+                            <p v-if="errorObj?.link_group" class="text-red-500 mt-1">{{ errorObj.link_group }}</p>
 
                 </div>
                 <p class=" text-site-text-grey font-medium my-5">*قم برفع ملف اكسيل لإستيراد معلومات حجاجك</p>
@@ -118,6 +119,7 @@
                     </template>
                 </TableComponent>
                 <PaginationComponent
+                :pages="Math.ceil(pages)"
                  class="mt-5"
                  :next="nextPage"
                  :previous="previousPage"
@@ -148,6 +150,7 @@ const viewAll = ref(true)
 const hajjsInfo = ref(null)
 const nextPage = ref(false)
 const previousPage = ref(false)
+const pages = ref(0)
 const hajjFileinput = ref(null)
 const route = useRoute()
 const routeParams = computed(()=> route.params.id)
@@ -157,13 +160,16 @@ onMounted(async ()=>{
         const {Data, Error} = await useGetRequest('api/v1/group/'+route.params.id)
         hajjsInfo.value = Data.value.data.pilgrims_details
         nextPage.value = Data.value.data.next ? true : false
-        previousPage.value = Data.value.data.previous ? true : false     
+        previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15   
     }
     else {
-        const {Data, Error} = await useGetRequest('api/v1/pilgrim/?group=1239')
+        const {Data, Error} = await useGetRequest('api/v1/pilgrim/')
         hajjsInfo.value = Data.value.data.result
         nextPage.value = Data.value.data.next ? true : false
         previousPage.value = Data.value.data.previous ? true : false   
+        pages.value = Data.value.data.count / 15 
+        pages.value = Data.value.data.count / 15  
     }
     const {Data:Data1} = await useGetRequest('api/v1/program/')
     programs.value = Data1.value.data.result
@@ -183,19 +189,14 @@ watch(program, async () => {
     const {Data} = await useGetRequest('api/v1/pilgrim/?program='+program.value)
     hajjsInfo.value = Data.value.data.result
 })
+const errorObj = ref()
 const changeHajjFile = async (file) => {
-    console.log(file)
     loadPage.value = false
     const formData = serialize({'file_info_pilgrims':file})
     const {Data, Error} = await usePostRequest('api/v1/pilgrim_import/', formData)
+    console.log(Error.value)
+    errorObj.value = Error.value.errors
     loadPage.value = true
-    console.log(Data)
-/*     if(Data.value == null) {
-        NewLangError.value = Error.value.message
-    }
-    else {
-        
-    } */
 }
 
 const searchResult = (result) => {
@@ -206,7 +207,8 @@ const chnagePage = async (newPage) => {
     const {Data} = await useGetRequest('api/v1/pilgrim/?page='+newPage)
     hajjsInfo.value = Data.value.data.result
     nextPage.value = Data.value.data.next ? true : false
-    previousPage.value = Data.value.data.previous ? true : false
+    previousPage.value = Data.value.data.previous ? true : false   
+    pages.value = Data.value.data.count / 15
 }
 const deleteLink = ref(null)
 const showDeleteModal = (id) => {

@@ -5,7 +5,7 @@
   import NavBarComponent3 from './components/Communication/NavBarComponent.vue';
   import NavBarComponent4 from './components/Bed/NavBarComponent.vue';
   import SideBarComponent from './components/SideBarComponent.vue';
-  import { computed } from 'vue';
+  import { computed, ref } from 'vue';
 
 
   const route = useRoute()
@@ -27,6 +27,12 @@
       return NavBarComponent4
   })
 
+  const sidebarHiddenState = ref(false)
+  const toggleSidebar = (sidebarHidden) => {
+    console.log(sidebarHidden)
+    sidebarHiddenState.value = sidebarHidden
+  }
+
 </script>
 
 <template>
@@ -38,8 +44,10 @@
     >
     </component> 
     <div class="flex justify-stretch">
-      <RouterView />
-      <SideBarComponent v-show="showNavs" />
+      <RouterView class="transition-all" :class="sidebarHiddenState ? 'w-full' : ''" />
+      <SideBarComponent
+       v-show="showNavs"
+       @toggleSidebar="toggleSidebar" />
     </div>
   </div>
 </template>

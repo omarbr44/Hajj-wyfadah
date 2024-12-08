@@ -1,6 +1,6 @@
 <template>
     <div class="w-[20%] bg-white py-8 flex flex-col items-center gap-10 shadow-xl relative z-10 h-fit transition-all"
-        :class="sidebarHidden ? 'w-0' : ''">
+        :class="sidebarHidden ? '!w-0' : ''">
         <img src="/img/logo.png" class="" alt="logo">
         <RouterLink to="" class="text-lg font-bold text-site-text-grey"
                           :class="sidebarHidden ? 'invisible' : ''">لوحة المعلومات</RouterLink>

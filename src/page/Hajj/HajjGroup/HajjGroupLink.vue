@@ -18,8 +18,8 @@
                     <div class="w-[8%]"></div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المجموعة المراد الربط بها<span class="text-red-500">*</span></p>
-                        <Select v-model="groupLink.link_group" :options="groups" optionLabel="name_ar" 
-                                    placeholder="المجموعات" overlayClass="!bg-white rtl-d p-2 overflow-auto" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
+                        <Select v-model="link_group_value" editable :options="filtedGroups" optionLabel="name_ar" 
+                                    placeholder="المجموعات" overlayClass="!bg-white rtl-d p-2 overflow-auto" labelClass="!bg-[#f9f9f9]" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
                                         <span v-if="slotProps.value">{{ slotProps.value.name_ar }}</span>
@@ -95,9 +95,9 @@
 </template>
 
 <script setup>
-import { onMounted, ref } from 'vue';
+import { onMounted, ref, watch } from 'vue';
 import LoaderIcon from '../../../components/icon/loaderIcon.vue';
-import { useGetRequest, usePostRequest } from '../../../composables/useRequest';
+import { useGetRequest, usePostRequest, useGetRequestPaginationFalse } from '../../../composables/useRequest';
 import { useRoute, useRouter } from 'vue-router';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import Select from 'primevue/select';
@@ -115,6 +115,7 @@ const groupLink = ref({
 })
 const groupLinks = ref()
 const groups = ref()
+const filtedGroups = ref()
 const groupData = ref()
 const requestConditions = ref({
     data: null,
@@ -125,8 +126,9 @@ const requestConditions = ref({
 onMounted(async ()=>{
         const {Data:groupdata} = await useGetRequest('api/v1/group/'+route.params.id)
         groupData.value = groupdata.value.data
-        const {Data, Error} = await useGetRequest('api/v1/group/')
-        groups.value = Data.value.data.result
+        const {Data, Error} = await useGetRequestPaginationFalse('api/v1/group/?pagination=false')
+        groups.value = Data.value.data
+        filtedGroups.value = groups.value
         const {Data:linkss} = await useGetRequest('api/v1/links/?group='+route.params.id)
         groupLinks.value = linkss.value.data.result
         loadPage.value = true
@@ -135,14 +137,23 @@ const deleteLink = ref(null)
 const modalVisible = ref(false)
 
 const showDeleteModal = (group) => {
-    console.log(group)
     deletedGroup.value = group.link_group
     modalVisible.value = true
     deleteLink.value = 'api/v1/links/'+group.id+'/'
 }
+const link_group_value = ref()
+watch((link_group_value),()=>{
+    if(typeof link_group_value.value == 'object') {
+        groupLink.value.link_group = link_group_value.value.id
+        link_group_value.value = link_group_value.value.name_ar
+    }
+    filtedGroups.value = groups.value.filter(el => el.name_ar.indexOf(link_group_value.value) > -1)
+})
+
 const addLink = async () => {
     requestConditions.value.loading = true
-    groupLink.value.link_group = groupLink.value?.link_group?.id
+    /* groupLink.value.link_group = link_group_value.value
+    groupLink.value.link_group = groupLink.value?.link_group?.id */
         const { Data, Error } = await usePostRequest('api/v1/links/',groupLink.value)
         requestConditions.value.error = Error?.value?.errors
         requestConditions.value.data = Data.value
@@ -150,11 +161,15 @@ const addLink = async () => {
         requestConditions.value.loading = false
     }
     else {
-        router.go('')
+        requestConditions.value.loading = false
+        const {Data:linkss} = await useGetRequest('api/v1/links/?group='+route.params.id)
+        groupLinks.value = linkss.value.data.result
     }
 }
 </script>
 
 <style scoped>
-
+input[data-pc-section="label"] {
+    background-color: none !important;
+}
 </style>

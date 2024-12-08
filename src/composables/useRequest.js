@@ -15,7 +15,24 @@ const url = geturl()
     try {
       const { data } = await axios.get(url+api,{
         headers: {
-          "authorization": "Token "+userStore.userToken
+          "authorization": "Token "+userStore.userToken,
+        }
+      });
+      Data.value = data
+    } catch (error) {
+        Error.value = error.response.data
+    }
+    return {Data,Error}
+   }
+   export async function useGetRequestPaginationFalse(api){
+    const userStore = useUserStore()
+    const Data = ref(null)
+    const Error = ref(null)
+    try {
+      const { data } = await axios.get(url+api,{
+        headers: {
+          "authorization": "Token "+userStore.userToken,
+          /* 'pagination': 2, */
         }
       });
       Data.value = data

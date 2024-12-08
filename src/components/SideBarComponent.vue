@@ -1,5 +1,5 @@
 <template>
-    <div class="w-[20%] bg-white py-8 flex flex-col items-center gap-10 shadow-xl relative z-10 h-fit transition-all"
+    <div class="w-[20%] bg-white py-8 flex flex-col items-center gap-10 shadow-xl fixed right-0 overflow-y-scroll z-10 h-full transition-all"
         :class="sidebarHidden ? '!w-0' : ''">
         <img src="/img/logo.png" class="" alt="logo">
         <RouterLink to="" class="text-lg font-bold text-site-text-grey"
@@ -48,8 +48,8 @@
             </button>
         </div>
         <button @click="toggleSide" 
-        class="sidebar-toggler py-5 px-4 flex justify-center items-center rounded-md bg-site-blue text-white absolute bottom-96 -translate-x-1/3 left-0"
-        :class="sidebarHidden ? '-translate-x-[120%]' : ''">
+        class="sidebar-toggler py-5 px-4 flex justify-center items-center rounded-md bg-site-blue text-white fixed bottom-[200px] right-[20%] translate-x-4"
+        :class="sidebarHidden ? 'right-[1%]' : ''">
             <span v-show="!sidebarHidden" style="line-height: 0;">></span>
             <span v-show="sidebarHidden" style="line-height: 0;"><</span>
         </button>

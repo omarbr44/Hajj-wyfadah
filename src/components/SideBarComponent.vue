@@ -49,7 +49,7 @@
         </div>
         <button @click="toggleSide" 
         class="sidebar-toggler py-5 px-4 flex justify-center items-center rounded-md bg-site-blue text-white fixed bottom-[200px] right-[20%] translate-x-4"
-        :class="sidebarHidden ? 'right-[1%]' : ''">
+        :class="sidebarHidden ? '!right-[1%]' : ''">
             <span v-show="!sidebarHidden" style="line-height: 0;">></span>
             <span v-show="sidebarHidden" style="line-height: 0;"><</span>
         </button>

@@ -18,7 +18,7 @@
                     <div class="w-[8%]"></div>
                     <div class="w-[45%]">
                         <p class="text-black font-semibold w-[50%] mb-3">المجموعة المراد الربط بها<span class="text-red-500">*</span></p>
-                        <Select v-model="link_group_value" editable :options="filtedGroups" optionLabel="name_ar" 
+                        <Select v-model="link_group_value" @update:model-value="onInput" editable :options="filtedGroups" optionLabel="name_ar" 
                                     placeholder="المجموعات" overlayClass="!bg-white rtl-d p-2 overflow-auto" labelClass="!bg-[#f9f9f9]" class=" flex justify-between items-center px-4 py-2 border border-[#BDBDBD] rounded-xl"
                                     :pt="{overlay:' shadow-xl'}">
                                     <template #value="slotProps">
@@ -54,7 +54,10 @@
                     <div class=" w-[40%] mx-5 my-5">
                         <SearchComponent
                            api=""
-                           @resultSearch="searchResult" />
+                            />
+<!--                         <SearchComponent
+                           api=""
+                           @resultSearch="searchResult" /> -->
                     </div>
                     <TableComponent class=" overflow-auto mx-8"
                     :modalVisible="modalVisible"
@@ -104,6 +107,7 @@ import Select from 'primevue/select';
 import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import DeleteIcon from '../../../components/icon/DeleteIcon.vue';
 import TableComponent from '../../../components/Base/tableComponent.vue';
+import {debounce} from 'lodash';
 
 const router = useRouter()
 const route = useRoute()
@@ -141,14 +145,17 @@ const showDeleteModal = (group) => {
     modalVisible.value = true
     deleteLink.value = 'api/v1/links/'+group.id+'/'
 }
+
 const link_group_value = ref()
-watch((link_group_value),()=>{
+
+// search method
+const onInput =debounce(async function()  {
     if(typeof link_group_value.value == 'object') {
-        groupLink.value.link_group = link_group_value.value.id
-        link_group_value.value = link_group_value.value.name_ar
-    }
-    filtedGroups.value = groups.value.filter(el => el.name_ar.indexOf(link_group_value.value) > -1)
-})
+            groupLink.value.link_group = link_group_value.value.id
+            link_group_value.value = link_group_value.value.name_ar
+        }
+        filtedGroups.value = groups.value.filter(el => el.name_ar.includes(link_group_value.value))
+},200) 
 
 const addLink = async () => {
     requestConditions.value.loading = true

@@ -235,12 +235,45 @@ const router = createRouter({
       component: () => import('./page/Bed/BedTent/BedAdd.vue'),
       meta: {requiresAuth: true}
     },
+    // managment
     {
       path: '/managment-setting',
       name: 'managment-setting',
       component: () => import('./page/ManagementSetting/ManagmentSetting.vue'),
       meta: {requiresAuth: true}
     },
+    // Hotel
+    {
+      path: '/hotel-view',
+      name: 'hotel-view',
+      component: () => import('./page/Hotel/HotelManagment/HotelManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hotel-add/:id',
+      name: 'hotel-add',
+      component: () => import('./page/Hotel/HotelManagment/HotelManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hotelprint/:id',
+      name: 'hotelprint',
+      component: () => import('./page/Hotel/HotelManagment/HotelPrint.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hotel-room-view',
+      name: 'hotel-room-view',
+      component: () => import('./page/Hotel/RoomManagment/RoomManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hotel-roomcategory-view',
+      name: 'hotel-roomcategory-view',
+      component: () => import('./page/Hotel/RoomCategoryManagment/RoomCategoryManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+
 /*   
     {
       path: '/:pathMatch(.*)*',

@@ -31,7 +31,7 @@ import { RouterLink } from 'vue-router';
             </RouterLink>
         </div>
         <div class="flex justify-center items-center gap-16 my-14">
-            <RouterLink class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
+            <RouterLink to="/hotel-view" class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
                  style="box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);">
                 <h1 class="text-2xl text-site-blue font-semibold" >الفنادق</h1>
                 <svg width="69" height="76" viewBox="0 0 69 76" fill="none" xmlns="http://www.w3.org/2000/svg">

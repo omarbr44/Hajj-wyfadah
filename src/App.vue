@@ -5,6 +5,7 @@
   import NavBarComponent3 from './components/Communication/NavBarComponent.vue';
   import NavBarComponent4 from './components/Bed/NavBarComponent.vue';
   import NavBarComponent5 from './page/ManagementSetting/NavBarComponent.vue';
+  import NavBarComponent6 from './components/Hotel/NavBarComponent.vue';
   import SideBarComponent from './components/SideBarComponent.vue';
   import { computed, ref } from 'vue';
 import Xicon from './components/icon/Xicon.vue';
@@ -13,7 +14,8 @@ import Xicon from './components/icon/Xicon.vue';
   const route = useRoute()
   const showNavs = computed(()=>{
     if( route.path == '/' || route.path == '/signup' || route.path == '/signin' 
-        || route.path == '/passwordresubmit-email' || route.path == '/passwordresubmit-password'  )
+        || route.path == '/passwordresubmit-email' || route.path == '/passwordresubmit-password'
+        || route.path.includes('hotelprint'))
         return false
     else 
         return true
@@ -29,6 +31,8 @@ import Xicon from './components/icon/Xicon.vue';
       return NavBarComponent4
     else if(route.path.includes('managment-setting'))
       return NavBarComponent5
+    else if(route.path.includes('hotel-'))
+      return NavBarComponent6
   })
 
   const sidebarHiddenState = ref(false)

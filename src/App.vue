@@ -4,6 +4,7 @@
   import NavBarComponent2 from './components/Hajj/NavBarComponent.vue';
   import NavBarComponent3 from './components/Communication/NavBarComponent.vue';
   import NavBarComponent4 from './components/Bed/NavBarComponent.vue';
+  import NavBarComponent5 from './page/ManagementSetting/NavBarComponent.vue';
   import SideBarComponent from './components/SideBarComponent.vue';
   import { computed, ref } from 'vue';
 import Xicon from './components/icon/Xicon.vue';
@@ -26,11 +27,12 @@ import Xicon from './components/icon/Xicon.vue';
       return NavBarComponent3
     else if(route.path.includes('bed-'))
       return NavBarComponent4
+    else if(route.path.includes('managment-setting'))
+      return NavBarComponent5
   })
 
   const sidebarHiddenState = ref(false)
   const toggleSidebar = (sidebarHidden) => {
-    console.log(sidebarHidden)
     sidebarHiddenState.value = sidebarHidden
   }
 

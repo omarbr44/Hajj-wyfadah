@@ -33,7 +33,13 @@
              :class="[useRoute().path.includes('bed-') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">التسكين</span>
         </RouterLink>
         <RouterLink to="" class="text-lg font-bold text-site-text-grey" :class="sidebarHidden ? 'invisible' : ''">المواصلات</RouterLink>
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey" :class="sidebarHidden ? 'invisible' : ''">ادوات الإدارة والتنظيم</RouterLink>
+        <RouterLink to="/managment-setting" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('managment-setting')" class="w-[95%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="[useRoute().path.includes('managment-setting') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">ادوات الإدارة والتنظيم</span>
+        </RouterLink>        
         <RouterLink to="" class="text-lg font-bold text-site-text-grey" :class="sidebarHidden ? 'invisible' : ''">إدارة المستخدمين</RouterLink>
         <div class="profile flex flex-col items-center" :class="sidebarHidden ? 'invisible' : ''">
             <div class="bg-[#D2E3E8] size-16 rounded-full flex justify-center items-center">

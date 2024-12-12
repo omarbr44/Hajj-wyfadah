@@ -274,6 +274,31 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
 
+    // Tent
+    {
+      path: '/tent-view',
+      name: 'tent-view',
+      component: () => import('./page/Tent/TentManagment/TentManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/tent-add/:id',
+      name: 'tent-add',
+      component: () => import('./page/Tent/TentManagment/TentManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },    
+/*     {
+      path: '/hotelprint/:id',
+      name: 'hotelprint',
+      component: () => import('./page/Hotel/HotelManagment/HotelPrint.vue'),
+      meta: {requiresAuth: true}
+    }, */
+    {
+      path: '/tent-category-view',
+      name: 'tent-category-view',
+      component: () => import('./page/Tent/TentCategoryManagment/TentCategoryManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

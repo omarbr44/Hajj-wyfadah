@@ -6,6 +6,7 @@
   import NavBarComponent4 from './components/Bed/NavBarComponent.vue';
   import NavBarComponent5 from './page/ManagementSetting/NavBarComponent.vue';
   import NavBarComponent6 from './components/Hotel/NavBarComponent.vue';
+  import NavBarComponent7 from './components/Tent/NavBarComponent.vue';
   import SideBarComponent from './components/SideBarComponent.vue';
   import { computed, ref } from 'vue';
 import Xicon from './components/icon/Xicon.vue';
@@ -33,6 +34,8 @@ import Xicon from './components/icon/Xicon.vue';
       return NavBarComponent5
     else if(route.path.includes('hotel-'))
       return NavBarComponent6
+    else if(route.path.includes('tent-'))
+      return NavBarComponent7
   })
 
   const sidebarHiddenState = ref(false)

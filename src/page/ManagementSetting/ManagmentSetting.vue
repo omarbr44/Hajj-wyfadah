@@ -5,7 +5,7 @@ import { RouterLink } from 'vue-router';
 <template>
     <div class="w-[80%] py-32 bg-[#f9f9f9]">
         <div class="flex justify-center items-center gap-16 ">
-            <RouterLink class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
+            <RouterLink to="/tent-view" class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
                  style="box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);">
                 <h1 class="text-2xl text-site-blue font-semibold" >الخيام</h1>
                 <svg width="61" height="81" viewBox="0 0 61 81" fill="none" xmlns="http://www.w3.org/2000/svg">

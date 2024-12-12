@@ -72,7 +72,7 @@
                     </template>
                     <template v-slot:body>
                         <tr v-for="(group,index) in groupLinks" >
-                            <td>{{ group.link_group }}</td>
+                            <td>{{ group.name_link_group }}</td>
                             <td class="flex items-center justify-center">
                                 <button @click="showDeleteModal(group)" class="flex items-center gap-2">
                                     <DeleteIcon />
@@ -108,12 +108,16 @@ import SearchComponent from '../../../components/Base/SearchComponent.vue';
 import DeleteIcon from '../../../components/icon/DeleteIcon.vue';
 import TableComponent from '../../../components/Base/tableComponent.vue';
 import {debounce} from 'lodash';
+import { useUserStore } from '../../../stores/user';
+
+const user = useUserStore()
 
 const router = useRouter()
 const route = useRoute()
 const loadPage = ref(false)
 const deletedGroup = ref()
 const groupLink = ref({
+    subscriber_company: user.userCompantId,
     group: route.params.id,
     link_group: null,
 })

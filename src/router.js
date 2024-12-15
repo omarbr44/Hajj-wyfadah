@@ -299,6 +299,12 @@ const router = createRouter({
       component: () => import('./page/Tent/TentCategoryManagment/TentCategoryManagmentView.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/tent-distribution',
+      name: 'tent-distribution',
+      component: () => import('./page/Tent/TentDistribution/TentDistribution.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

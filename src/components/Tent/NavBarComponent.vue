@@ -9,9 +9,9 @@
                 تصنيفات الخيام
             </RouterLink>
             <RouterLink 
-                to="/bedtent-view" 
+                to="/tent-distribution" 
                 class="p-2 rounded-3xl"
-                :class="useRoute().path.includes('bedtent-view') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('tent-distribution') ? 'text-white bg-site-blue' : ''"
                 >
                 توزيع الخيام
             </RouterLink>

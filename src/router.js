@@ -305,6 +305,84 @@ const router = createRouter({
       component: () => import('./page/Tent/TentDistribution/TentDistribution.vue'),
       meta: {requiresAuth: true}
     },
+    // hajj pages 
+    {
+      path: '/hajjpage-notifications',
+      name: 'hajjpage-notifications',
+      component: () => import('./page/HajjPages/NotificationAndActions/Notification/NotificationView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-notifications-distiribution',
+      name: 'hajjpage-notifications-distiribution',
+      component: () => import('./page/HajjPages/NotificationAndActions/Notification/DistiributionView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-notifications-manualchoosing',
+      name: 'hajjpage-notifications-manualchoosing',
+      component: () => import('./page/HajjPages/NotificationAndActions/Notification/ManualChoosing.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-notifications-manualchoosing-bed',
+      name: 'hajjpage-notifications-manualchoosing-bed',
+      component: () => import('./page/HajjPages/NotificationAndActions/Notification/ManualChoosingBed.vue'),
+      meta: {requiresAuth: true}
+    },
+    
+
+    {
+      path: '/hajjpage-messages',
+      name: 'hajjpage-messages',
+      component: () => import('./page/HajjPages/Messages/MessagesView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-messages-view',
+      name: 'hajjpage-messages-view',
+      component: () => import('./page/HajjPages/Messages/MessageView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-recieved-messages',
+      name: 'hajjpage-recieved-messages',
+      component: () => import('./page/HajjPages/Messages/RecievedMessagesView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-recieved-messages-view',
+      name: 'hajjpage-recieved-messages-view',
+      component: () => import('./page/HajjPages/Messages/RecievedMessageView.vue'),
+      meta: {requiresAuth: true}
+    },
+
+    {
+      path: '/hajjpage-attachment',
+      name: 'hajjpage-attachment',
+      component: () => import('./page/HajjPages/Attachment/HajjAttachmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/hajjpage-attachment-add',
+      name: 'hajjpage-attachment-add',
+      component: () => import('./page/HajjPages/Attachment/HajjAttachmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+
+    {
+      path: '/hajjpage-digitalid',
+      name: 'hajjpage-digitalid',
+      component: () => import('./page/HajjPages/DigitalId/DigitalIdView.vue'),
+      meta: {requiresAuth: true}
+    },
+
+    {
+      path: '/hajjpage-digitalid-card',
+      name: 'hajjpage-digitalid-card',
+      component: () => import('./page/HajjPages/DigitalId/DigitalIdCard.vue'),
+      meta: {requiresAuth: true}
+    },
 /*   
     {
       path: '/:pathMatch(.*)*',

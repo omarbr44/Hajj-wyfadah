@@ -7,7 +7,13 @@
   import NavBarComponent5 from './page/ManagementSetting/NavBarComponent.vue';
   import NavBarComponent6 from './components/Hotel/NavBarComponent.vue';
   import NavBarComponent7 from './components/Tent/NavBarComponent.vue';
+  import HajjNavBarComponent1 from './components/HajjPages/NotificationAndActions/NavBarComponent.vue';
+  import HajjNavBarComponent2 from './components/HajjPages/Messages/NavBarComponent.vue';
+  import HajjNavBarComponent3 from './components/HajjPages/Attachment/NavBarComponent.vue';
+  import HajjNavBarComponent4 from './components/HajjPages/DigitalId/NavBarComponent.vue';
+
   import SideBarComponent from './components/SideBarComponent.vue';
+  import HajjSideBarComponent from './components/HajjSideBarComponent.vue';
   import { computed, ref } from 'vue';
 import Xicon from './components/icon/Xicon.vue';
 
@@ -36,7 +42,22 @@ import Xicon from './components/icon/Xicon.vue';
       return NavBarComponent6
     else if(route.path.includes('tent-'))
       return NavBarComponent7
+    else if(route.path.includes('hajjpage-notifications'))
+      return HajjNavBarComponent1
+    else if(route.path.includes('hajjpage-messages') || route.path.includes('hajjpage-recieved-messages'))
+      return HajjNavBarComponent2
+    else if(route.path.includes('hajjpage-attachment'))
+      return HajjNavBarComponent3
+    else if(route.path.includes('hajjpage-digitalid'))
+      return HajjNavBarComponent4
   })
+  const showActiveSideNav = computed(()=>{
+    if(route.path.includes('hajjpage-'))
+      return HajjSideBarComponent
+    else
+      return SideBarComponent
+  })
+
 
   const sidebarHiddenState = ref(false)
   const toggleSidebar = (sidebarHidden) => {
@@ -72,9 +93,11 @@ import Xicon from './components/icon/Xicon.vue';
     </component> 
     <div class="flex justify-stretch">
       <RouterView class="transition-all" :class="sidebarHiddenState ? 'w-full' : ''" />
-      <SideBarComponent
-       v-show="showNavs"
-       @toggleSidebar="toggleSidebar" />
+      <component 
+        :is="showActiveSideNav"
+        v-show="showNavs"
+        @toggleSidebar="toggleSidebar"
+      />
     </div>
   </div>
 </template>

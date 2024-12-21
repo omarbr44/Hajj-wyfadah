@@ -51,7 +51,9 @@ import StepperComponent from '../components/StepperComponent.vue';
 import SignInComponent1 from '../components/SignIn/SignInComponent1.vue';
 import SignInComponent2 from '../components/SignIn/SignInComponent2.vue';
 import SignInComponentTab1 from '../components/SignIn/SignInComponentTab1.vue';
+import { useRouter } from 'vue-router';
 
+const router = useRouter()
 const step = ref(1)
 const active = ref(SignInComponent1)
 const activeTab = ref(1)
@@ -62,6 +64,9 @@ const nextStep = ()=> {
   if (step.value == 1) {
     active.value = SignInComponent2
     step.value++
+  }
+  else if (step.value == 2) {
+    router.push('hajjpage-notifications')
   }
 }
 </script>

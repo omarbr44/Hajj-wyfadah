@@ -6,9 +6,9 @@
                 <hr>
             </div>
             <div class="flex justify-center py-10">
-                <DigitalIdCard />
+                <DigitalIdCard ref="componentRef" />
             </div>
-                <button  class="text-lg font-bold bg-site-blue text-white py-3 px-10 rounded-lg m-10">
+                <button @click="handlePrint"  class="text-lg font-bold bg-site-blue text-white py-3 px-10 rounded-lg m-10">
                     طباعة
                 </button>
         </div>
@@ -25,7 +25,14 @@ import { useGetRequest, usePatchRequest, usePostRequest } from '../../../composa
 import { useRoute, useRouter } from 'vue-router';
 import PageLoader from '../../../components/icon/PageLoader.vue';
 import DigitalIdCard from '../../../components/HajjPages/DigitalId/DigitalIdCard.vue';
+import { useVueToPrint } from "vue-to-print";
 
+const componentRef = ref();
+
+const { handlePrint } = useVueToPrint({
+      content: componentRef,
+      documentTitle: "AwesomeFileName",
+    });
 const router = useRouter()
 const route = useRoute()
 const user = useUserStore()

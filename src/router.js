@@ -235,6 +235,13 @@ const router = createRouter({
       component: () => import('./page/Bed/BedTent/BedAdd.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/bed-distiribution',
+      name: 'bed-distiribution',
+      component: () => import('./page/Bed/BedDistirbution/BedDistribution.vue'),
+      meta: {requiresAuth: true}
+    },
+
     // managment
     {
       path: '/managment-setting',

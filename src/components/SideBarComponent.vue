@@ -32,7 +32,13 @@
              class="z-10 relative"
              :class="[useRoute().path.includes('bed-') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">التسكين</span>
         </RouterLink>
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey" :class="sidebarHidden ? 'invisible' : ''">المواصلات</RouterLink>
+        <RouterLink to="/transport-view" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('transport-')" class="w-[95%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="[useRoute().path.includes('transport-') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">المواصلات</span>
+        </RouterLink>        
         <RouterLink to="/managment-setting" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
             <div v-if="useRoute().path.includes('managment-setting')" class="w-[95%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
                  style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>

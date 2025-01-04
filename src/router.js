@@ -312,6 +312,45 @@ const router = createRouter({
       component: () => import('./page/Tent/TentDistribution/TentDistribution.vue'),
       meta: {requiresAuth: true}
     },
+    // transportation
+    {
+      path: '/transport-view',
+      name: 'transport-view',
+      component: () => import('./page/Transport/TransportManagment/TransportManagmentView.vue'),
+      meta: {requiresAuth: true}
+  },
+    {
+      path: '/transport-add/:id',
+      name: 'transport-add',
+      component: () => import('./page/Transport/TransportManagment/TransportManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/transport-distribution',
+      name: 'transport-distribution',
+      component: () => import('./page/Transport/TransportDistribution/TransportDistribution.vue'),
+      meta: {requiresAuth: true}
+    },
+    // trip
+    {
+      path: '/trip-view',
+      name: 'trip-view',
+      component: () => import('./page/Trip/TripManagment/TripManagmentView.vue'),
+      meta: {requiresAuth: true}
+  },
+    {
+      path: '/trip-add/:id',
+      name: 'trip-add',
+      component: () => import('./page/Trip/TripManagment/TripManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/trip-distribution',
+      name: 'trip-distribution',
+      component: () => import('./page/Trip/TripDistribution/TripDistribution.vue'),
+      meta: {requiresAuth: true}
+    },
+
     // hajj pages 
     {
       path: '/hajjpage-notifications',

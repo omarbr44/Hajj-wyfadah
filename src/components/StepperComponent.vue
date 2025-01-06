@@ -37,8 +37,8 @@
             </div>
             <div 
              v-show="index < stepsLabels.length - 1"
-             class="divider lg:w-64 lg:h-3 w-20 h-2"
-             :class=" index+1 <= step ? 'active-step' : 'disabled-step'"
+             class="divider lg:h-3 w-20 h-2"
+             :class="[index+1 <= step ? 'active-step' : 'disabled-step', removeTransform ? 'lg:w-40' : 'lg:w-64']"
              ></div>
         </div>
         
@@ -51,6 +51,7 @@ defineProps({
     step: {type:Number,default:1},
     stepsLabels: {type:Array,required:true},
     edited: {default: false},
+    removeTransform: {default: false},
 })
 let counter = 0
 </script>

@@ -280,6 +280,12 @@ const router = createRouter({
       component: () => import('./page/Hotel/RoomCategoryManagment/RoomCategoryManagmentView.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/hotel-distiribution',
+      name: 'hotel-distiribution',
+      component: () => import('./page/Hotel/HotelDistribution/HotelDistribution.vue'),
+      meta: {requiresAuth: true}
+    },
 
     // Tent
     {

@@ -9,9 +9,9 @@
                 تصنيفات الغرف
             </RouterLink>
             <RouterLink 
-                to="/bedtent-view" 
+                to="/hotel-distiribution" 
                 class="p-2 rounded-3xl"
-                :class="useRoute().path.includes('bedtent-view') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('hotel-distiribution') ? 'text-white bg-site-blue' : ''"
                 >
                 توزيع الغرف
             </RouterLink>

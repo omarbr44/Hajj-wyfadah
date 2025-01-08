@@ -46,7 +46,13 @@
              class="z-10 relative"
              :class="[useRoute().path.includes('managment-setting') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">ادوات الإدارة والتنظيم</span>
         </RouterLink>        
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey" :class="sidebarHidden ? 'invisible' : ''">إدارة المستخدمين</RouterLink>
+        <RouterLink to="/usermanagment-view" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('usermanagment-')" class="w-[95%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2"
+                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span
+             class="z-10 relative"
+             :class="[useRoute().path.includes('usermanagment-') ? 'text-white' : '', sidebarHidden ? 'invisible' : '']">إدارة المستخدمين</span>
+        </RouterLink>        
         <div class="profile flex flex-col items-center" :class="sidebarHidden ? 'invisible' : ''">
             <div class="bg-[#D2E3E8] size-16 rounded-full flex justify-center items-center">
                 <svg width="47" height="46" viewBox="0 0 47 46" fill="none" xmlns="http://www.w3.org/2000/svg">

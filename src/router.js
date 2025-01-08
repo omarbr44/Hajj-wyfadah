@@ -356,6 +356,30 @@ const router = createRouter({
       component: () => import('./page/Trip/TripDistribution/TripDistribution.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/usermanagment-view',
+      name: 'usermanagment-view',
+      component: () => import('./page/UserManagment/UserManagment/UserManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/usermanagment-add/:id',
+      name: 'usermanagment-add',
+      component: () => import('./page/UserManagment/UserManagment/UserManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/userpermissions-view',
+      name: 'userpermissions-view',
+      component: () => import('./page/UserManagment/UserPermissions/UserPermissionsView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/userpermissions-add/:id',
+      name: 'userpermissions-add',
+      component: () => import('./page/UserManagment/UserPermissions/UserPermissionsAdd.vue'),
+      meta: {requiresAuth: true}
+    },
 
     // hajj pages 
     {

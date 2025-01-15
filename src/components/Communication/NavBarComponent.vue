@@ -2,9 +2,9 @@
     <div class="bg-white pt-8 w-full flex justify-end border-b-4 border-site-blue fixed top-0 z-10">
         <div class="flex items-center gap-10 text-black mr-72 font-bold">
             <RouterLink 
-                to="/hajj-attachment" 
+                to="/communication-sentmsgs" 
                 class="p-2 px-4 rounded-3xl"
-                :class="useRoute().path.includes('hajj-attachment') ? 'text-white bg-site-blue' : ''"
+                :class="useRoute().path.includes('communication-sentmsgs') ? 'text-white bg-site-blue' : ''"
                 >
                 الرسائل المرسلة
             </RouterLink>

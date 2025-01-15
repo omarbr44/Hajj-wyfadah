@@ -2,8 +2,13 @@
     <div class="w-[20%] bg-white py-8 flex flex-col items-center gap-10 shadow-xl fixed right-0 overflow-y-scroll z-10 h-full transition-all"
         :class="sidebarHidden ? '!w-0' : ''">
         <img src="/img/logo.png" class="" alt="logo">
-        <RouterLink to="" class="text-lg font-bold text-site-text-grey"
-                          :class="sidebarHidden ? 'invisible' : ''">لوحة المعلومات</RouterLink>
+        <RouterLink to="/dashboard-page" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
+            <div v-if="useRoute().path.includes('dashboard-page')" class="w-[85%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2" 
+                style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>
+            <span 
+            class="z-10 relative"
+            :class="[useRoute().path.includes('dashboard-page') ? 'text-white' : '' , sidebarHidden ? 'invisible' : '']">لوحة المعلومات</span>
+        </RouterLink>
         <RouterLink to="/company-info" class="w-full text-lg font-bold text-site-text-grey relative flex items-center justify-center">
             <div v-if="useRoute().path.includes('company-')" class="w-[75%] h-14 left-0 bg-site-blue absolute top-1/2 -translate-y-1/2" 
                 style="border-top-right-radius: 8rem;border-bottom-right-radius: 8rem;"></div>

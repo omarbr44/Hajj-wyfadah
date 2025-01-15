@@ -222,6 +222,18 @@ const router = createRouter({
       component: () => import('./page/Communication/CommunicationSchedule/CommunicationScheduleEdit.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/communication-sentmsgs-detailes/:id',
+      name: 'communication-sentmsgs-detailes',
+      component: () => import('./page/Communication/CommunicationSentMsg/CommunicationSentMsgDetails.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/communication-sentmsgs',
+      name: 'communication-sentmsgs',
+      component: () => import('./page/Communication/CommunicationSentMsg/CommunicationSentMsg.vue'),
+      meta: {requiresAuth: true}
+    },
     // bed
     {
       path: '/bed-tent-view',
@@ -378,6 +390,12 @@ const router = createRouter({
       path: '/userpermissions-add/:id',
       name: 'userpermissions-add',
       component: () => import('./page/UserManagment/UserPermissions/UserPermissionsAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/dashboard-page',
+      name: 'dashboard-page',
+      component: () => import('./page/Dashboard/DashboardPage.vue'),
       meta: {requiresAuth: true}
     },
 

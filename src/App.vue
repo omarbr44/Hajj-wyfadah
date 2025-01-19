@@ -9,6 +9,7 @@
   import NavBarComponent7 from './components/Tent/NavBarComponent.vue';
   import NavBarComponent8 from './components/Transport/NavBarComponent.vue';
   import NavBarComponent9 from './components/UserManagment/NavBarComponent.vue';
+  import NavBarComponent10 from './components/Report/NavBarComponent.vue';
   import HajjNavBarComponent1 from './components/HajjPages/NotificationAndActions/NavBarComponent.vue';
   import HajjNavBarComponent2 from './components/HajjPages/Messages/NavBarComponent.vue';
   import HajjNavBarComponent3 from './components/HajjPages/Attachment/NavBarComponent.vue';
@@ -47,7 +48,9 @@ import Xicon from './components/icon/Xicon.vue';
     else if(route.path.includes('transport-') || route.path.includes('trip-'))
       return NavBarComponent8
     else if(route.path.includes('usermanagment-') || route.path.includes('userpermissions-'))
-      return NavBarComponent9
+    return NavBarComponent9
+    else if(route.path.includes('-reports'))
+      return NavBarComponent10
     else if(route.path.includes('hajjpage-notifications'))
       return HajjNavBarComponent1
     else if(route.path.includes('hajjpage-messages') || route.path.includes('hajjpage-recieved-messages'))

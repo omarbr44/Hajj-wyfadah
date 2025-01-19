@@ -398,6 +398,49 @@ const router = createRouter({
       component: () => import('./page/Dashboard/DashboardPage.vue'),
       meta: {requiresAuth: true}
     },
+    {
+      path: '/profile-page',
+      name: 'profile-page',
+      component: () => import('./page/Profile/ProfilePage.vue'),
+      meta: {requiresAuth: true}
+    },
+    // reports
+    {
+      path: '/location-reports',
+      name: 'location-reports',
+      component: () => import('./page/Report/locationReport.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/tentsgoing-reports',
+      name: 'tentsgoing-reports',
+      component: () => import('./page/Report/tentsgoingReport.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/buses-reports',
+      name: 'buses-reports',
+      component: () => import('./page/Report/BusReport/busReport.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/buses-reports-prparation/:id',
+      name: 'buses-reports-prparation',
+      component: () => import('./page/Report/BusReport/busReportPrepear.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/tents-reports',
+      name: 'tents-reports',
+      component: () => import('./page/Report/TentReport/tentReport.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/tents-reports-prparation/:id',
+      name: 'tents-reports-prparation',
+      component: () => import('./page/Report/TentReport/tentReportPrepear.vue'),
+      meta: {requiresAuth: true}
+    },
 
     // hajj pages 
     {

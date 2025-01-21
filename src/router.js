@@ -441,6 +441,91 @@ const router = createRouter({
       component: () => import('./page/Report/TentReport/tentReportPrepear.vue'),
       meta: {requiresAuth: true}
     },
+    // mobile
+    {
+      path: '/mobile-about',
+      name: 'mobile-about',
+      component: () => import('./page/Mobile/About/MobileAbout.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-about-edit',
+      name: 'mobile-about-edit',
+      component: () => import('./page/Mobile/About/MobileAboutEdit.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-about-contact-edit',
+      name: 'mobile-about-contact-edit',
+      component: () => import('./page/Mobile/About/MobileAboutContactEdit.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-condition',
+      name: 'mobile-condition',
+      component: () => import('./page/Mobile/Condition/ConditionView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-condition-edit',
+      name: 'mobile-condition-edit',
+      component: () => import('./page/Mobile/Condition/ConditionEdit.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-tripprograms',
+      name: 'mobile-tripprograms',
+      component: () => import('./page/Mobile/TripPrograms/TripProgramsView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-tripprograms-add/:id',
+      name: 'mobile-tripprograms-add/:id',
+      component: () => import('./page/Mobile/TripPrograms/TripProgramsAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-health',
+      name: 'mobile-health',
+      component: () => import('./page/Mobile/Health/HealthView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-health-add/:id',
+      name: 'mobile-health-add/:id',
+      component: () => import('./page/Mobile/Health/HealthAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-imggallary',
+      name: 'mobile-imggallary',
+      component: () => import('./page/Mobile/ImgGallary/ImgGallaryView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-imggallary-add/:id',
+      name: 'mobile-imggallary-add/:id',
+      component: () => import('./page/Mobile/ImgGallary/ImgGallaryAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-livestream',
+      name: 'mobile-livestream',
+      component: () => import('./page/Mobile/liveStream/LiveStreamView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-livestream-add/:id',
+      name: 'mobile-livestream-add/:id',
+      component: () => import('./page/Mobile/liveStream/LiveStreamAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/mobile-hajjmove',
+      name: 'mobile-hajjmove',
+      component: () => import('./page/Mobile/HajjMoveView.vue'),
+      meta: {requiresAuth: true}
+    },
 
     // hajj pages 
     {

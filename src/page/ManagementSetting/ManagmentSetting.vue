@@ -70,7 +70,7 @@ import { RouterLink } from 'vue-router';
             </RouterLink>
         </div>
         <div class="flex justify-center">
-            <RouterLink class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
+            <RouterLink to="mobile-about" class="flex items-center w-1/3 h-40 justify-evenly border border-site-blue p-8"
                  style="box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);">
                 <h1 class="text-2xl text-site-blue font-semibold" >تطبيق الجوال</h1>
                 <svg width="92" height="92" viewBox="0 0 92 92" fill="none" xmlns="http://www.w3.org/2000/svg">

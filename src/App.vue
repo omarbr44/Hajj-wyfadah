@@ -11,6 +11,7 @@
   import NavBarComponent9 from './components/UserManagment/NavBarComponent.vue';
   import NavBarComponent10 from './components/Report/NavBarComponent.vue';
   import NavBarComponent11 from './components/Mobile/NavBarComponent.vue';
+  import NavBarComponent12 from './components/Cards/NavBarComponent.vue';
   import HajjNavBarComponent1 from './components/HajjPages/NotificationAndActions/NavBarComponent.vue';
   import HajjNavBarComponent2 from './components/HajjPages/Messages/NavBarComponent.vue';
   import HajjNavBarComponent3 from './components/HajjPages/Attachment/NavBarComponent.vue';
@@ -54,6 +55,8 @@ import Xicon from './components/icon/Xicon.vue';
       return NavBarComponent10
     else if(route.path.includes('mobile-'))
       return NavBarComponent11
+    else if(route.path.includes('cards'))
+      return NavBarComponent12
     else if(route.path.includes('hajjpage-notifications'))
       return HajjNavBarComponent1
     else if(route.path.includes('hajjpage-messages') || route.path.includes('hajjpage-recieved-messages'))

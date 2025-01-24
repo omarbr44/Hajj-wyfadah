@@ -1,5 +1,6 @@
 <template>
-    <div class=" bg-site-blue rtl-d w-[40%] relative font-bold">
+    <div class=" rtl-d w-[40%] relative font-bold " ref="backdiv"
+         >
         <img src="/img/DigitalCard1.png" class=" absolute left-0">
         <img src="/img/DigitalCard1.png" class=" bottom-0 right-0 absolute rotate-180">
         <div class="flex justify-center pt-24 pb-8">
@@ -14,14 +15,17 @@
             <p class=" border border-black py-2 px-10 rounded-md" >44</p>
         </div>
         <h1 class="text-white text-6xl mb-4 text-center my-6 pb-2">منى</h1>
-        <div class="flex justify-between items-center bg-white py-4 px-8 text-site-blue">
+        <div class="flex justify-between items-center bg-white py-4 px-8" ref="textFir"
+             >
             <div class="flex justify-center items-center gap-4">
                 <span>الخيمة</span>
-                <p class=" border border-site-blue py-2 px-6 rounded-md text-black" >44</p>
+                <p class=" border py-2 px-6 rounded-md text-black " ref="borderFir"
+                   >44</p>
             </div>
             <div class="flex justify-center items-center gap-4">
                 <span>المقعد</span>
-                <p class=" border border-site-blue py-2 px-6 rounded-md text-black" >9</p>
+                <p class=" border py-2 px-6 rounded-md text-black" ref="borderSec"
+                   >9</p>
             </div>
         </div>
         <div class="flex justify-center mt-10 mb-28">
@@ -31,5 +35,23 @@
 </template>
 
 <script setup>
+import { ref, watchEffect } from 'vue';
 
+const props = defineProps({
+    color: {type: String, default: '#48b4c3' },
+})
+const backdiv = ref(null)
+const textFir = ref(null)
+const borderFir = ref(null)
+const borderSec = ref(null)
+
+watchEffect(()=>{
+    if(backdiv.value) {
+        backdiv.value.style.background = props.color;
+        textFir.value.style.color = props.color;
+        borderFir.value.style.borderColor = props.color;
+        borderSec.value.style.borderColor = props.color;
+
+    }
+})
 </script>

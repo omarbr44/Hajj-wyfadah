@@ -393,6 +393,18 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
+      path: '/cardsmanagment-view',
+      name: 'cardsmanagment-view',
+      component: () => import('./page/Cards/CardsManagment/CardsManagmentView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/cardsmanagment-add/:id',
+      name: 'cardsmanagment-add',
+      component: () => import('./page/Cards/CardsManagment/CardsManagmentAdd.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
       path: '/dashboard-page',
       name: 'dashboard-page',
       component: () => import('./page/Dashboard/DashboardPage.vue'),

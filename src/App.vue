@@ -104,6 +104,7 @@ import Xicon from './components/icon/Xicon.vue';
     <component 
       :is="showActiveNav"
       v-show="showNavs"
+      class="print:hidden"
     >
     </component> 
     <div class="flex justify-stretch">
@@ -112,6 +113,7 @@ import Xicon from './components/icon/Xicon.vue';
         :is="showActiveSideNav"
         v-show="showNavs"
         @toggleSidebar="toggleSidebar"
+        class="print:hidden"
       />
     </div>
   </div>

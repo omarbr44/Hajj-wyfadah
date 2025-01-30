@@ -405,6 +405,18 @@ const router = createRouter({
       meta: {requiresAuth: true}
     },
     {
+      path: '/cardshajjs-view',
+      name: 'cardshajjs-view',
+      component: () => import('./page/Cards/CardsHajj/CardsHajjView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
+      path: '/cardshajjsstickers-view',
+      name: 'cardshajjsstickers-view',
+      component: () => import('./page/Cards/CardsHajjStickers/CardsHajjStickersView.vue'),
+      meta: {requiresAuth: true}
+    },
+    {
       path: '/dashboard-page',
       name: 'dashboard-page',
       component: () => import('./page/Dashboard/DashboardPage.vue'),
